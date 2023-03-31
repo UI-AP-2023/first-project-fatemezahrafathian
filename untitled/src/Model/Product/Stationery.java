@@ -1,0 +1,15 @@
+package Model.Product;
+
+public abstract class Stationery extends Product {
+    public Stationery(ProductCategory productCategory, String name, double price, String inventoryStatus, String producingCountry){
+        super(productCategory,name,price,inventoryStatus);
+        this.producingCountry=producingCountry;
+    }
+    private String producingCountry;
+    public String getProducingCountry() {
+        return producingCountry;
+    }
+    public void setProducingCountry(String producingCountry) {
+        this.producingCountry = producingCountry;
+    }
+}
