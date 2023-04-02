@@ -1,7 +1,10 @@
 package Controller;
 
+import Model.User.Account;
+import Model.User.Admin;
 import Model.User.Request;
 import View.ViewSignUp;
+import View.ViewLogIn;
 import Model.User.Purchaser;
 
 import java.util.ArrayList;
@@ -38,7 +41,47 @@ public class AccountController {
             choice=viewSignUp.enterChoice();
         }
     }
+    public void logInPurchaser(){
+        int choice = 1;
+        while (choice != 0){
+            ViewLogIn viewLogIn = new ViewLogIn();
+            viewLogIn.visitLogInPage();
+            if(choice == 1){
+                while (!checkLogIn(viewLogIn.getUserName(),viewLogIn.getPassword())){
+                    viewLogIn.errorUserNameOrPassword();
+                }
+                if(account instanceof Purchaser){
+
+                }
+                else if(account instanceof Admin){
+
+                }
+            }
+            else{
+                viewLogIn.error();
+            }
+            viewLogIn.choice();
+            choice=viewLogIn.enterChoice();
+        }
+    }
+    public boolean checkLogIn(String username, String password){
+        boolean truePasswordAndUserName=false;
+        for (Purchaser purchaser:purchasers){
+            if(purchaser.getUserName().equals(username) && purchaser.getPassword().equals(password)){
+                truePasswordAndUserName=true;
+                this.account=purchaser;
+                break;
+            }
+        }
+        Admin admin = Admin.getAdmin();
+        if(admin.getUserName().equals("Admin") && admin.getPassword().equals("Admin")){
+            truePasswordAndUserName=true;
+            this.account=admin;
+        }
+        return truePasswordAndUserName;
+    }
     private ArrayList<Purchaser> purchasers = new ArrayList<>();
+    private Account account;
     private String username;
     private String password;
     private String phoneNumber;

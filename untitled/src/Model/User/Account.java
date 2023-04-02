@@ -13,25 +13,25 @@ public abstract class Account {
     private String phoneNumber;
     private String password;
     //************************************************************************
-    String getUserName() {
+    public String getUserName() {
         return this.userName;
     }
-    String getEmail() {
+    public String getEmail() {
         return this.email;
     }
-    void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
-    String getPhoneNumber() {
+    public String getPhoneNumber() {
         return this.phoneNumber;
     }
-    void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    String getPassword() {
+    public String getPassword() {
         return this.password;
     }
-    void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

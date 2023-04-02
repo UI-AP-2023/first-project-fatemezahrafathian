@@ -10,7 +10,7 @@ public class Admin extends Account {
         super("Admin", null, "0", "Admin");
     }
 
-    private static Admin admin;
+    private static Admin admin= new Admin();
 
     public static Admin getAdmin() {
         return admin;

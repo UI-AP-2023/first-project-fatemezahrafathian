@@ -12,7 +12,8 @@ public class ControllerEnterPage {
                 accountController.signUpPurchaser();
             }
             else if(choice == 2){
-
+                AccountController accountController = new AccountController();
+                accountController.logInPurchaser();
             }
             else if(choice == 3){
 
