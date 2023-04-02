@@ -8,7 +8,6 @@ public class Purchaser extends Account {
     public Purchaser(String userName, String email, String phoneNumber, String password) {
         super(userName, email, phoneNumber, password);
     }
-
     //*************************************************************************
     private ArrayList<Product> cart = new ArrayList<>();
     private ArrayList<purchaseInvoice> purchaseHistory = new ArrayList<>();
@@ -36,6 +35,13 @@ public class Purchaser extends Account {
 
     public void setAccountCredentials(double accountCredentials) {
         this.accountCredentials = accountCredentials;
+    }
+    @Override
+    public boolean equals(Object object){
+
+        if(this.getUserName() == object.toString())
+            return true;
+        else return false;
     }
 
 }
