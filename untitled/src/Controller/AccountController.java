@@ -28,7 +28,7 @@ public class AccountController {
         Purchaser purchaser = new Purchaser(username,email,phoneNumber,password);
         Request request = new Request("add purchaser",purchaser);
         AdminController adminController = new AdminController();
-        adminController.acceptAddPurchaser(request);
+        adminController.accept(request.getRequestType(),request.getRequestId());
         viewSignUp.sendRequest();
     }
     public void logInPurchaser(){
