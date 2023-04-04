@@ -3,7 +3,7 @@ import Model.User.Comment;
 
 import java.util.ArrayList;
 public abstract class Product {
-    public Product(ProductCategory productCategory, String name, double price, String inventoryStatus){
+    public Product(ProductCategory productCategory, String name, double price, int inventoryStatus){
         this.name=name;
         this.price=price;
         this.productCategory=productCategory;
@@ -19,7 +19,7 @@ public abstract class Product {
     private String name;
     private double price;
     private ProductCategory productCategory;
-    private String inventoryStatus;
+    private int inventoryStatus;
     private double averageScoreOfBuyers;
     private ArrayList<Comment> comments = new ArrayList<>();
     public String getName() {
@@ -40,7 +40,7 @@ public abstract class Product {
     public double getPrice() {
         return price;
     }
-    public String getInventoryStatus() {
+    public int getInventoryStatus() {
         return inventoryStatus;
     }
     public void setName(String name) {
@@ -52,7 +52,7 @@ public abstract class Product {
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
     }
-    public void setInventoryStatus(String inventoryStatus) {
+    public void setInventoryStatus(int inventoryStatus) {
         this.inventoryStatus = inventoryStatus;
     }
     public void setComments(ArrayList<Comment> comments) {

@@ -1,7 +1,7 @@
 package Model.Product;
 
 public class Pencil extends Stationery {
-    public Pencil(ProductCategory productCategory, String name, double price, String inventoryStatus, String producingCountry, PencilType pencilType){
+    public Pencil(ProductCategory productCategory, String name, double price, int inventoryStatus, String producingCountry, PencilType pencilType){
         super(productCategory,name,price,inventoryStatus,producingCountry);
         this.pencilType=pencilType;
     }

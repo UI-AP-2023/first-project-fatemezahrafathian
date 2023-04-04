@@ -1,7 +1,7 @@
 package Model.Product;
 
 public class SSD extends InformationStorageEquipment {
-    public SSD(ProductCategory productCategory, String name, double price, String inventoryStatus, double waite, String dimensions, int capacity, double readingSpeed, double writingSpeed){
+    public SSD(ProductCategory productCategory, String name, double price, int inventoryStatus, double waite, String dimensions, int capacity, double readingSpeed, double writingSpeed){
         super(productCategory,name,price,inventoryStatus,waite,dimensions,capacity);
         this.readingSpeed=readingSpeed;
         this.writingSpeed=writingSpeed;

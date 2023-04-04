@@ -1,6 +1,6 @@
 package Model.Product;
-class Car extends Vehicle {
-    public Car(ProductCategory productCategory, String name, double price, String inventoryStatus, String companyName, double engineVolume, boolean automatic){
+public class Car extends Vehicle {
+    public Car(ProductCategory productCategory, String name, double price, int inventoryStatus, String companyName, double engineVolume, boolean automatic){
         super(productCategory,name,price,inventoryStatus,companyName);
         this.engineVolume=engineVolume;
         this.automatic=automatic;

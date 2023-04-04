@@ -1,7 +1,7 @@
 package Model.Product;
 
 public abstract class Stationery extends Product {
-    public Stationery(ProductCategory productCategory, String name, double price, String inventoryStatus, String producingCountry){
+    public Stationery(ProductCategory productCategory, String name, double price, int inventoryStatus, String producingCountry){
         super(productCategory,name,price,inventoryStatus);
         this.producingCountry=producingCountry;
     }

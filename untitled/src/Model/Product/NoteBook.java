@@ -1,7 +1,7 @@
 package Model.Product;
 
 public class NoteBook extends Stationery {
-    public NoteBook(ProductCategory productCategory, String name, double price, String inventoryStatus, String producingCountry, int numberOfSheets, String paperType){
+    public NoteBook(ProductCategory productCategory, String name, double price, int inventoryStatus, String producingCountry, int numberOfSheets, String paperType){
         super(productCategory,name,price,inventoryStatus,producingCountry);
         this.numberOfSheets=numberOfSheets;
         this.paperType=paperType;

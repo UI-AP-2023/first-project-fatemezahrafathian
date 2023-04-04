@@ -1,7 +1,7 @@
 package Model.Product;
 
 public class FlashMemory extends InformationStorageEquipment {
-    public FlashMemory(ProductCategory productCategory, String name, double price, String inventoryStatus, double waite, String dimensions, int capacity, String version){
+    public FlashMemory(ProductCategory productCategory, String name, double price, int inventoryStatus, double waite, String dimensions, int capacity, String version){
         super(productCategory,name,price,inventoryStatus,waite,dimensions,capacity);
         this.version=version;
     }

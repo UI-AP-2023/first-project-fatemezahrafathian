@@ -1,7 +1,7 @@
 package Model.Product;
 
 public class Bike extends Vehicle {
-    public Bike(ProductCategory productCategory, String name, double price, String inventoryStatus, String companyName, BikeType bikeType){
+    public Bike(ProductCategory productCategory, String name, double price, int inventoryStatus, String companyName, BikeType bikeType){
         super(productCategory,name,price,inventoryStatus,companyName);
         this.bikeType=bikeType;
     }

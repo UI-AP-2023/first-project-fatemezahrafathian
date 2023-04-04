@@ -1,6 +1,6 @@
 package Model.Product;
 public class Pen extends Stationery {
-    public Pen(ProductCategory productCategory, String name, double price, String inventoryStatus, String producingCountry, String color){
+    public Pen(ProductCategory productCategory, String name, double price, int inventoryStatus, String producingCountry, String color){
         super(productCategory,name,price,inventoryStatus,producingCountry);
         this.color=color;
     }

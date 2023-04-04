@@ -11,57 +11,39 @@ import java.util.ArrayList;
 import java.util.regex.*;
 public class AccountController {
     public void signUpPurchaser(){
-        int choice = 1;
-        while (choice != 0){
-            ViewSignUp viewSignUp = new ViewSignUp();
-            viewSignUp.visitSignUpPage();
-            if(choice == 1){
-                while (checkUsername(viewSignUp.getUserName())){
-                    viewSignUp.errorUserName();
-                }
-                while (!checkPassword(viewSignUp.getPassword())){
-                    viewSignUp.errorPassword();
-                }
-                while (!checkPhoneNumber(viewSignUp.getPhoneNumber())){
-                    viewSignUp.errorPhoneNumber();
-                }
-                while (!checkEmail(viewSignUp.getEmail())){
-                    viewSignUp.errorEmail();
-                }
-                Purchaser purchaser = new Purchaser(username,email,phoneNumber,password);
-                Request request = new Request("add purchaser",purchaser);
-                AdminController adminController = new AdminController();
-                adminController.acceptAddPurchaser(request);
-                viewSignUp.sendRequest();
-            }
-            else{
-                viewSignUp.error();
-            }
-            viewSignUp.choice();
-            choice=viewSignUp.enterChoice();
+        ViewSignUp viewSignUp = new ViewSignUp();
+        viewSignUp.visitSignUpPage();
+        while (checkUsername(viewSignUp.getUserName())){
+            viewSignUp.errorUserName();
         }
+        while (!checkPassword(viewSignUp.getPassword())){
+            viewSignUp.errorPassword();
+        }
+        while (!checkPhoneNumber(viewSignUp.getPhoneNumber())){
+            viewSignUp.errorPhoneNumber();
+        }
+        while (!checkEmail(viewSignUp.getEmail())){
+            viewSignUp.errorEmail();
+        }
+        Purchaser purchaser = new Purchaser(username,email,phoneNumber,password);
+        Request request = new Request("add purchaser",purchaser);
+        AdminController adminController = new AdminController();
+        adminController.acceptAddPurchaser(request);
+        viewSignUp.sendRequest();
     }
     public void logInPurchaser(){
-        int choice = 1;
-        while (choice != 0){
-            ViewLogIn viewLogIn = new ViewLogIn();
-            viewLogIn.visitLogInPage();
-            if(choice == 1){
-                while (!checkLogIn(viewLogIn.getUserName(),viewLogIn.getPassword())){
-                    viewLogIn.errorUserNameOrPassword();
-                }
-                if(account instanceof Purchaser){
-
-                }
-                else if(account instanceof Admin){
-
-                }
-            }
-            else{
-                viewLogIn.error();
-            }
-            viewLogIn.choice();
-            choice=viewLogIn.enterChoice();
+        ViewLogIn viewLogIn = new ViewLogIn();
+        viewLogIn.visitLogInPage();
+        while (!checkLogIn(viewLogIn.getUserName(),viewLogIn.getPassword())){
+            viewLogIn.errorUserNameOrPassword();
+        }
+        if(account instanceof Purchaser){
+            PurchaserController purchaserController = new PurchaserController();
+            purchaserController.purchaserController();
+        }
+        else if(account instanceof Admin){
+            AdminController adminController = new AdminController();
+            adminController.adminController();
         }
     }
     public boolean checkLogIn(String username, String password){
@@ -80,7 +62,7 @@ public class AccountController {
         }
         return truePasswordAndUserName;
     }
-    private ArrayList<Purchaser> purchasers = new ArrayList<>();
+    private static ArrayList<Purchaser> purchasers = new ArrayList<>();
     private Account account;
     private String username;
     private String password;
