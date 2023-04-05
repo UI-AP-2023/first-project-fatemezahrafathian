@@ -60,7 +60,7 @@ public class AdminController {
         for(Request request : admin.getRequests()){
             if(request.getRequestId()==requestId){
                 request.setAccepted(true);
-                if (typeOfRequest.equals("sign up")){
+                if (typeOfRequest.equals("signUp")){
                     AccountController accountController = new AccountController();
                     accountController.getPurchasers().add(request.getRequestSender());
                 }
@@ -71,8 +71,7 @@ public class AdminController {
                     AccountController accountController = new AccountController();
                     for (Purchaser purchaser : accountController.getPurchasers()){
                         if (purchaser.equals(request.getRequestSender())){
-                            ViewAdmin viewAdmin = new ViewAdmin();
-                            purchaser.setAccountCredentials(purchaser.getAccountCredentials()+ viewAdmin.getPrice());
+                            purchaser.setAccountCredentials(purchaser.getAccountCredentials()+ request.getAmount());
                         }
                     }
                 }

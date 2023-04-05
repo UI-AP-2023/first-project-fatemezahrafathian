@@ -1,6 +1,16 @@
 package Model.User;
 
 public class Request {
+    public Request(String requestType,Purchaser requestSender,double amount){
+        numberOfRequest++;
+        this.requestType=requestType;
+        this.requestSender =requestSender;
+        this.amount=amount;
+        this.numberRequest=numberOfRequest;
+        StringBuilder requestId = new StringBuilder();
+        requestId.append(requestType.charAt(0)+"-"+requestSender.getUserName()+"-"+numberRequest);
+        this.requestId=requestId.toString();
+    }
     public Request(String requestType,Purchaser requestSender){
         numberOfRequest++;
         this.requestType=requestType;
@@ -16,6 +26,7 @@ public class Request {
     private final int numberRequest;
     private final String requestId;
     private boolean accepted = false;
+    private double amount = 0;
 
     public boolean isAccepted() {
         return accepted;
@@ -43,5 +54,13 @@ public class Request {
 
     public void setRequestSender(Purchaser requestSender) {
         this.requestSender = requestSender;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }

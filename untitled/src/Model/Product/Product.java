@@ -61,4 +61,14 @@ public abstract class Product {
     public void setAverageScoreOfBuyers(double averageScoreOfBuyers) {
         this.averageScoreOfBuyers = averageScoreOfBuyers;
     }
+    public String toString(){
+        StringBuilder productInformation = new StringBuilder();
+        productInformation.append("name: "+getName()+"\n");
+        productInformation.append("productId: "+getProductID()+"\n");
+        productInformation.append("category: "+getProductCategory()+"\n");
+        productInformation.append("price: "+getPrice()+"\n");
+        productInformation.append("score: "+getAverageScoreOfBuyers()+"\n");
+        productInformation.append("inventory status: "+getInventoryStatus()+"\n");
+        return productInformation.toString();
+    }
 }

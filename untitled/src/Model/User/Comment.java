@@ -6,4 +6,7 @@ public class Comment {
     String commentText;
     String commentStatus;
     boolean theCommenterBoughtTheProduct;
+    public String toString(){
+        return commentingUser+"     "+commentText;
+    }
 }

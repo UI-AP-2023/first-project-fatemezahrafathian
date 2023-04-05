@@ -43,5 +43,14 @@ public class Purchaser extends Account {
             return true;
         else return false;
     }
+    public String toString(){
+        StringBuilder information = new StringBuilder();
+        information.append("username: "+this.getUserName()+"\n");
+        information.append("password: "+this.getPassword()+"\n");
+        information.append("email: "+this.getEmail()+"\n");
+        information.append("phone number: "+this.getPhoneNumber()+"\n");
+        information.append("accountCredentials: "+this.getAccountCredentials()+"\n\n");
+        return information.toString();
+    }
 
 }

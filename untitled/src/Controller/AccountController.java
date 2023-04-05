@@ -26,9 +26,9 @@ public class AccountController {
             viewSignUp.errorEmail();
         }
         Purchaser purchaser = new Purchaser(username,email,phoneNumber,password);
-        Request request = new Request("add purchaser",purchaser);
-        AdminController adminController = new AdminController();
-        adminController.accept(request.getRequestType(),request.getRequestId());
+        Request request = new Request("signUp",purchaser);
+        Admin admin = Admin.getAdmin();
+        admin.getRequests().add(request);
         viewSignUp.sendRequest();
     }
     public void logInPurchaser(){
@@ -39,7 +39,7 @@ public class AccountController {
         }
         if(account instanceof Purchaser){
             PurchaserController purchaserController = new PurchaserController();
-            purchaserController.purchaserController();
+            purchaserController.purchaserController((Purchaser) account);
         }
         else if(account instanceof Admin){
             AdminController adminController = new AdminController();
@@ -68,7 +68,7 @@ public class AccountController {
     private String password;
     private String phoneNumber;
     private String email;
-    private boolean checkUsername(String username){
+    public boolean checkUsername(String username){
         boolean duplicateUsername=false;
         for (Purchaser purchaser: purchasers){
             if (purchaser.equals(username)) {
@@ -81,7 +81,7 @@ public class AccountController {
         }
         return duplicateUsername;
     }
-    private boolean checkPassword(String password){
+    public boolean checkPassword(String password){
         boolean truePassword=false;
         Pattern pattern =Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
         Matcher matcher =pattern.matcher(password);
@@ -92,7 +92,7 @@ public class AccountController {
         }
         return truePassword;
     }
-    private boolean checkPhoneNumber(String phoneNumber){
+    public boolean checkPhoneNumber(String phoneNumber){
         boolean truePhoneNumber=false;
         Pattern pattern =Pattern.compile("^(09)+\\d{9}$");
         Matcher matcher =pattern.matcher(phoneNumber);
@@ -103,7 +103,7 @@ public class AccountController {
         }
         return truePhoneNumber;
     }
-    private boolean checkEmail(String email){
+    public boolean checkEmail(String email){
         boolean trueEmail=false;
         Pattern pattern =Pattern.compile("^\\w+@(gmail|yahoo)\\.com$");
         Matcher matcher =pattern.matcher(email);
