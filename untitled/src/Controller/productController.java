@@ -146,10 +146,10 @@ public class productController {
                 numberOfShowProduct=showPage(numberOfShowProduct);
             }
             else if(choice==4){
-                //select
+                select();
             }
             else{
-                //error
+                viewProducts.error();
             }
             choice=viewProducts.enterChoice();
         }

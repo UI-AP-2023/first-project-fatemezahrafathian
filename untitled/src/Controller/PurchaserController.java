@@ -1,8 +1,7 @@
 package Controller;
 
-import Model.User.Admin;
-import Model.User.Purchaser;
-import Model.User.Request;
+import Model.Product.Product;
+import Model.User.*;
 import View.ViewPurchaser;
 import View.ViewSignUp;
 
@@ -15,6 +14,8 @@ public class PurchaserController {
         int choice= 1 ;
         while (choice!=0){
             AccountController accountController = new AccountController();
+            productController productController = new productController();
+            Admin admin = Admin.getAdmin();
             viewPurchaser.choice();
             choice=viewPurchaser.enterChoice();
             if (choice == 1){
@@ -26,7 +27,7 @@ public class PurchaserController {
                     choice2 = viewPurchaser.enterChoice();
                     if (choice2 == 1) {
                         String newPassword="";
-                        while (!accountController.checkPassword(newPassword)){
+                        while (accountController.checkPassword(newPassword)){
                             if (newPassword!="")
                                 viewSignUp.errorPassword();
                             newPassword=viewSignUp.getPassword();
@@ -35,7 +36,7 @@ public class PurchaserController {
 
                     } else if (choice2 == 2) {
                         String newEmail="";
-                        while (!accountController.checkPhoneNumber(newEmail)){
+                        while (accountController.checkPhoneNumber(newEmail)){
                             if (newEmail!="")
                                 viewSignUp.errorPhoneNumber();
                             newEmail=viewSignUp.getPhoneNumber();
@@ -44,7 +45,7 @@ public class PurchaserController {
 
                     } else if (choice2 == 3) {
                         String newPhoneNumber="";
-                        while (!accountController.checkPhoneNumber(newPhoneNumber)){
+                        while (accountController.checkPhoneNumber(newPhoneNumber)){
                             if (newPhoneNumber!="")
                                 viewSignUp.errorPhoneNumber();
                             newPhoneNumber=viewSignUp.getPhoneNumber();
@@ -54,22 +55,24 @@ public class PurchaserController {
                 }
             }
             else if(choice==2){
-
+                productController.visitProducts();
             }
             else if(choice==3){
-
+                productController.filter(admin.getProducts());
             }
             else if(choice==4){
-
+                //buyProduct(product,purchaser);
             }
             else if(choice==5){
-
+                visitHistory(purchaser);
             }
             else if(choice==6){
-
+                Comment comment = new Comment();
+                addComment(comment);
             }
             else if(choice==7){
-
+                Score score = new Score();
+                addScore(score);
             }
             else if(choice==8){
                 topOfUserAccountCredit(purchaser);
@@ -79,6 +82,31 @@ public class PurchaserController {
             }
             else viewPurchaser.error();
         }
+    }
+    public void buyProduct(Product product,Purchaser purchaser){
+        viewPurchaser.visitCart(purchaser);
+        int numberOfProduct=0;
+        for (Product product1:purchaser.getCart()){
+            numberOfProduct++;
+        }
+        if(purchaser.getAccountCredentials()>= product.getPrice()){
+            purchaser.setAccountCredentials(purchaser.getAccountCredentials()- product.getPrice());
+            purchaser.getCart().remove(product);
+            product.setInventoryStatus(product.getInventoryStatus()-numberOfProduct);
+        }
+    }
+    public void addProductToCart(Product product,Purchaser purchaser){
+        purchaser.getCart().add(product);
+    }
+    public void visitHistory(Purchaser purchaser){
+        for (purchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
+            purchaseInvoice.toString();
+        }
+    }
+    public void addComment(Comment comment){
+    }
+    public void addScore(Score score){
+        score.getProduct().setAverageScoreOfBuyers((score.getScore()+score.getProduct().getNumberOfPurchaserThatAddScore()*score.getProduct().getAverageScoreOfBuyers())/score.getProduct().getNumberOfPurchaserThatAddScore()+1);
     }
     public void topOfUserAccountCredit(Purchaser purchaser){
         if(checkNumberOfCart(viewPurchaser.getNumberOfCart()) && checkPasswordCart(viewPurchaser.getPasswordCart()) && checkCvv2(viewPurchaser.getCvv2())){

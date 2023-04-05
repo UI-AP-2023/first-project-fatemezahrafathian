@@ -25,8 +25,17 @@ public class Request {
     private Purchaser requestSender;
     private final int numberRequest;
     private final String requestId;
+    private Comment comment;
     private boolean accepted = false;
     private double amount = 0;
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
 
     public boolean isAccepted() {
         return accepted;

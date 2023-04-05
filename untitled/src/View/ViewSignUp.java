@@ -6,20 +6,6 @@ public class ViewSignUp {
         System.out.println("Sign up...! ");
         System.out.println("-------------------------------------------");
     }
-    //rename............
-    public void choice(){
-        System.out.println("-------------------------------------------");
-        System.out.println("[1]Sign up");
-        System.out.println("[0]Exit");
-    }
-    public int enterChoice(){
-        System.out.println("Please enter the number of your choice: ");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
-    }
-    public void error(){
-        System.out.println("The entered number is invalid...");
-    }
     public String getUserName(){
         System.out.println("Enter username: ");
         return scanner.nextLine();
@@ -49,6 +35,5 @@ public class ViewSignUp {
         System.out.println("Email is invalid..... ");
     }
     public void sendRequest(){
-        System.out.println("Your request has been sent to the admin.");
-    }
+        System.out.println("Your request has been sent to the admin.");}
 }

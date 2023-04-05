@@ -34,4 +34,26 @@ public class purchaseInvoice {
     public void setListOfPurchasedGoods(ArrayList<Product> listOfPurchasedGoods) {
         this.listOfPurchasedGoods = listOfPurchasedGoods;
     }
+    public String toDSString(){
+        StringBuilder invoice = new StringBuilder();
+        invoice.append("invoiceId: "+this.invoiceID+"\n");
+        invoice.append("date: "+this.date+"\n");
+        ArrayList<Product> products = new ArrayList<>();
+        for (Product product : this.listOfPurchasedGoods){
+            boolean exit=false;
+            int numberOfProduct=0;
+            for (Product product1:products){
+                if (product1.equals(product)){
+                    numberOfProduct++;
+                    exit=true;
+                }
+            }
+            if(!exit){
+                products.add(product);
+                invoice.append(product.getName()+numberOfProduct);
+            }
+        }
+        return invoice.toString();
+    }
+
 }

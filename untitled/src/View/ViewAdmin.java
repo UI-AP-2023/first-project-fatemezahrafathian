@@ -1,9 +1,7 @@
 package View;
-import Controller.AccountController;
 
 import Model.Product.BikeType;
 import Model.Product.PencilType;
-import Model.User.Admin;
 import Model.User.Purchaser;
 import Model.User.Request;
 
@@ -15,7 +13,7 @@ public class ViewAdmin {
         System.out.println("-----------------------------------------");
     }
     public String getOrder(){
-        return scanner.next();
+       return scanner.next();
     }
     public String getProduct(){
         return scanner.next();
@@ -30,7 +28,8 @@ public class ViewAdmin {
         return scanner.nextInt();
     }
     public boolean getBoolean(){return scanner.nextBoolean();}
-    public String getDate(){return scanner.next();}
+    public String getDate(){scanner.next();
+        return scanner.next();}
     public PencilType getPencilType(){
         String pencilType = scanner.next();
         if(pencilType.equals(PencilType.B.name())){
@@ -67,14 +66,14 @@ public class ViewAdmin {
         return null;
     }
     public void help(){
-        StringBuilder helpList = new StringBuilder();
-        helpList.append("add: enter add to add Product then enter \n");
-        helpList.append("remove: enter remove to remove product then enter productId \n");
-        helpList.append("edit: enter edit to edit  purchaser information \n");
-        helpList.append("visitProducts: enter visitProducts to visit Products \n");
-        helpList.append("visitRequests: enter visitRequests to visit Requests \n");
-        helpList.append("acceptRequest: enter acceptRequest to accept Request \n");
-        helpList.append("exit: enter exit to exit Product ");
+        String helpList = """
+                add: enter add to add Product then enter\s
+                remove: enter remove to remove product then enter productId\s
+                edit: enter edit to edit  purchaser information\s
+                visitProducts: enter visitProducts to visit Products\s
+                visitRequests: enter visitRequests to visit Requests\s
+                acceptRequest: enter acceptRequest to accept Request\s
+                exit: enter exit to exit Product\s""";
         System.out.println(helpList);
     }
     public void error(){
@@ -88,5 +87,8 @@ public class ViewAdmin {
         System.out.println(request.getRequestSender());
         System.out.println(request.getRequestId());
         System.out.println("\n\n");
+    }
+    public void successfulAdd(){
+        System.out.println("add was successful");
     }
 }

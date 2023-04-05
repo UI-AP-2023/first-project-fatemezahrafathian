@@ -2,24 +2,31 @@ package Controller;
 
 import Model.User.Account;
 import Model.User.Admin;
+import Model.User.Purchaser;
 import Model.User.Request;
+
 import View.ViewSignUp;
 import View.ViewLogIn;
-import Model.User.Purchaser;
 
 import java.util.ArrayList;
 import java.util.regex.*;
 public class AccountController {
+    private static ArrayList<Purchaser> purchasers = new ArrayList<>();
+    private Account account;
+    private String username;
+    private String password;
+    private String phoneNumber;
+    private String email;
     public void signUpPurchaser(){
         ViewSignUp viewSignUp = new ViewSignUp();
         viewSignUp.visitSignUpPage();
         while (checkUsername(viewSignUp.getUserName())){
             viewSignUp.errorUserName();
         }
-        while (!checkPassword(viewSignUp.getPassword())){
+        while (checkPassword(viewSignUp.getPassword())){
             viewSignUp.errorPassword();
         }
-        while (!checkPhoneNumber(viewSignUp.getPhoneNumber())){
+        while (checkPhoneNumber(viewSignUp.getPhoneNumber())){
             viewSignUp.errorPhoneNumber();
         }
         while (!checkEmail(viewSignUp.getEmail())){
@@ -55,7 +62,7 @@ public class AccountController {
                 break;
             }
         }
-        if (truePasswordAndUserName==false){
+        if (!truePasswordAndUserName){
             Admin admin = Admin.getAdmin();
             if(admin.getUserName().equals(username) && admin.getPassword().equals(password)){
                 truePasswordAndUserName=true;
@@ -64,16 +71,10 @@ public class AccountController {
         }
         return truePasswordAndUserName;
     }
-    private static ArrayList<Purchaser> purchasers = new ArrayList<>();
-    private Account account;
-    private String username;
-    private String password;
-    private String phoneNumber;
-    private String email;
-    public boolean checkUsername(String username){
+    boolean checkUsername(String username){
         boolean duplicateUsername=false;
         for (Purchaser purchaser: purchasers){
-            if (purchaser.equals(username)) {
+            if (purchaser.getUserName().equals(username)) {
                 duplicateUsername = true;
                 break;
             }
@@ -83,7 +84,7 @@ public class AccountController {
         }
         return duplicateUsername;
     }
-    public boolean checkPassword(String password){
+    boolean checkPassword(String password){
         boolean truePassword=false;
         Pattern pattern =Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
         Matcher matcher =pattern.matcher(password);
@@ -92,9 +93,9 @@ public class AccountController {
             this.password=password;
             truePassword=true;
         }
-        return truePassword;
+        return !truePassword;
     }
-    public boolean checkPhoneNumber(String phoneNumber){
+    boolean checkPhoneNumber(String phoneNumber){
         boolean truePhoneNumber=false;
         Pattern pattern =Pattern.compile("^(09)+\\d{9}$");
         Matcher matcher =pattern.matcher(phoneNumber);
@@ -103,9 +104,9 @@ public class AccountController {
             this.phoneNumber=phoneNumber;
             truePhoneNumber=true;
         }
-        return truePhoneNumber;
+        return !truePhoneNumber;
     }
-    public boolean checkEmail(String email){
+    boolean checkEmail(String email){
         boolean trueEmail=false;
         Pattern pattern =Pattern.compile("^\\w+@(gmail|yahoo)\\.com$");
         Matcher matcher =pattern.matcher(email);
@@ -120,6 +121,6 @@ public class AccountController {
         return purchasers;
     }
     public void setPurchasers(ArrayList<Purchaser> purchasers) {
-        this.purchasers = purchasers;
+        AccountController.purchasers = purchasers;
     }
 }

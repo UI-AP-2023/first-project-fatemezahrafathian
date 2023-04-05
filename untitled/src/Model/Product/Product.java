@@ -61,6 +61,16 @@ public abstract class Product {
     public void setAverageScoreOfBuyers(double averageScoreOfBuyers) {
         this.averageScoreOfBuyers = averageScoreOfBuyers;
     }
+    private int numberOfPurchaserThatAddScore=0;
+
+    public int getNumberOfPurchaserThatAddScore() {
+        return numberOfPurchaserThatAddScore;
+    }
+
+    public void setNumberOfPurchaserThatAddScore(int numberOfPurchaserThatAddScore) {
+        this.numberOfPurchaserThatAddScore = numberOfPurchaserThatAddScore;
+    }
+
     public String toString(){
         StringBuilder productInformation = new StringBuilder();
         productInformation.append("name: "+getName()+"\n");
