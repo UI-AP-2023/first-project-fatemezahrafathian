@@ -6,6 +6,8 @@ import Model.User.Purchaser;
 import Model.User.Request;
 import View.ViewAdmin;
 
+import java.util.ArrayList;
+
 public class AdminController {
     public void adminController(){
         Admin admin = Admin.getAdmin();
@@ -82,11 +84,12 @@ public class AdminController {
     public  void  addProduct(){
         Admin admin = Admin.getAdmin();
         ViewAdmin viewAdmin = new ViewAdmin();
-        viewAdmin.viewAdmin();
         String product =viewAdmin.getProduct();
         if (product.equals("Bike")){
             Bike bike = new Bike(ProductCategory.VEHICLES, viewAdmin.getName(),viewAdmin.getPrice(),viewAdmin.getInventoryStatus(), viewAdmin.getName(),viewAdmin.getBikeType());
-            admin.getProducts().add(bike);
+            ArrayList products = admin.getProducts();
+            products.add(bike);
+            admin.setProducts(products);
         }
         else if (product.equals("Car")){
             Car car = new Car(ProductCategory.VEHICLES, viewAdmin.getName(),viewAdmin.getPrice(),viewAdmin.getInventoryStatus(), viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getBoolean());

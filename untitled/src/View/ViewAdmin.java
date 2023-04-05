@@ -26,11 +26,11 @@ public class ViewAdmin {
     public double getPrice(){
         return scanner.nextDouble();
     }
-    public boolean getBoolean(){return scanner.hasNextBoolean();}
-    public String getDate(){return scanner.next();}
     public int getInventoryStatus(){
         return scanner.nextInt();
     }
+    public boolean getBoolean(){return scanner.nextBoolean();}
+    public String getDate(){return scanner.next();}
     public PencilType getPencilType(){
         String pencilType = scanner.next();
         if(pencilType.equals(PencilType.B.name())){

@@ -1,5 +1,7 @@
 package Controller;
+
 import View.ViewEnterPage;
+
 public class ControllerEnterPage {
     public void enterPage(){
         ViewEnterPage viewEnterPage = new ViewEnterPage();
@@ -16,9 +18,10 @@ public class ControllerEnterPage {
                 accountController.logInPurchaser();
             }
             else if(choice == 3){
-
+               productController productController = new productController();
+                productController.productsController();
             }
-            else {
+            else if (choice!=0){
                 viewEnterPage.error();
             }
         }

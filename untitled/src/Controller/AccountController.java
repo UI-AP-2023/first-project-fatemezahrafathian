@@ -55,10 +55,12 @@ public class AccountController {
                 break;
             }
         }
-        Admin admin = Admin.getAdmin();
-        if(admin.getUserName().equals("Admin") && admin.getPassword().equals("Admin")){
-            truePasswordAndUserName=true;
-            this.account=admin;
+        if (truePasswordAndUserName==false){
+            Admin admin = Admin.getAdmin();
+            if(admin.getUserName().equals(username) && admin.getPassword().equals(password)){
+                truePasswordAndUserName=true;
+                this.account=admin;
+            }
         }
         return truePasswordAndUserName;
     }
