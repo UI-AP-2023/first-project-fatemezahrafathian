@@ -7,27 +7,21 @@ public class Request {
         this.requestSender =requestSender;
         this.amount=amount;
         this.numberRequest=numberOfRequest;
-        StringBuilder requestId = new StringBuilder();
-        requestId.append(requestType.charAt(0)+"-"+requestSender.getUserName()+"-"+numberRequest);
-        this.requestId=requestId.toString();
+        this.requestId= requestType.charAt(0) + "-" + requestSender.getUserName() + "-" + numberRequest;
     }
     public Request(String requestType,Purchaser requestSender){
         numberOfRequest++;
         this.requestType=requestType;
         this.requestSender =requestSender;
         this.numberRequest=numberOfRequest;
-        StringBuilder requestId = new StringBuilder();
-        requestId.append(requestType.charAt(0)+"-"+requestSender.getUserName()+"-"+numberRequest);
-        this.requestId=requestId.toString();
+        this.requestId= requestType.charAt(0) + "-" + requestSender.getUserName() + "-" + numberRequest;
     }
     public Request(String requestType,Comment comment){
         numberOfRequest++;
         this.requestType=requestType;
         this.numberRequest=numberOfRequest;
         this.comment=comment;
-        StringBuilder requestId = new StringBuilder();
-        requestId.append(requestType.charAt(0)+"-"+"com"+"-"+numberRequest);
-        this.requestId=requestId.toString();
+        this.requestId= requestType.charAt(0) + "-" + "com" + "-" + numberRequest;
     }
     private static int numberOfRequest=0;
     private String requestType;

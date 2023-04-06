@@ -9,8 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PurchaserController {
-    ViewPurchaser viewPurchaser = new ViewPurchaser();
-    Admin admin = Admin.getAdmin();
+    private ViewPurchaser viewPurchaser = new ViewPurchaser();
+    private Admin admin = Admin.getAdmin();
     public void purchaserController(Purchaser purchaser){
         productController productController = new productController();
         int choice= 1 ;
@@ -55,7 +55,8 @@ public class PurchaserController {
     public void buyProduct(Product product,Purchaser purchaser){
         int numberOfProduct=0;
         for (Product product1:purchaser.getCart()){
-            numberOfProduct++;
+            if (product1.equals(product))
+                numberOfProduct++;
         }
         if(purchaser.getAccountCredentials()>= product.getPrice()){
             purchaser.setAccountCredentials(purchaser.getAccountCredentials()- product.getPrice());
@@ -81,8 +82,10 @@ public class PurchaserController {
             if (product.getProductID().equals(productId)){
                 for (PurchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
                     for (Product product1 :purchaseInvoice.getListOfPurchasedGoods()){
-                        if (product.equals(product1))
-                            theCommenterBoughtProduct=true;
+                        if (product.equals(product1)) {
+                            theCommenterBoughtProduct = true;
+                            break;
+                        }
                     }
                 }
                 Comment comment;
@@ -143,7 +146,7 @@ public class PurchaserController {
     public void editInformation(Purchaser purchaser){
         AccountController accountController = new AccountController();
         ViewSignUp viewSignUp = new ViewSignUp();
-        purchaser.toString();
+        viewPurchaser.information(purchaser.toString());
         int choice2= 1 ;
         while (choice2!=0) {
             viewPurchaser.editInformation();
@@ -151,30 +154,33 @@ public class PurchaserController {
             if (choice2 == 1) {
                 String newPassword="";
                 while (accountController.checkPassword(newPassword)){
-                    if (newPassword!="")
+                    if (!newPassword.equals(""))
                         viewSignUp.errorPassword();
                     newPassword=viewSignUp.getPassword();
                 }
                 purchaser.setPassword(newPassword);
 
-            } else if (choice2 == 2) {
+            }
+            else if (choice2 == 2) {
                 String newEmail="";
                 while (accountController.checkEmail(newEmail)){
-                    if (newEmail!="")
+                    if (!newEmail.equals(""))
                         viewSignUp.errorEmail();
                     newEmail=viewSignUp.getEmail();
                 }
                 purchaser.setEmail(newEmail);
 
-            } else if (choice2 == 3) {
+            }
+            else if (choice2 == 3) {
                 String newPhoneNumber="";
                 while (accountController.checkPhoneNumber(newPhoneNumber)){
-                    if (newPhoneNumber!="")
+                    if (!newPhoneNumber.equals(""))
                         viewSignUp.errorPhoneNumber();
                     newPhoneNumber=viewSignUp.getPhoneNumber();
                 }
                 purchaser.setPhoneNumber(newPhoneNumber);
-            } else if(choice2!=0) viewPurchaser.error();
+            }
+            else if(choice2!=0) viewPurchaser.error();
         }
     }
 }

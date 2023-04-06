@@ -76,4 +76,7 @@ public class ViewPurchaser {
     public void sendRequest(){
         System.out.println("Your request has been sent to the admin.");
     }
+    public void information(String information){
+        System.out.println(information);
+    }
 }

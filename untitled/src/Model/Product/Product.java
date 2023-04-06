@@ -21,6 +21,7 @@ public abstract class Product {
     private ProductCategory productCategory;
     private int inventoryStatus;
     private double averageScoreOfBuyers;
+    private int numberOfPurchaserThatAddScore=0;
     private ArrayList<Comment> comments = new ArrayList<>();
     public String getName() {
         return name;
@@ -61,24 +62,19 @@ public abstract class Product {
     public void setAverageScoreOfBuyers(double averageScoreOfBuyers) {
         this.averageScoreOfBuyers = averageScoreOfBuyers;
     }
-    private int numberOfPurchaserThatAddScore=0;
-
     public int getNumberOfPurchaserThatAddScore() {
         return numberOfPurchaserThatAddScore;
     }
-
     public void setNumberOfPurchaserThatAddScore(int numberOfPurchaserThatAddScore) {
         this.numberOfPurchaserThatAddScore = numberOfPurchaserThatAddScore;
     }
-
     public String toString(){
-        StringBuilder productInformation = new StringBuilder();
-        productInformation.append("name: "+getName()+"\n");
-        productInformation.append("productId: "+getProductID()+"\n");
-        productInformation.append("category: "+getProductCategory()+"\n");
-        productInformation.append("price: "+getPrice()+"\n");
-        productInformation.append("score: "+getAverageScoreOfBuyers()+"\n");
-        productInformation.append("inventory status: "+getInventoryStatus()+"\n");
-        return productInformation.toString();
+        String productInformation = "name: " + getName() + "\n" +
+                "productId: " + getProductID() + "\n" +
+                "category: " + getProductCategory() + "\n" +
+                "price: " + getPrice() + "\n" +
+                "score: " + getAverageScoreOfBuyers() + "\n" +
+                "inventory status: " + getInventoryStatus() + "\n";
+        return productInformation;
     }
 }

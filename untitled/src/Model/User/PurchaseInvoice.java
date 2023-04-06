@@ -49,8 +49,10 @@ public class PurchaseInvoice {
         boolean exist=false;
         for (Product product : this.listOfPurchasedGoods){
             for (Product product1 : products){
-                if (product.equals(product1))
-                    exist=true;
+                if (product.equals(product1)) {
+                    exist = true;
+                    break;
+                }
             }
             if (!exist){
                 products.add(product);

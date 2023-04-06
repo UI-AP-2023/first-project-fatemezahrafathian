@@ -8,8 +8,8 @@ import Model.User.Request;
 import View.ViewAdmin;
 
 public class AdminController {
-    Admin admin = Admin.getAdmin();
-    ViewAdmin viewAdmin = new ViewAdmin();
+    private Admin admin = Admin.getAdmin();
+    private ViewAdmin viewAdmin = new ViewAdmin();
     private String[] commands;
     public void adminController(){
         viewAdmin.viewAdmin();

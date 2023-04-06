@@ -10,9 +10,8 @@ import View.ViewProducts;
 import java.util.ArrayList;
 
 public class productController {
-    ViewProducts viewProducts = new ViewProducts();
-    PurchaserController purchaserController = new PurchaserController();
-    Admin admin = Admin.getAdmin();
+    private ViewProducts viewProducts = new ViewProducts();
+    private Admin admin = Admin.getAdmin();
     public void productsController(){
         int choice=1;
         while (choice!=0){
@@ -62,12 +61,8 @@ public class productController {
                     viewProducts.choice2();
                     choice2= viewProducts.enterChoice();
                     switch (choice2){
-                        case 1->{
-                            viewProducts.visitProduct(product);
-                        }
-                        case 2->{
-                            viewProducts.visitProductComment(product);
-                        }
+                        case 1-> viewProducts.visitProduct(product);
+                        case 2-> viewProducts.visitProductComment(product);
                         case 3->{
                             Comment comment = new Comment(null,product,viewProducts.getComment(),false);
                             Request request = new Request("comment",comment);
@@ -152,12 +147,8 @@ public class productController {
                     viewProducts.choice3();
                     choice2= viewProducts.enterChoice();
                     switch (choice2){
-                        case 1->{
-                            viewProducts.visitProduct(product);
-                        }
-                        case 2->{
-                            viewProducts.visitProductComment(product);
-                        }
+                        case 1-> viewProducts.visitProduct(product);
+                        case 2-> viewProducts.visitProductComment(product);
                         case 3->{
                             Comment comment = new Comment(null,product,viewProducts.getComment(),false);
                             Request request = new Request("comment",comment);

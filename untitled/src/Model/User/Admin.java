@@ -24,17 +24,13 @@ public class Admin extends Account {
     public ArrayList<Product> getProducts() {
         return this.products;
     }
-
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
-
     public ArrayList<Request> getRequests() {
         return this.requests;
     }
-
     public void setRequests(ArrayList<Request> requests) {
         this.requests = requests;
     }
-
 }

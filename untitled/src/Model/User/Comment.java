@@ -9,16 +9,10 @@ public class Comment {
         this.commentText=commentText;
         this.theCommenterBoughtTheProduct=theCommenterBoughtTheProduct;
     }
-    Purchaser commentingUser;
-    Product product;
-    String commentText;
-    boolean commentStatus;
-    boolean theCommenterBoughtTheProduct;
-    public String toString(){
-        if (theCommenterBoughtTheProduct)
-            return "The Commenter Bought The Product    "+commentingUser.getUserName()+"     "+commentText;
-        else return "The commenter did not buy the product"+"     "+commentText;
-    }
+    private Purchaser commentingUser;
+    private Product product;
+    private String commentText;
+    private boolean theCommenterBoughtTheProduct;
 
     public Product getProduct() {
         return product;
@@ -27,4 +21,10 @@ public class Comment {
     public void setProduct(Product product) {
         this.product = product;
     }
+    public String toString(){
+        if (theCommenterBoughtTheProduct)
+            return "The Commenter Bought The Product    "+commentingUser.getUserName()+"     "+commentText;
+        else return "The commenter did not buy the product"+"     "+commentText;
+    }
+
 }

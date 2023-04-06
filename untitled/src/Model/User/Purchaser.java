@@ -37,13 +37,12 @@ public class Purchaser extends Account {
         this.accountCredentials = accountCredentials;
     }
     public String toString(){
-        StringBuilder information = new StringBuilder();
-        information.append("username: "+this.getUserName()+"\n");
-        information.append("password: "+this.getPassword()+"\n");
-        information.append("email: "+this.getEmail()+"\n");
-        information.append("phone number: "+this.getPhoneNumber()+"\n");
-        information.append("accountCredentials: "+this.getAccountCredentials()+"\n");
-        return information.toString();
+        String information = "username: " + this.getUserName() + "\n" +
+                "password: " + this.getPassword() + "\n" +
+                "email: " + this.getEmail() + "\n" +
+                "phone number: " + this.getPhoneNumber() + "\n" +
+                "accountCredentials: " + this.getAccountCredentials() + "\n";
+        return information;
     }
 
 }
