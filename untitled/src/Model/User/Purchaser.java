@@ -10,7 +10,7 @@ public class Purchaser extends Account {
     }
     //*************************************************************************
     private ArrayList<Product> cart = new ArrayList<>();
-    private ArrayList<purchaseInvoice> purchaseHistory = new ArrayList<>();
+    private ArrayList<PurchaseInvoice> purchaseHistory = new ArrayList<>();
     private double accountCredentials;
 
     //*************************************************************************
@@ -21,11 +21,11 @@ public class Purchaser extends Account {
         this.cart = cart;
     }
 
-    public ArrayList<purchaseInvoice> getPurchaseHistory() {
+    public ArrayList<PurchaseInvoice> getPurchaseHistory() {
         return this.purchaseHistory;
     }
 
-    public void setPurchaseHistory(ArrayList<purchaseInvoice> purchaseHistory) {
+    public void setPurchaseHistory(ArrayList<PurchaseInvoice> purchaseHistory) {
         this.purchaseHistory = purchaseHistory;
     }
 
@@ -35,13 +35,6 @@ public class Purchaser extends Account {
 
     public void setAccountCredentials(double accountCredentials) {
         this.accountCredentials = accountCredentials;
-    }
-    @Override
-    public boolean equals(Object object){
-
-        if(this.getUserName() == object.toString())
-            return true;
-        else return false;
     }
     public String toString(){
         StringBuilder information = new StringBuilder();

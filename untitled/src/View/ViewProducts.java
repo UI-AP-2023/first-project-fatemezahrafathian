@@ -1,6 +1,7 @@
 package View;
 
 import Model.Product.*;
+import Model.User.Comment;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,7 +14,6 @@ public class ViewProducts {
         }
     }
     public void choice(){
-        System.out.println("-------------------------------------------");
         System.out.println("[3]select");
         System.out.println("[0]Exit");
     }
@@ -26,10 +26,31 @@ public class ViewProducts {
     }
     public void choice2(){
         System.out.println("-------------------------------------------");
-        System.out.println("[1]filter");
-        System.out.println("[2]search");
-        System.out.println("[3]visitProducts");
+        System.out.println("[1]visit product");
+        System.out.println("[2]visit comment");
+        System.out.println("[3]add comment");
         System.out.println("[0]Exit");
+    }
+    public void choice3(){
+        System.out.println("-------------------------------------------");
+        System.out.println("[1]visit product");
+        System.out.println("[2]visit comment");
+        System.out.println("[3]add comment");
+        System.out.println("[4]add product to cart");
+        System.out.println("[0]Exit");
+    }
+
+    public void visitProduct(Product product){
+        System.out.println(product.toString());
+    }
+    public void visitProductComment(Product product){
+        for (Comment comment : product.getComments()){
+            System.out.println(comment.toString());
+        }
+    }
+    public String getComment(){
+        System.out.println("enter comment: ");
+        return scanner.nextLine();
     }
     public void filterPage(){
         System.out.println("-------------------------------------------");
@@ -58,7 +79,8 @@ public class ViewProducts {
         System.out.println("[2]previous page");
     }
     public ProductCategory getProductCategory() {
-        String productCategory = scanner.next();
+        System.out.println("Please enter the category: ");
+        String productCategory = scanner.nextLine();
         if (productCategory.equals(ProductCategory.DIGITAL_GOODS.name()))
             return ProductCategory.DIGITAL_GOODS;
         if (productCategory.equals(ProductCategory.STATIONERY.name()))
@@ -70,12 +92,15 @@ public class ViewProducts {
         else return null;
     }
     public double getPrice(){
+        System.out.println("Please enter the price: ");
         return scanner.nextDouble();
     }
     public int getInventoryStatus(){
+        System.out.println("Please enter the min inventory: ");
         return scanner.nextInt();
     }
     public String getName(){
+        System.out.println("enter field of product : ");
         return scanner.next();
     }
 }

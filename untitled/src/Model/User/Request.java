@@ -20,6 +20,15 @@ public class Request {
         requestId.append(requestType.charAt(0)+"-"+requestSender.getUserName()+"-"+numberRequest);
         this.requestId=requestId.toString();
     }
+    public Request(String requestType,Comment comment){
+        numberOfRequest++;
+        this.requestType=requestType;
+        this.numberRequest=numberOfRequest;
+        this.comment=comment;
+        StringBuilder requestId = new StringBuilder();
+        requestId.append(requestType.charAt(0)+"-"+"com"+"-"+numberRequest);
+        this.requestId=requestId.toString();
+    }
     private static int numberOfRequest=0;
     private String requestType;
     private Purchaser requestSender;

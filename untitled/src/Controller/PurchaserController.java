@@ -10,69 +10,38 @@ import java.util.regex.Pattern;
 
 public class PurchaserController {
     ViewPurchaser viewPurchaser = new ViewPurchaser();
+    Admin admin = Admin.getAdmin();
     public void purchaserController(Purchaser purchaser){
+        productController productController = new productController();
         int choice= 1 ;
         while (choice!=0){
-            AccountController accountController = new AccountController();
-            productController productController = new productController();
-            Admin admin = Admin.getAdmin();
             viewPurchaser.choice();
             choice=viewPurchaser.enterChoice();
             if (choice == 1){
-                purchaser.toString();
-                ViewSignUp viewSignUp = new ViewSignUp();
-                int choice2= 1 ;
-                while (choice2!=0) {
-                    viewPurchaser.choice();
-                    choice2 = viewPurchaser.enterChoice();
-                    if (choice2 == 1) {
-                        String newPassword="";
-                        while (accountController.checkPassword(newPassword)){
-                            if (newPassword!="")
-                                viewSignUp.errorPassword();
-                            newPassword=viewSignUp.getPassword();
-                        }
-                        purchaser.setPassword(newPassword);
-
-                    } else if (choice2 == 2) {
-                        String newEmail="";
-                        while (accountController.checkPhoneNumber(newEmail)){
-                            if (newEmail!="")
-                                viewSignUp.errorPhoneNumber();
-                            newEmail=viewSignUp.getPhoneNumber();
-                        }
-                        purchaser.setEmail(newEmail);
-
-                    } else if (choice2 == 3) {
-                        String newPhoneNumber="";
-                        while (accountController.checkPhoneNumber(newPhoneNumber)){
-                            if (newPhoneNumber!="")
-                                viewSignUp.errorPhoneNumber();
-                            newPhoneNumber=viewSignUp.getPhoneNumber();
-                        }
-                        purchaser.setPhoneNumber(newPhoneNumber);
-                    } else viewPurchaser.error();
-                }
+                editInformation(purchaser);
             }
             else if(choice==2){
-                productController.visitProducts();
+                productController.visitProducts(purchaser);
             }
             else if(choice==3){
                 productController.filter(admin.getProducts());
             }
             else if(choice==4){
-                //buyProduct(product,purchaser);
+                viewPurchaser.visitCart(purchaser);
+                String productId= viewPurchaser.getId();
+                for (Product product : admin.getProducts()){
+                    if (product.getProductID().equals(productId))
+                        buyProduct(product,purchaser);
+                }
             }
             else if(choice==5){
                 visitHistory(purchaser);
             }
             else if(choice==6){
-                Comment comment = new Comment();
-                addComment(comment);
+                addComment(viewPurchaser.getId(),purchaser);
             }
             else if(choice==7){
-                Score score = new Score();
-                addScore(score);
+                addScore(purchaser,viewPurchaser.getId());
             }
             else if(choice==8){
                 topOfUserAccountCredit(purchaser);
@@ -80,11 +49,10 @@ public class PurchaserController {
             else if(choice==9){
                 viewPurchaser.visitCart(purchaser);
             }
-            else viewPurchaser.error();
+            else if (choice!=0)viewPurchaser.error();
         }
     }
     public void buyProduct(Product product,Purchaser purchaser){
-        viewPurchaser.visitCart(purchaser);
         int numberOfProduct=0;
         for (Product product1:purchaser.getCart()){
             numberOfProduct++;
@@ -93,23 +61,63 @@ public class PurchaserController {
             purchaser.setAccountCredentials(purchaser.getAccountCredentials()- product.getPrice());
             purchaser.getCart().remove(product);
             product.setInventoryStatus(product.getInventoryStatus()-numberOfProduct);
+            PurchaseInvoice purchaseInvoice=new PurchaseInvoice(product.getProductID(),product.getPrice()*numberOfProduct);
+            purchaseInvoice.getListOfPurchasedGoods().add(product);
+            purchaser.getPurchaseHistory().add(purchaseInvoice);
         }
+        else viewPurchaser.error();
     }
     public void addProductToCart(Product product,Purchaser purchaser){
         purchaser.getCart().add(product);
     }
     public void visitHistory(Purchaser purchaser){
-        for (purchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
-            purchaseInvoice.toString();
+        for (PurchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
+            System.out.println(purchaseInvoice.toString());
         }
     }
-    public void addComment(Comment comment){
+    public void addComment(String productId,Purchaser purchaser){
+        boolean theCommenterBoughtProduct=false;
+        for (Product product : admin.getProducts()){
+            if (product.getProductID().equals(productId)){
+                for (PurchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
+                    for (Product product1 :purchaseInvoice.getListOfPurchasedGoods()){
+                        if (product.equals(product1))
+                            theCommenterBoughtProduct=true;
+                    }
+                }
+                Comment comment;
+                if (theCommenterBoughtProduct){
+                    comment = new Comment(purchaser,product, viewPurchaser.getComment(), true);
+                }
+                else {
+                    comment = new Comment(purchaser,product, viewPurchaser.getComment(), false);
+                }
+                Request request = new Request("comment",comment);
+                admin.getRequests().add(request);
+                viewPurchaser.sendRequest();
+            }
+        }
     }
-    public void addScore(Score score){
-        score.getProduct().setAverageScoreOfBuyers((score.getScore()+score.getProduct().getNumberOfPurchaserThatAddScore()*score.getProduct().getAverageScoreOfBuyers())/score.getProduct().getNumberOfPurchaserThatAddScore()+1);
+    public void addScore(Purchaser purchaser,String id){
+        boolean found=false;
+        for (PurchaseInvoice purchaseInvoice: purchaser.getPurchaseHistory()){
+            for (Product product: purchaseInvoice.getListOfPurchasedGoods()){
+                if (product.getProductID().equals(id)){
+                    found=true;
+                    Score score = new Score(purchaser,product,viewPurchaser.getPoint());
+                    score.getProduct().setAverageScoreOfBuyers((score.getScore()+score.getProduct().getNumberOfPurchaserThatAddScore()*score.getProduct().getAverageScoreOfBuyers())/(score.getProduct().getNumberOfPurchaserThatAddScore()+1));
+                    score.getProduct().setAverageScoreOfBuyers(score.getProduct().getNumberOfPurchaserThatAddScore()+1);
+                }
+            }
+        }
+        if (!found)
+            viewPurchaser.error();
     }
     public void topOfUserAccountCredit(Purchaser purchaser){
-        if(checkNumberOfCart(viewPurchaser.getNumberOfCart()) && checkPasswordCart(viewPurchaser.getPasswordCart()) && checkCvv2(viewPurchaser.getCvv2())){
+        boolean check1=checkNumberOfCart(viewPurchaser.getNumberOfCart());
+        boolean check2 =checkPasswordCart(viewPurchaser.getPasswordCart());
+        boolean check3=checkCvv2(viewPurchaser.getCvv2());
+        if(check1&&check2 &&check3 ){
             Request request = new Request("accountCredentials",purchaser, viewPurchaser.getAmount());
             Admin admin = Admin.getAdmin();
             admin.getRequests().add(request);
@@ -118,7 +126,7 @@ public class PurchaserController {
         else viewPurchaser.errorPay();
     }
     public boolean checkNumberOfCart( String numberCart){
-        Pattern pattern = Pattern.compile("^{12}&");
+        Pattern pattern = Pattern.compile("\\d{4}-\\d{4}-\\d{4}-\\d{4}");
         Matcher matcher = pattern.matcher(numberCart);
         return matcher.find();
     }
@@ -128,12 +136,45 @@ public class PurchaserController {
         return matcher.find();
     }
     public boolean checkCvv2(String cvv2){
-        Pattern pattern = Pattern.compile("^{3,4}$");
+        Pattern pattern = Pattern.compile("^\\d{3,4}$");
         Matcher matcher = pattern.matcher(cvv2);
         return matcher.find();
     }
-    public boolean checkAmount(double amount){
-        if(amount>0) return true;
-        else return false;
+    public void editInformation(Purchaser purchaser){
+        AccountController accountController = new AccountController();
+        ViewSignUp viewSignUp = new ViewSignUp();
+        purchaser.toString();
+        int choice2= 1 ;
+        while (choice2!=0) {
+            viewPurchaser.editInformation();
+            choice2 = viewPurchaser.enterChoice();
+            if (choice2 == 1) {
+                String newPassword="";
+                while (accountController.checkPassword(newPassword)){
+                    if (newPassword!="")
+                        viewSignUp.errorPassword();
+                    newPassword=viewSignUp.getPassword();
+                }
+                purchaser.setPassword(newPassword);
+
+            } else if (choice2 == 2) {
+                String newEmail="";
+                while (accountController.checkEmail(newEmail)){
+                    if (newEmail!="")
+                        viewSignUp.errorEmail();
+                    newEmail=viewSignUp.getEmail();
+                }
+                purchaser.setEmail(newEmail);
+
+            } else if (choice2 == 3) {
+                String newPhoneNumber="";
+                while (accountController.checkPhoneNumber(newPhoneNumber)){
+                    if (newPhoneNumber!="")
+                        viewSignUp.errorPhoneNumber();
+                    newPhoneNumber=viewSignUp.getPhoneNumber();
+                }
+                purchaser.setPhoneNumber(newPhoneNumber);
+            } else if(choice2!=0) viewPurchaser.error();
+        }
     }
 }

@@ -3,6 +3,11 @@ package Model.User;
 import Model.Product.Product;
 
 public class Score {
+    public Score(Purchaser user,Product product,int score){
+        this.user=user;
+        this.product=product;
+        this.score=score;
+    }
     private Purchaser user;
     private int score;
     private Product product;

@@ -2,6 +2,9 @@ package Controller;
 
 import Model.Product.*;
 import Model.User.Admin;
+import Model.User.Comment;
+import Model.User.Purchaser;
+import Model.User.Request;
 import View.ViewProducts;
 
 import java.util.ArrayList;
@@ -11,83 +14,168 @@ public class productController {
     PurchaserController purchaserController = new PurchaserController();
     Admin admin = Admin.getAdmin();
     public void productsController(){
-        int choice = 1;
+        int choice=1;
         while (choice!=0){
             viewProducts.choice1();
+            choice=viewProducts.enterChoice();
             switch (choice) {
                 case 1 -> viewProducts.visitPage(filter(admin.getProducts()));
                 case 2 -> viewProducts.visitPage(search(viewProducts.getName()));
                 case 3 -> visitProducts();
-                default -> viewProducts.error();
+                default -> {
+                    if(choice!=0)
+                        viewProducts.error();
+                }
             }
-            choice=viewProducts.enterChoice();
         }
     }
     public void visitProducts(){
         int numberOfShowProduct=0;
         Admin admin=Admin.getAdmin();
-        showPage(numberOfShowProduct);
+        numberOfShowProduct=showPage(numberOfShowProduct);
         int choice0=1;
         while (choice0!=0){
-            if(choice0==1 ||numberOfShowProduct<admin.getProducts().size()){
+            choice0=viewProducts.enterChoice();
+            if(choice0==1 && numberOfShowProduct<admin.getProducts().size()){
                 numberOfShowProduct=showPage(numberOfShowProduct);
             }
-            else if(choice0==2 || numberOfShowProduct>5){
-                numberOfShowProduct-=5;
+            else if(choice0==2 && numberOfShowProduct>5){
+                numberOfShowProduct-=10;
                 numberOfShowProduct=showPage(numberOfShowProduct);
             }
             else if(choice0==3){
-                select();
+                select(viewProducts.getName());
             }
-            else{
+            else if(choice0!=0){
                 viewProducts.error();
             }
-            choice0=viewProducts.enterChoice();
         }
 
     }
+    public void select(String productId){
+        boolean exist=false;
+        for (Product product : admin.getProducts()){
+            if(product.getProductID().equals(productId)){
+                exist=true;
+                int choice2=1;
+                while (choice2!=0){
+                    viewProducts.choice2();
+                    choice2= viewProducts.enterChoice();
+                    switch (choice2){
+                        case 1->{
+                            viewProducts.visitProduct(product);
+                        }
+                        case 2->{
+                            viewProducts.visitProductComment(product);
+                        }
+                        case 3->{
+                            Comment comment = new Comment(null,product,viewProducts.getComment(),false);
+                            Request request = new Request("comment",comment);
+                            admin.getRequests().add(request);
+                        }
+                        default -> {
+                            if (choice2!=0)
+                                viewProducts.error();
+                        }
+                    }
+                }
+            }
+        }
+        if (!exist) viewProducts.error();
+    }
     public int showPage(int numberOfShowProduct){
+        int showProduct=numberOfShowProduct;
+        boolean show=false;
         Admin admin = Admin.getAdmin();
         ArrayList<Product> products = new ArrayList<>();
         if (admin.getProducts().size() == 0) return 0;
-        for (Product product : admin.getProducts().subList(numberOfShowProduct,admin.getProducts().size()-1)){
+        for (Product product : admin.getProducts().subList(numberOfShowProduct,admin.getProducts().size())){
             products.add(product);
-            numberOfShowProduct++;
-            if(numberOfShowProduct%5==0 || admin.getProducts().indexOf(product)+1 == admin.getProducts().size()){
+            showProduct++;
+            if(showProduct%5==0){
+                show=true;
                 viewProducts.visitPage(products);
                 products.clear();
-                if (numberOfShowProduct<admin.getProducts().size()){
+                if (showProduct<admin.getProducts().size()){
                     viewProducts.nextPage();
                 }
-                if (numberOfShowProduct>5){
+                if (showProduct>5){
                     viewProducts.previousPage();
                 }
+                viewProducts.choice();
                 break;
             }
         }
-        viewProducts.choice();
-        return numberOfShowProduct;
+        if(!show){
+            viewProducts.visitPage(products);
+            products.clear();
+            if (showProduct<admin.getProducts().size()){
+                viewProducts.nextPage();
+            }
+            if (showProduct>5){
+                viewProducts.previousPage();
+            }
+            viewProducts.choice();
+        }
+        return showProduct;
     }
-    public void select(){
-        int choice2=1;
-        while (choice2!=0){
-            viewProducts.choice2();
-            choice2= viewProducts.enterChoice();
-            switch (choice2){
-                case 1: {
-                    //visit product
-                }
-                case 2:{
-                    //visit comment
-                }
-                case 3:{
-                    //add comment
-                }
-                case 4:{
-                    //add product to cart
+    public void visitProducts(Purchaser purchaser){
+        int numberOfShowProduct=0;
+        Admin admin=Admin.getAdmin();
+        numberOfShowProduct=showPage(numberOfShowProduct);
+        int choice0=1;
+        while (choice0!=0){
+            choice0=viewProducts.enterChoice();
+            if(choice0==1 && numberOfShowProduct<admin.getProducts().size()){
+                numberOfShowProduct=showPage(numberOfShowProduct);
+            }
+            else if(choice0==2 && numberOfShowProduct>5){
+                numberOfShowProduct-=10;
+                numberOfShowProduct=showPage(numberOfShowProduct);
+            }
+            else if(choice0==3){
+                select(viewProducts.getName(),purchaser);
+            }
+            else if(choice0!=0){
+                viewProducts.error();
+            }
+        }
+
+    }
+    public void select(String productId,Purchaser purchaser){
+        boolean exist=false;
+        for (Product product : admin.getProducts()){
+            if(product.getProductID().equals(productId)){
+                exist=true;
+                int choice2=1;
+                while (choice2!=0){
+                    viewProducts.choice3();
+                    choice2= viewProducts.enterChoice();
+                    switch (choice2){
+                        case 1->{
+                            viewProducts.visitProduct(product);
+                        }
+                        case 2->{
+                            viewProducts.visitProductComment(product);
+                        }
+                        case 3->{
+                            Comment comment = new Comment(null,product,viewProducts.getComment(),false);
+                            Request request = new Request("comment",comment);
+                            admin.getRequests().add(request);
+                        }
+                        case 4->{
+                            PurchaserController purchaserController = new PurchaserController();
+                            purchaserController.addProductToCart(product,purchaser);
+                        }
+                        default -> {
+                            if (choice2!=0)
+                                viewProducts.error();
+                        }
+                    }
                 }
             }
         }
+        if (!exist) viewProducts.error();
     }
     public ArrayList<Product> search(String productName){
         ArrayList<Product> products = new ArrayList<>();

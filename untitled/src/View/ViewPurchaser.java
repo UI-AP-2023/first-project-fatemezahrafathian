@@ -30,6 +30,20 @@ public class ViewPurchaser {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+    public String getId(){
+        System.out.println("enter product field: ");
+        return scanner.nextLine();}
+    public String getComment(){
+        System.out.println("enter comment: ");
+        return scanner.nextLine();}
+    public int getPoint() {
+        System.out.println("enter product point: ");
+        int point = scanner.nextInt();
+        if (point>=0 && point<=5){
+            return point;
+        }
+        else return 0;
+    }
     public void error(){
         System.out.println("The entered number is invalid...");
     }

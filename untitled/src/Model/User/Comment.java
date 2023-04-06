@@ -3,14 +3,21 @@ package Model.User;
 import Model.Product.Product;
 
 public class Comment {
-    String commentingUser;
+    public Comment(Purchaser commentingUser, Product product, String commentText,boolean theCommenterBoughtTheProduct){
+        this.commentingUser=commentingUser;
+        this.product=product;
+        this.commentText=commentText;
+        this.theCommenterBoughtTheProduct=theCommenterBoughtTheProduct;
+    }
+    Purchaser commentingUser;
     Product product;
-    String ProductID;
     String commentText;
-    String commentStatus;
+    boolean commentStatus;
     boolean theCommenterBoughtTheProduct;
     public String toString(){
-        return commentingUser+"     "+commentText;
+        if (theCommenterBoughtTheProduct)
+            return "The Commenter Bought The Product    "+commentingUser.getUserName()+"     "+commentText;
+        else return "The commenter did not buy the product"+"     "+commentText;
     }
 
     public Product getProduct() {

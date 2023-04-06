@@ -53,12 +53,12 @@ public class ViewAdmin {
     }
     public void help(){
         String helpList = """
-                add: enter add to add Product then enter\s
-                remove: enter remove to remove product then enter productId\s
-                edit: enter edit to edit  purchaser information\s
+                add: enter add to add Product then enter   category    name     price    inventory    information of product\s
+                remove: enter remove to remove product           productId\s
+                edit: enter edit to edit  purchaser information         productId       field      new field\s
                 visitProducts: enter visitProducts to visit Products\s
                 visitRequests: enter visitRequests to visit Requests\s
-                acceptRequest: enter acceptRequest to accept Request\s
+                acceptRequest: enter acceptRequest to accept Request    category    requestId\s
                 exit: enter exit to exit Product\s""";
         System.out.println(helpList);
     }

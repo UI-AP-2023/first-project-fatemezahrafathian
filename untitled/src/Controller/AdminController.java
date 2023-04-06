@@ -134,6 +134,7 @@ public class AdminController {
         }
     }
     public void accept(String typeOfRequest,String requestId){
+
         Admin admin = Admin.getAdmin();
         for(Request request : admin.getRequests()){
             if(request.getRequestId().equals(requestId)){
