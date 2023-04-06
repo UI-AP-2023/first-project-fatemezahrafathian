@@ -12,7 +12,7 @@ public class PurchaserController {
     private ViewPurchaser viewPurchaser = new ViewPurchaser();
     private Admin admin = Admin.getAdmin();
     public void purchaserController(Purchaser purchaser){
-        productController productController = new productController();
+        ProductController productController = new ProductController();
         int choice= 1 ;
         while (choice!=0){
             viewPurchaser.choice();

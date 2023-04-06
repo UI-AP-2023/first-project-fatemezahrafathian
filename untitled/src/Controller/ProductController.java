@@ -9,7 +9,7 @@ import View.ViewProducts;
 
 import java.util.ArrayList;
 
-public class productController {
+public class ProductController {
     private ViewProducts viewProducts = new ViewProducts();
     private Admin admin = Admin.getAdmin();
     public void productsController(){

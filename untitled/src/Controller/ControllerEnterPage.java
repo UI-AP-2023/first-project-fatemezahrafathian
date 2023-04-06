@@ -17,7 +17,7 @@ public class ControllerEnterPage {
                 accountController.logInPurchaser();
             }
             else if(choice == 3){
-               productController productController = new productController();
+               ProductController productController = new ProductController();
                 productController.productsController();
             }
             else if (choice!=0){
