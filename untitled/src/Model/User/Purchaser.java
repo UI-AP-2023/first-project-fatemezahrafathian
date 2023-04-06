@@ -49,7 +49,7 @@ public class Purchaser extends Account {
         information.append("password: "+this.getPassword()+"\n");
         information.append("email: "+this.getEmail()+"\n");
         information.append("phone number: "+this.getPhoneNumber()+"\n");
-        information.append("accountCredentials: "+this.getAccountCredentials()+"\n\n");
+        information.append("accountCredentials: "+this.getAccountCredentials()+"\n");
         return information.toString();
     }
 

@@ -8,87 +8,111 @@ import Model.User.Request;
 import View.ViewAdmin;
 
 public class AdminController {
+    Admin admin = Admin.getAdmin();
+    ViewAdmin viewAdmin = new ViewAdmin();
+    private String[] commands;
     public void adminController(){
-        ViewAdmin viewAdmin = new ViewAdmin();
         viewAdmin.viewAdmin();
-        String order =viewAdmin.getOrder();
+        String command = viewAdmin.command();
+        commands= command.split(" ");
+        String order =commands[0];
         while (!order.equals("exit"))   {
             switch (order) {
                 case "help" -> viewAdmin.help();
-                case "add" -> addProduct(viewAdmin.getProduct());
+                case "add" -> addProduct(commands[1]);
                 case "remove" -> removeProduct();
                 case "edit" -> editProduct();
                 case "visitRequests" -> visitRequests();
-                case "acceptRequest" -> accept(viewAdmin.getName(), viewAdmin.getName());
+                case "acceptRequest" -> accept(commands[1],commands[2]);
                 case "visitUsers" -> visitUsers();
                 default -> viewAdmin.error();
             }
-            order =viewAdmin.getOrder();
+            command = viewAdmin.command();
+            commands= command.split(" ");
+            order =commands[0];
         }
     }
     public  void  addProduct(String product ){
-        Admin admin = Admin.getAdmin();
-        ViewAdmin viewAdmin = new ViewAdmin();
         switch (product) {
             case "Bike" -> {
-                Bike bike = new Bike(ProductCategory.VEHICLES, viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getInventoryStatus(), viewAdmin.getName(), viewAdmin.getBikeType());
+                Bike bike = new Bike(ProductCategory.VEHICLES, commands[2],Double.parseDouble(commands[3]), Integer.parseInt(commands[4]), commands[5],viewAdmin.getBikeType(commands[6]));
                 admin.getProducts().add(bike);
                 viewAdmin.successfulAdd();
             }
             case "Car" -> {
-                Car car = new Car(ProductCategory.VEHICLES, viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getInventoryStatus(), viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getBoolean());
+                Car car = new Car(ProductCategory.VEHICLES, commands[2],Double.parseDouble(commands[3]), Integer.parseInt(commands[4]), commands[5],Double.parseDouble(commands[6]), viewAdmin.getBoolean(commands[7]));
                 admin.getProducts().add(car);
                 viewAdmin.successfulAdd();
             }
             case "Edible" -> {
-                Edible edible = new Edible(ProductCategory.EDIBLE, viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getInventoryStatus(), viewAdmin.getDate(), viewAdmin.getDate());
+                Edible edible = new Edible(ProductCategory.EDIBLE, commands[2],Double.parseDouble(commands[3]), Integer.parseInt(commands[4]), commands[5], commands[6]);
                 admin.getProducts().add(edible);
                 viewAdmin.successfulAdd();
             }
             case "NoteBook" -> {
-                NoteBook noteBook = new NoteBook(ProductCategory.STATIONERY, viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getInventoryStatus(), viewAdmin.getName(), viewAdmin.getInventoryStatus(), viewAdmin.getName());
+                NoteBook noteBook = new NoteBook(ProductCategory.STATIONERY, commands[2],Double.parseDouble(commands[3]), Integer.parseInt(commands[4]), commands[5],Integer.parseInt(commands[6]), commands[7]);
                 admin.getProducts().add(noteBook);
                 viewAdmin.successfulAdd();
             }
             case "Pen" -> {
-                Pen pen = new Pen(ProductCategory.STATIONERY, viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getInventoryStatus(), viewAdmin.getName(), viewAdmin.getName());
+                Pen pen = new Pen(ProductCategory.STATIONERY, commands[2],Double.parseDouble(commands[3]), Integer.parseInt(commands[4]), commands[5],commands[6]);
                 admin.getProducts().add(pen);
                 viewAdmin.successfulAdd();
             }
             case "Pencil" -> {
-                Pencil pencil = new Pencil(ProductCategory.STATIONERY, viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getInventoryStatus(), viewAdmin.getName(), viewAdmin.getPencilType());
+                Pencil pencil = new Pencil(ProductCategory.STATIONERY, commands[2],Double.parseDouble(commands[3]), Integer.parseInt(commands[4]), commands[5],viewAdmin.getPencilType(commands[6]));
                 admin.getProducts().add(pencil);
                 viewAdmin.successfulAdd();
             }
             case "PersonalComputer" -> {
-                PersonalComputer personalComputer = new PersonalComputer(ProductCategory.STATIONERY, viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getInventoryStatus(), viewAdmin.getPrice(), viewAdmin.getName(), viewAdmin.getName(), viewAdmin.getInventoryStatus());
+                PersonalComputer personalComputer = new PersonalComputer(ProductCategory.STATIONERY,  commands[2],Double.parseDouble(commands[3]), Integer.parseInt(commands[4]), Double.parseDouble(commands[5]) ,commands[6], commands[7],Integer.parseInt(commands[8]));
                 admin.getProducts().add(personalComputer);
                 viewAdmin.successfulAdd();
             }
             case "SSD" -> {
-                SSD ssd = new SSD(ProductCategory.STATIONERY, viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getInventoryStatus(), viewAdmin.getPrice(), viewAdmin.getName(), viewAdmin.getInventoryStatus(), viewAdmin.getPrice(), viewAdmin.getPrice());
+                SSD ssd = new SSD(ProductCategory.STATIONERY, commands[2],Double.parseDouble(commands[3]), Integer.parseInt(commands[4]), Double.parseDouble(commands[5]),commands[6],Integer.parseInt(commands[7]),Double.parseDouble(commands[8]),Double.parseDouble(commands[9]));
                 admin.getProducts().add(ssd);
                 viewAdmin.successfulAdd();
             }
             case "FlashMemory" -> {
-                FlashMemory flashMemory = new FlashMemory(ProductCategory.DIGITAL_GOODS, viewAdmin.getName(), viewAdmin.getPrice(), viewAdmin.getInventoryStatus(), viewAdmin.getPrice(), viewAdmin.getName(), viewAdmin.getInventoryStatus(), viewAdmin.getName());
+                FlashMemory flashMemory = new FlashMemory(ProductCategory.DIGITAL_GOODS,  commands[2],Double.parseDouble(commands[3]), Integer.parseInt(commands[4]),Double.parseDouble(commands[5]),commands[6], Integer.parseInt(commands[7]), commands[8]);
                 admin.getProducts().add(flashMemory);
                 viewAdmin.successfulAdd();
             }
-            default -> {
-                viewAdmin.error();}
+            default -> viewAdmin.error();
         }
     }
     public  void  removeProduct(){
-        Admin admin = Admin.getAdmin();
-        ViewAdmin viewAdmin = new ViewAdmin();
-        viewAdmin.viewAdmin();
-        String productId =viewAdmin.getProduct();
+        String productId =commands[1];
+        Product product1=null;
         boolean found = false;
         for (Product product : admin.getProducts()){
             if(product.getProductID().equals(productId)){
-                admin.getProducts().remove(product);
+                product1=product;
                 found=true;
+            }
+        }
+        if(found)
+            admin.getProducts().remove(product1);
+        if (!found){
+            viewAdmin.error();
+        }
+    }
+    public  void  editProduct(){
+        Admin admin = Admin.getAdmin();
+        ViewAdmin viewAdmin = new ViewAdmin();
+        String productId =commands[1];
+        boolean found = false;
+        for (Product product : admin.getProducts()){
+            if(product.getProductID().equals(productId)){
+                found=true;
+                String field =commands[2];
+                switch (field) {
+                    case "name" -> product.setName(commands[3]);
+                    case "price" -> product.setPrice(Double.parseDouble(commands[3]));
+                    case "inventoryStatus" -> product.setInventoryStatus(Integer.parseInt(commands[3]));
+                    default -> viewAdmin.error();
+                }
             }
         }
         if (!found){
@@ -114,44 +138,24 @@ public class AdminController {
         for(Request request : admin.getRequests()){
             if(request.getRequestId().equals(requestId)){
                 request.setAccepted(true);
-                if (typeOfRequest.equals("signUp")){
-                    AccountController accountController = new AccountController();
-                    accountController.getPurchasers().add(request.getRequestSender());
-                }
-                if (typeOfRequest.equals("comment")){
-                    request.getComment().getProduct().getComments().add(request.getComment());
-                }
-                if (typeOfRequest.equals("accountCredentials")){
-                    AccountController accountController = new AccountController();
-                    for (Purchaser purchaser : accountController.getPurchasers()){
-                        if (purchaser.equals(request.getRequestSender())){
-                            purchaser.setAccountCredentials(purchaser.getAccountCredentials()+ request.getAmount());
+                switch (typeOfRequest) {
+                    case "signUp" -> {
+                        AccountController accountController = new AccountController();
+                        accountController.getPurchasers().add(request.getRequestSender());
+                    }
+                    case "comment" -> request.getComment().getProduct().getComments().add(request.getComment());
+                    case "accountCredentials" -> {
+                        AccountController accountController = new AccountController();
+                        for (Purchaser purchaser : accountController.getPurchasers()) {
+                            if (purchaser.equals(request.getRequestSender())) {
+                                purchaser.setAccountCredentials(purchaser.getAccountCredentials() + request.getAmount());
+                            }
                         }
                     }
-                }
-            }
-        }
-    }
-    public  void  editProduct(){
-        Admin admin = Admin.getAdmin();
-        ViewAdmin viewAdmin = new ViewAdmin();
-        viewAdmin.viewAdmin();
-        String productId =viewAdmin.getProduct();
-        boolean found = false;
-        for (Product product : admin.getProducts()){
-            if(product.getProductID().equals(productId)){
-                found=true;
-                String field =viewAdmin.getProduct();
-                switch (field) {
-                    case "name" -> product.setName(viewAdmin.getName());
-                    case "price" -> product.setPrice(viewAdmin.getPrice());
-                    case "inventoryStatus" -> product.setInventoryStatus(viewAdmin.getInventoryStatus());
                     default -> viewAdmin.error();
                 }
             }
         }
-        if (!found){
-            viewAdmin.error();
-        }
     }
+
 }

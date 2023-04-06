@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class ViewPurchaser {
     Scanner scanner = new Scanner(System.in);
-
     public void choice(){
         System.out.println("-------------------------------------------");
         System.out.println("[1]edit information");

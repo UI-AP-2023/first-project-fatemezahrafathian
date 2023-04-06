@@ -12,26 +12,13 @@ public class ViewAdmin {
         System.out.println("Admin...!");
         System.out.println("-----------------------------------------");
     }
-    public String getOrder(){
-       return scanner.next();
+    public String command(){
+       return scanner.nextLine();
     }
-    public String getProduct(){
-        return scanner.next();
-    }
-    public String getName(){
-        return scanner.next();
-    }
-    public double getPrice(){
-        return scanner.nextDouble();
-    }
-    public int getInventoryStatus(){
-        return scanner.nextInt();
-    }
-    public boolean getBoolean(){return scanner.nextBoolean();}
-    public String getDate(){scanner.next();
-        return scanner.next();}
-    public PencilType getPencilType(){
-        String pencilType = scanner.next();
+    public boolean getBoolean(String boolean1){
+        return boolean1.equals("true");
+        }
+    public PencilType getPencilType(String pencilType){
         if(pencilType.equals(PencilType.B.name())){
             return PencilType.B;
         }
@@ -49,8 +36,7 @@ public class ViewAdmin {
         }
         return null;
     }
-    public BikeType getBikeType(){
-        String bikeType = scanner.next();
+    public BikeType getBikeType(String bikeType){
         if(bikeType.equals(BikeType.HYBRID.name())){
             return BikeType.HYBRID;
         }
@@ -85,8 +71,8 @@ public class ViewAdmin {
     public void visitRequest(Request request){
         System.out.println(request.getRequestType());
         System.out.println(request.getRequestSender());
-        System.out.println(request.getRequestId());
-        System.out.println("\n\n");
+        System.out.println("requestId"+ request.getRequestId());
+        System.out.println("\n");
     }
     public void successfulAdd(){
         System.out.println("add was successful");

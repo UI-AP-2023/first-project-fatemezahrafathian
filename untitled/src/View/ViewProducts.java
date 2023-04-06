@@ -14,7 +14,33 @@ public class ViewProducts {
     }
     public void choice(){
         System.out.println("-------------------------------------------");
-        System.out.println("[1]select");
+        System.out.println("[3]select");
+        System.out.println("[0]Exit");
+    }
+    public void choice1(){
+        System.out.println("-------------------------------------------");
+        System.out.println("[1]filter");
+        System.out.println("[2]search");
+        System.out.println("[3]visitProducts");
+        System.out.println("[0]Exit");
+    }
+    public void choice2(){
+        System.out.println("-------------------------------------------");
+        System.out.println("[1]filter");
+        System.out.println("[2]search");
+        System.out.println("[3]visitProducts");
+        System.out.println("[0]Exit");
+    }
+    public void filterPage(){
+        System.out.println("-------------------------------------------");
+        System.out.println("[1]filter category");
+        System.out.println("[2]filter inventory status");
+        System.out.println("[3]filter price");
+        System.out.println("[4]filter color");
+        System.out.println("[5]filter company name");
+        System.out.println("[6]filter dimension");
+        System.out.println("[7]filter version");
+        System.out.println("[8]filter paper type");
         System.out.println("[0]Exit");
     }
     public int enterChoice(){
@@ -24,6 +50,12 @@ public class ViewProducts {
     }
     public void error(){
         System.out.println("The entered number is invalid...");
+    }
+    public void nextPage(){
+        System.out.println("[1]next page");
+    }
+    public void previousPage(){
+        System.out.println("[2]previous page");
     }
     public ProductCategory getProductCategory() {
         String productCategory = scanner.next();
@@ -43,7 +75,7 @@ public class ViewProducts {
     public int getInventoryStatus(){
         return scanner.nextInt();
     }
-    public String getId(){
+    public String getName(){
         return scanner.next();
     }
 }
