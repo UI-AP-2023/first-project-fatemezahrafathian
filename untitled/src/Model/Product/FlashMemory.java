@@ -12,4 +12,11 @@ public class FlashMemory extends InformationStorageEquipment {
     public void setVersion(String version) {
         this.version = version;
     }
+
+    @Override
+    public String toString() {
+        return "FlashMemory{" +
+                "version='" + version + '\'' +
+                '}';
+    }
 }

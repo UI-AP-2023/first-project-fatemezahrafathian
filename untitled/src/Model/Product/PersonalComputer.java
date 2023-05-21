@@ -20,4 +20,12 @@ public class PersonalComputer extends DigitalGoods {
     public void setRamCapacity(int ramCapacity) {
         this.ramCapacity = ramCapacity;
     }
+
+    @Override
+    public String toString() {
+        return "PersonalComputer{" +
+                "cpuModel='" + cpuModel + '\'' +
+                ", ramCapacity=" + ramCapacity +
+                '}';
+    }
 }

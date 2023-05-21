@@ -12,4 +12,11 @@ public abstract class InformationStorageEquipment extends DigitalGoods {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    @Override
+    public String toString() {
+        return "InformationStorageEquipment{" +
+                "capacity=" + capacity +
+                '}';
+    }
 }

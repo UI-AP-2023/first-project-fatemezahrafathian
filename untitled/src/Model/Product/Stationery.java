@@ -12,4 +12,11 @@ public abstract class Stationery extends Product {
     public void setProducingCountry(String producingCountry) {
         this.producingCountry = producingCountry;
     }
+
+    @Override
+    public String toString() {
+        return "Stationery{" +
+                "producingCountry='" + producingCountry + '\'' +
+                '}';
+    }
 }

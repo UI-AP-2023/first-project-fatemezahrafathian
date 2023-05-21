@@ -20,4 +20,12 @@ public class NoteBook extends Stationery {
     public void setPaperType(String paperType) {
         this.paperType = paperType;
     }
+
+    @Override
+    public String toString() {
+        return "NoteBook{" +
+                "numberOfSheets=" + numberOfSheets +
+                ", paperType='" + paperType + '\'' +
+                '}';
+    }
 }

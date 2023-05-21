@@ -20,4 +20,12 @@ public abstract class DigitalGoods extends Product {
     public void setDimensions(String dimensions) {
         this.dimensions = dimensions;
     }
+
+    @Override
+    public String toString() {
+        return "DigitalGoods{" +
+                "waite=" + waite +
+                ", dimensions='" + dimensions + '\'' +
+                '}';
+    }
 }

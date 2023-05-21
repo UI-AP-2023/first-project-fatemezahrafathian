@@ -2,7 +2,7 @@ package Model.Product;
 import Model.User.Comment;
 
 import java.util.ArrayList;
-public abstract class Product {
+public abstract class Product implements Comparable {
     public Product(ProductCategory productCategory, String name, double price, int inventoryStatus){
         this.name=name;
         this.price=price;
@@ -69,12 +69,60 @@ public abstract class Product {
         this.numberOfPurchaserThatAddScore = numberOfPurchaserThatAddScore;
     }
     public String toString(){
-        String productInformation = "name: " + getName() + "\n" +
+        return "name: " + getName() + "\n" +
                 "productId: " + getProductID() + "\n" +
                 "category: " + getProductCategory() + "\n" +
                 "price: " + getPrice() + "\n" +
                 "score: " + getAverageScoreOfBuyers() + "\n" +
                 "inventory status: " + getInventoryStatus() + "\n";
-        return productInformation;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Product product = (Product) o;
+        if (this instanceof DigitalGoods && !(product instanceof DigitalGoods))
+            return 1;
+        else if (!(this instanceof DigitalGoods) && (product instanceof DigitalGoods))
+            return -1;
+        else {
+            if (this instanceof Vehicle && !(product instanceof Vehicle))
+                return 1;
+            else if (!(this instanceof Vehicle) && (product instanceof Vehicle))
+                return -1;
+            else {
+                if (this instanceof Stationery && !(product instanceof Stationery))
+                    return 1;
+                else if (!(this instanceof Stationery) && (product instanceof Stationery))
+                    return -1;
+                else {
+                    if (this instanceof Edible && !(product instanceof Edible))
+                        return 1;
+                    else if (!(this instanceof Edible) && (product instanceof Edible))
+                        return -1;
+                    else {
+                        if (this.name.charAt(0)> product.name.charAt(0))
+                            return 1;
+                        else if (this.name.charAt(0)< product.name.charAt(0))
+                            return -1;
+                        else {
+                            if (this.averageScoreOfBuyers>product.averageScoreOfBuyers)
+                                return 1;
+                            else if (this.averageScoreOfBuyers<product.averageScoreOfBuyers)
+                                return -1;
+                            else {
+                                if (this.price>product.price)
+                                    return 1;
+                                else if (this.price<product.price)
+                                    return -1;
+                                else {
+                                    return Integer.compare(this.inventoryStatus, product.inventoryStatus);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

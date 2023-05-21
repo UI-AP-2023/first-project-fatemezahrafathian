@@ -20,4 +20,12 @@ public class SSD extends InformationStorageEquipment {
     public void setWritingSpeed(double writingSpeed) {
         this.writingSpeed = writingSpeed;
     }
+
+    @Override
+    public String toString() {
+        return "SSD{" +
+                "readingSpeed=" + readingSpeed +
+                ", writingSpeed=" + writingSpeed +
+                '}';
+    }
 }

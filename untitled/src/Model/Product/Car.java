@@ -19,4 +19,12 @@ public class Car extends Vehicle {
     public void setEngineVolume(double engineVolume) {
         this.engineVolume = engineVolume;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "engineVolume=" + engineVolume +
+                ", automatic=" + automatic +
+                '}';
+    }
 }
