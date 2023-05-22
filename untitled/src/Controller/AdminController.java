@@ -27,6 +27,8 @@ public class AdminController {
                 case "acceptRequest" -> accept(commands[1],commands[2]);
                 case "visitUsers" -> visitUsers();
                 case "assignDiscountCode"->assignDiscountCode(commands[1],commands[2],commands[3]);
+                case "addDiscountProduct"->addDiscountProduct(commands[1],Double.parseDouble(commands[2]));
+                case "deleteDiscountProduct"->deleteDiscountProduct(commands[1]);
                 default -> viewAdmin.error();
             }
             command = viewAdmin.command();
@@ -170,6 +172,34 @@ public class AdminController {
                 }
             }
 
+        }
+    }
+    public void addDiscountProduct(String productId,double discount){
+        for (Product product: Admin.getAdmin().getProducts()){
+            if (product.getProductID().equals(productId)){
+                if (product instanceof DigitalGoods){
+                    ((DigitalGoods) product).addDiscount(discount);
+                }if (product instanceof Pen){
+                    ((Pen) product).addDiscount(discount);
+                }
+                if (product instanceof Pencil){
+                   ((Pencil) product).addDiscount(discount);
+                }
+            }
+        }
+    }
+    public void deleteDiscountProduct(String productId){
+        for (Product product: Admin.getAdmin().getProducts()){
+            if (product.getProductID().equals(productId)){
+                if (product instanceof DigitalGoods){
+                    ((DigitalGoods) product).deleteDiscount();
+                }if (product instanceof Pen){
+                    ((Pen) product).deleteDiscount();
+                }
+                if (product instanceof Pencil){
+                    ((Pencil) product).deleteDiscount();
+                }
+            }
         }
     }
 

@@ -8,6 +8,18 @@ public class PersonalComputer extends DigitalGoods {
     }
     private String cpuModel;
     private int ramCapacity;
+
+    @Override
+    public double getPercent() {
+        return percent;
+    }
+
+    @Override
+    public void setPercent(double percent) {
+        this.percent = percent;
+    }
+
+    private double percent;
     public String getCpuModel() {
         return cpuModel;
     }
@@ -27,5 +39,16 @@ public class PersonalComputer extends DigitalGoods {
                 "cpuModel='" + cpuModel + '\'' +
                 ", ramCapacity=" + ramCapacity +
                 '}';
+    }
+
+    @Override
+    public void addDiscount(double discountPercent) {
+        setPrice(getPrice()-getPrice()*percent/100);
+    }
+
+    @Override
+    public void deleteDiscount() {
+        if (!(percent==0))
+            setPrice(getPrice()*100/(100-percent));
     }
 }

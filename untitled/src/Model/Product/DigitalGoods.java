@@ -1,6 +1,8 @@
 package Model.Product;
 
-public abstract class DigitalGoods extends Product {
+import Model.User.DiscountFeature;
+
+public abstract class DigitalGoods extends Product implements DiscountFeature {
     public DigitalGoods(ProductCategory productCategory, String name, double price, int inventoryStatus, double waite, String dimensions){
         super(productCategory,name,price,inventoryStatus);
         this.waite=waite;
@@ -8,6 +10,16 @@ public abstract class DigitalGoods extends Product {
     }
     private double waite;
     private String dimensions;
+    private double percent;
+
+    public double getPercent() {
+        return percent;
+    }
+
+    public void setPercent(double percent) {
+        this.percent = percent;
+    }
+
     public double getWaite() {
         return waite;
     }

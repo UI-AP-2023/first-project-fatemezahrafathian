@@ -8,6 +8,18 @@ public class SSD extends InformationStorageEquipment {
     }
     private double readingSpeed;
     private double writingSpeed;
+    private double percent;
+
+    @Override
+    public double getPercent() {
+        return percent;
+    }
+
+    @Override
+    public void setPercent(double percent) {
+        this.percent = percent;
+    }
+
     public double getReadingSpeed() {
         return readingSpeed;
     }
@@ -27,5 +39,16 @@ public class SSD extends InformationStorageEquipment {
                 "readingSpeed=" + readingSpeed +
                 ", writingSpeed=" + writingSpeed +
                 '}';
+    }
+
+    @Override
+    public void addDiscount(double discountPercent) {
+        setPrice(getPrice()-getPrice()*percent/100);
+    }
+
+    @Override
+    public void deleteDiscount() {
+        if (!(percent==0))
+            setPrice(getPrice()*100/(100-percent));
     }
 }

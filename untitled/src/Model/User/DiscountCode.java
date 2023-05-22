@@ -51,4 +51,14 @@ public class DiscountCode {
     public void setDiscountPercent(double discountPercent) {
         this.discountPercent = discountPercent;
     }
+
+    @Override
+    public String toString() {
+        return "DiscountCode{" +
+                "discountPercent=" + discountPercent +
+                ", discountCredit=" + discountCredit +
+                ", capacity=" + capacity +
+                ", discountCode='" + discountCode + '\'' +
+                '}';
+    }
 }

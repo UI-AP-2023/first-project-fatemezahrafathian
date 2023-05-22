@@ -51,6 +51,9 @@ public class PurchaserController {
             else if(choice==9){
                 viewPurchaser.visitCart(purchaser);
             }
+            else if(choice==10){
+                visitDiscountCode(purchaser);
+            }
             else if (choice!=0)viewPurchaser.error();
         }
     }
@@ -201,7 +204,7 @@ public class PurchaserController {
                 if (disCountCode0.equals(discountCode.getDiscountCode())) {
                     found=true;
                     if (discountCode.getCapacity()>0 && discountCode.getDiscountCredit().isAfter(LocalDate.now()))
-                        price = product.getPrice()*discountCode.getDiscountPercent()/100;
+                        price = product.getPrice()-(product.getPrice()*discountCode.getDiscountPercent()/100);
                     else{
                         throw new DiscountException();
                     }
@@ -217,5 +220,8 @@ public class PurchaserController {
             price=product.getPrice();
         }
         return price;
+    }
+    public void visitDiscountCode(Purchaser purchaser){
+        viewPurchaser.discountCode(purchaser);
     }
 }

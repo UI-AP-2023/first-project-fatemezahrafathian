@@ -1,6 +1,7 @@
 package View;
 
 import Model.Product.Product;
+import Model.User.DiscountCode;
 import Model.User.Purchaser;
 
 import java.util.Scanner;
@@ -18,6 +19,7 @@ public class ViewPurchaser {
         System.out.println("[7]add score");
         System.out.println("[8]top of user account credit");
         System.out.println("[9]visit cart");
+        System.out.println("[10]visit discounts");
         System.out.println("[0]Exit");
     }
     public String enterDiscountCode(){
@@ -86,5 +88,10 @@ public class ViewPurchaser {
     }
     public void information(String information){
         System.out.println(information);
+    }
+    public  void discountCode(Purchaser purchaser){
+        for (DiscountCode discountCode : purchaser.getDiscountCodes()){
+            System.out.println(discountCode+"\n");
+        }
     }
 }

@@ -6,6 +6,18 @@ public class FlashMemory extends InformationStorageEquipment {
         this.version=version;
     }
     private String version;
+    private double percent;
+
+    @Override
+    public double getPercent() {
+        return percent;
+    }
+
+    @Override
+    public void setPercent(double percent) {
+        this.percent = percent;
+    }
+
     public String getVersion() {
         return version;
     }
@@ -18,5 +30,16 @@ public class FlashMemory extends InformationStorageEquipment {
         return "FlashMemory{" +
                 "version='" + version + '\'' +
                 '}';
+    }
+
+    @Override
+    public void addDiscount(double discountPercent) {
+        setPrice(getPrice()-getPrice()*percent/100);
+    }
+
+    @Override
+    public void deleteDiscount() {
+        if (!(percent==0))
+            setPrice(getPrice()*100/(100-percent));
     }
 }
