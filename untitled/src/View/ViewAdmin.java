@@ -59,6 +59,7 @@ public class ViewAdmin {
                 visitProducts: enter visitProducts to visit Products\s
                 visitRequests: enter visitRequests to visit Requests\s
                 acceptRequest: enter acceptRequest to accept Request    category    requestId\s
+                assignDiscountCode: enter assignDiscountCode to assign a Discount Code and discountPercent      discountCredit       capacity\s
                 exit: enter exit to exit Product\s""";
         System.out.println(helpList);
     }

@@ -12,6 +12,7 @@ public class Purchaser extends Account {
     private ArrayList<Product> cart = new ArrayList<>();
     private ArrayList<PurchaseInvoice> purchaseHistory = new ArrayList<>();
     private double accountCredentials;
+    private ArrayList<DiscountCode> discountCodes = new ArrayList<>();
 
     //*************************************************************************
     public ArrayList<Product> getCart() {
@@ -36,6 +37,11 @@ public class Purchaser extends Account {
     public void setAccountCredentials(double accountCredentials) {
         this.accountCredentials = accountCredentials;
     }
+
+    public ArrayList<DiscountCode> getDiscountCodes() {
+        return discountCodes;
+    }
+
     public String toString(){
         String information = "username: " + this.getUserName() + "\n" +
                 "password: " + this.getPassword() + "\n" +

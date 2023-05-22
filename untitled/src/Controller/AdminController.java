@@ -1,11 +1,12 @@
 package Controller;
 
 import Model.Product.*;
-import Model.User.Admin;
-import Model.User.Purchaser;
-import Model.User.Request;
+import Model.User.*;
 
 import View.ViewAdmin;
+
+import javax.xml.crypto.Data;
+import java.time.LocalDate;
 
 public class AdminController {
     private Admin admin = Admin.getAdmin();
@@ -25,6 +26,7 @@ public class AdminController {
                 case "visitRequests" -> visitRequests();
                 case "acceptRequest" -> accept(commands[1],commands[2]);
                 case "visitUsers" -> visitUsers();
+                case "assignDiscountCode"->assignDiscountCode(commands[1],commands[2],commands[3]);
                 default -> viewAdmin.error();
             }
             command = viewAdmin.command();
@@ -156,6 +158,18 @@ public class AdminController {
                     default -> viewAdmin.error();
                 }
             }
+        }
+    }
+    public void assignDiscountCode(String discountPercent, String discountCredit, String  capacity){
+        DiscountCode discountCode = new DiscountCode(Double.parseDouble(discountPercent),discountCredit,Integer.parseInt(capacity));
+        AccountController accountController = new AccountController();
+        for (Purchaser purchaser: accountController.getPurchasers()){
+            for (PurchaseInvoice purchaseInvoice : purchaser.getPurchaseHistory()){
+                if (purchaseInvoice.getAmountPaid()>=500){
+                    purchaser.getDiscountCodes().add(discountCode);
+                }
+            }
+
         }
     }
 

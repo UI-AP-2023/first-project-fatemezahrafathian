@@ -1,10 +1,12 @@
 package Controller;
 
+import Model.Exception.DiscountException;
 import Model.Product.Product;
 import Model.User.*;
 import View.ViewPurchaser;
 import View.ViewSignUp;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,10 +61,16 @@ public class PurchaserController {
                 numberOfProduct++;
         }
         if(purchaser.getAccountCredentials()>= product.getPrice()){
-            purchaser.setAccountCredentials(purchaser.getAccountCredentials()- product.getPrice());
+            double price=product.getPrice();
+            try {
+                price=useDiscountCode(product,purchaser,price);
+            } catch (DiscountException e) {
+                viewPurchaser.error();
+            }
+            purchaser.setAccountCredentials(purchaser.getAccountCredentials()-price);
             purchaser.getCart().remove(product);
             product.setInventoryStatus(product.getInventoryStatus()-numberOfProduct);
-            PurchaseInvoice purchaseInvoice=new PurchaseInvoice(product.getProductID(),product.getPrice()*numberOfProduct);
+            PurchaseInvoice purchaseInvoice=new PurchaseInvoice(product.getProductID(),price*numberOfProduct);
             purchaseInvoice.getListOfPurchasedGoods().add(product);
             purchaser.getPurchaseHistory().add(purchaseInvoice);
         }
@@ -109,7 +117,7 @@ public class PurchaserController {
                     found=true;
                     Score score = new Score(purchaser,product,viewPurchaser.getPoint());
                     score.getProduct().setAverageScoreOfBuyers((score.getScore()+score.getProduct().getNumberOfPurchaserThatAddScore()*score.getProduct().getAverageScoreOfBuyers())/(score.getProduct().getNumberOfPurchaserThatAddScore()+1));
-                    score.getProduct().setAverageScoreOfBuyers(score.getProduct().getNumberOfPurchaserThatAddScore()+1);
+                    score.getProduct().setAverageScoreOfBuyers((score.getProduct().getNumberOfPurchaserThatAddScore()+1));
                 }
             }
         }
@@ -182,5 +190,32 @@ public class PurchaserController {
             }
             else if(choice2!=0) viewPurchaser.error();
         }
+    }
+    public double useDiscountCode(Product product,Purchaser purchaser,double price)throws DiscountException{
+        viewPurchaser.useDiscountCode();
+        int choice =viewPurchaser.enterChoice();
+        boolean found=false;
+        if (choice==1){
+            String disCountCode0= viewPurchaser.enterDiscountCode();
+            for (DiscountCode discountCode : purchaser.getDiscountCodes()) {
+                if (disCountCode0.equals(discountCode.getDiscountCode())) {
+                    found=true;
+                    if (discountCode.getCapacity()>0 && discountCode.getDiscountCredit().isAfter(LocalDate.now()))
+                        price = product.getPrice()*discountCode.getDiscountPercent()/100;
+                    else{
+                        throw new DiscountException();
+                    }
+                }
+            }
+            if (!found){
+                throw new DiscountException();
+            }
+        } else if (choice == 2) {
+            price=product.getPrice();
+        }else {
+            viewPurchaser.error();
+            price=product.getPrice();
+        }
+        return price;
     }
 }

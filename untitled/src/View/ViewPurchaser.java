@@ -20,6 +20,14 @@ public class ViewPurchaser {
         System.out.println("[9]visit cart");
         System.out.println("[0]Exit");
     }
+    public String enterDiscountCode(){
+        System.out.println("please discount code?\n");
+        return scanner.nextLine();
+    }
+    public void useDiscountCode(){
+        System.out.println("are you want that use discount code?\n");
+        System.out.println("[1]yes       [2]no \n");
+    }
     public void visitCart(Purchaser purchaser){
         for (Product product : purchaser.getCart()){
             System.out.println(product.toString());
