@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Exception.InvalidEmail;
+import Model.Exception.InvalidPhone;
 import Model.User.Account;
 import Model.User.Admin;
 import Model.User.Purchaser;
@@ -17,7 +19,7 @@ public class AccountController {
     private String password;
     private String phoneNumber;
     private String email;
-    public void signUpPurchaser(){
+    public void signUpPurchaser() throws InvalidEmail, InvalidPhone {
         ViewSignUp viewSignUp = new ViewSignUp();
         viewSignUp.visitSignUpPage();
         while (checkUsername(viewSignUp.getUserName())){
@@ -84,7 +86,7 @@ public class AccountController {
         }
         return duplicateUsername;
     }
-    boolean checkPassword(String password){
+    boolean checkPassword(String password) throws InvalidEmail {
         boolean truePassword=false;
         Pattern pattern =Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
         Matcher matcher =pattern.matcher(password);
@@ -93,9 +95,9 @@ public class AccountController {
             this.password=password;
             truePassword=true;
         }
-        return !truePassword;
+        throw new InvalidEmail();
     }
-    boolean checkPhoneNumber(String phoneNumber){
+    boolean checkPhoneNumber(String phoneNumber) throws InvalidPhone {
         boolean truePhoneNumber=false;
         Pattern pattern =Pattern.compile("^(09)+\\d{9}$");
         Matcher matcher =pattern.matcher(phoneNumber);
@@ -104,7 +106,7 @@ public class AccountController {
             this.phoneNumber=phoneNumber;
             truePhoneNumber=true;
         }
-        return !truePhoneNumber;
+        throw new InvalidPhone();
     }
     boolean checkEmail(String email){
         boolean trueEmail=false;

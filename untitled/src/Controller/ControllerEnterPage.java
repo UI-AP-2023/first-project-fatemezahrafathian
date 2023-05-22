@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Exception.InvalidEmail;
+import Model.Exception.InvalidPhone;
 import View.ViewEnterPage;
 
 public class ControllerEnterPage {
@@ -11,7 +13,13 @@ public class ControllerEnterPage {
             viewEnterPage.visitEnterPage();
             choice=viewEnterPage.enterChoice();
             if(choice == 1){
-                accountController.signUpPurchaser();
+                try {
+                    accountController.signUpPurchaser();
+                } catch (InvalidEmail e) {
+                    e.getMessage();
+                } catch (InvalidPhone e) {
+                    e.getMessage();
+                }
             }
             else if(choice == 2){
                 accountController.logInPurchaser();

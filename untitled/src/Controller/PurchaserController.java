@@ -1,6 +1,9 @@
 package Controller;
 
 import Model.Exception.DiscountException;
+import Model.Exception.InsufficientInventory;
+import Model.Exception.InvalidEmail;
+import Model.Exception.InvalidPhone;
 import Model.Product.Product;
 import Model.User.*;
 import View.ViewPurchaser;
@@ -20,7 +23,13 @@ public class PurchaserController {
             viewPurchaser.choice();
             choice=viewPurchaser.enterChoice();
             if (choice == 1){
-                editInformation(purchaser);
+                try {
+                    editInformation(purchaser);
+                } catch (InvalidEmail e) {
+                    throw new RuntimeException(e);
+                } catch (InvalidPhone e) {
+                    e.getMessage();
+                }
             }
             else if(choice==2){
                 productController.visitProducts(purchaser);
@@ -57,7 +66,7 @@ public class PurchaserController {
             else if (choice!=0)viewPurchaser.error();
         }
     }
-    public void buyProduct(Product product,Purchaser purchaser){
+    public void buyProduct(Product product,Purchaser purchaser) {
         int numberOfProduct=0;
         for (Product product1:purchaser.getCart()){
             if (product1.equals(product))
@@ -77,7 +86,11 @@ public class PurchaserController {
             purchaseInvoice.getListOfPurchasedGoods().add(product);
             purchaser.getPurchaseHistory().add(purchaseInvoice);
         }
-        else viewPurchaser.error();
+        else try {
+            throw new InsufficientInventory();
+        } catch (InsufficientInventory e) {
+            e.getMessage();
+        }
     }
     public void addProductToCart(Product product,Purchaser purchaser){
         purchaser.getCart().add(product);
@@ -154,7 +167,7 @@ public class PurchaserController {
         Matcher matcher = pattern.matcher(cvv2);
         return matcher.find();
     }
-    public void editInformation(Purchaser purchaser){
+    public void editInformation(Purchaser purchaser) throws InvalidEmail, InvalidPhone {
         AccountController accountController = new AccountController();
         ViewSignUp viewSignUp = new ViewSignUp();
         viewPurchaser.information(purchaser.toString());
