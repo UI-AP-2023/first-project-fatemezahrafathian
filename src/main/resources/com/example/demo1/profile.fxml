@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="443.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.Profile">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" pickOnBounds="true">
+         <image>
+            <Image url="@download.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btExit" layoutX="730.0" layoutY="396.0" mnemonicParsing="false" onMouseClicked="#btExit" prefHeight="31.0" prefWidth="42.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <graphic>
+            <ImageView fx:id="exitImage" fitHeight="47.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit-icon-vector-22391092.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Rectangle fx:id="box" arcHeight="30.0" arcWidth="30.0" height="361.0" layoutX="43.0" layoutY="45.0" rotate="-10.0" smooth="false" stroke="#df8b8b" strokeType="INSIDE" width="285.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="9.031005943072046E-10" proportional="false" startX="0.4242424237908739">
+               <stops>
+                  <Stop color="#bfa1a1" />
+                  <Stop color="#bfa1a1" offset="0.4331797235023041" />
+                  <Stop color="#f2dbd500" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <DropShadow height="23.39" offsetX="10.0" offsetY="10.0" radius="10.0275" width="18.72">
+               <color>
+                  <Color red="0.5473684072494507" green="0.4885770082473755" blue="0.4885770082473755" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Rectangle>
+      <Label fx:id="information" alignment="TOP_LEFT" layoutX="47.0" layoutY="52.0" prefHeight="345.0" prefWidth="276.0" rotate="-11.0" text="Label">
+         <opaqueInsets>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </Label>
+      <Button layoutX="449.0" layoutY="73.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" text="Button" />
+      <Button layoutX="590.0" layoutY="73.0" mnemonicParsing="false" text="Button" />
+   </children>
+</AnchorPane>

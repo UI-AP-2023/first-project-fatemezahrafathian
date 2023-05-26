@@ -1,4 +1,4 @@
-package Controller.Exception;
+package Model.Exception;
 
 public class LoginException extends Exception{
     public LoginException(){

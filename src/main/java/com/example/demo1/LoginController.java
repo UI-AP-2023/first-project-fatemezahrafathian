@@ -1,7 +1,11 @@
 package com.example.demo1;
 
 import Controller.AccountController;
-import Controller.Exception.LoginException;
+import Model.Exception.LoginAdmin;
+import Model.Exception.LoginException;
+import Model.Exception.LoginPurchaser;
+import Controller.PurchaserController;
+import Model.User.Purchaser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -23,7 +27,7 @@ public class LoginController {
     private Button btLogin;
 
     @FXML
-    private Label lbButton;
+    private Label lbLogin;
 
     @FXML
     private ImageView backGrandLogin;
@@ -62,23 +66,37 @@ public class LoginController {
     void btLogin(MouseEvent event) throws IOException {
         AccountController accountController = new AccountController();
         try {
-            accountController.logIn(tfUsername.getText(),tfPassword.getText());
+            accountController.logIn(tfUsername.getText(), tfPassword.getText());
         } catch (LoginException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(e.getMessage());
             alert.show();
+        } catch (LoginPurchaser e) {
+            Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home.fxml")));
+            Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene=new Scene(parent,800,450);
+            stage.setScene(scene);
+            stage.setTitle("Home");
+            stage.show();
+            //PurchaserController purchaserController = new PurchaserController();
+           // purchaserController.purchaserController((Purchaser) accountController.getAccount());
+        } catch (LoginAdmin e) {
+            Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("admin.fxml")));
+            Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene=new Scene(parent,800,450);
+            stage.setScene(scene);
+            stage.setTitle("Admin");
+            stage.show();
         }
     }
     @FXML
     void btSignup(MouseEvent event) throws IOException {
-        AccountController accountController = new AccountController();
-        try {
-            accountController.logIn(tfUsername.getText(),tfPassword.getText());
-        } catch (LoginException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(e.getMessage());
-            alert.show();
-        }
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("signup.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("Signup");
+        stage.show();
     }
 
 }
