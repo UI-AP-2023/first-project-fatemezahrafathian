@@ -28,6 +28,8 @@ public class Profile implements Initializable {
     @FXML
     private Button btExit;
     @FXML
+    private Button btEdit;
+    @FXML
     private ImageView exitImage;
 
     @FXML
@@ -43,6 +45,15 @@ public class Profile implements Initializable {
         Scene scene=new Scene(parent,800,450);
         stage.setScene(scene);
         stage.setTitle("Home");
+        stage.show();
+    }
+    @FXML
+    void btEdit(MouseEvent event) throws IOException {
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("edit.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("Edit");
         stage.show();
     }
 

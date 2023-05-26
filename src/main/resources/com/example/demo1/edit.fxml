@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.Edit">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@download.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lbEdit" alignment="CENTER" layoutX="324.0" layoutY="28.0" prefHeight="54.0" prefWidth="153.0" text="Edit" textFill="#ae3131">
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" />
+         </effect>
+         <font>
+            <Font size="44.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbusername" layoutX="14.0" layoutY="134.0" prefHeight="45.0" prefWidth="76.0" text="username" textFill="#803636">
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" />
+         </effect>
+      </Label>
+      <Button fx:id="btExit" layoutX="730.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#btExit" prefHeight="31.0" prefWidth="42.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <graphic>
+            <ImageView fx:id="exitImage1" fitHeight="47.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit-icon-vector-22391092.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="tfPassword" layoutX="109.0" layoutY="209.0" prefHeight="31.0" prefWidth="270.0">
+         <effect>
+            <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325" />
+         </effect>
+      </TextField>
+      <TextField fx:id="tfEmail" layoutX="454.0" layoutY="334.0" prefHeight="31.0" prefWidth="270.0">
+         <effect>
+            <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325" />
+         </effect>
+      </TextField>
+      <TextField fx:id="tfPhone" layoutX="454.0" layoutY="282.0" prefHeight="31.0" prefWidth="270.0">
+         <effect>
+            <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325" />
+         </effect>
+      </TextField>
+      <Label fx:id="lbphone" layoutX="323.0" layoutY="275.0" prefHeight="45.0" prefWidth="113.0" text="phone number" textFill="#793232">
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" />
+         </effect>
+      </Label>
+      <Label fx:id="lbEmail" layoutX="360.0" layoutY="327.0" prefHeight="45.0" prefWidth="39.0" text="email" textFill="#6f2f2f">
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" />
+         </effect>
+      </Label>
+      <Label fx:id="lbPassword" layoutX="14.0" layoutY="203.0" prefHeight="45.0" prefWidth="76.0" text="password" textFill="#8d3939">
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" />
+         </effect>
+      </Label>
+      <Button fx:id="btEdit" layoutX="143.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#btEdit" opacity="0.66" prefHeight="31.0" prefWidth="113.0" text="Edit">
+         <effect>
+            <DisplacementMap>
+               <mapData>
+                  <FloatMap />
+               </mapData>
+               <input>
+                  <InnerShadow />
+               </input>
+            </DisplacementMap>
+         </effect>
+      </Button>
+      <Label layoutX="112.0" layoutY="146.0" prefHeight="31.0" prefWidth="270.0" />
+      <Label fx:id="lbUsernameValue" layoutX="112.0" layoutY="141.0" prefHeight="31.0" prefWidth="270.0">
+         <effect>
+            <DropShadow color="#bfacac" height="31.1" offsetX="10.0" offsetY="10.0" radius="15.8275" width="34.21" />
+         </effect>
+      </Label>
+   </children>
+</AnchorPane>
