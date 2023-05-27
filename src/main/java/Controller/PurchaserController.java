@@ -105,6 +105,9 @@ public class PurchaserController {
             System.out.println(purchaseInvoice.toString());
         }
     }
+    public void visitDiscountCode(Purchaser purchaser){
+        viewPurchaser.discountCode(purchaser);
+    }
 //    public void addComment(String productId,Purchaser purchaser){
 //        boolean theCommenterBoughtProduct=false;
 //        for (Product product : admin.getProducts()){
@@ -145,32 +148,34 @@ public class PurchaserController {
 //        if (!found)
 //            viewPurchaser.error();
 //    }
-    public void topOfUserAccountCredit(Purchaser purchaser){
-        boolean check1=checkNumberOfCart(viewPurchaser.getNumberOfCart());
-        boolean check2 =checkPasswordCart(viewPurchaser.getPasswordCart());
-        boolean check3=checkCvv2(viewPurchaser.getCvv2());
-        if(check1&&check2 &&check3 ){
-            Request request = new Request("accountCredentials",purchaser, viewPurchaser.getAmount());
-            Admin admin = Admin.getAdmin();
-            admin.getRequests().add(request);
-            viewPurchaser.sendRequest();
-        }
-        else viewPurchaser.errorPay();
+    public void topOfUserAccountCredit(Purchaser purchaser,String numberCart,String password,String cvv2,double amount) throws InvalidNumberOfCart, InvalidPassword, InvalidCcv2 {
+        checkNumberOfCart(numberCart);
+        checkPasswordCart(password);
+        checkCvv2(cvv2);
+        Request request = new Request("accountCredentials",purchaser,amount);
+        Admin admin = Admin.getAdmin();
+        admin.getRequests().add(request);
     }
-    public boolean checkNumberOfCart( String numberCart){
+    public void checkNumberOfCart( String numberCart) throws InvalidNumberOfCart {
         Pattern pattern = Pattern.compile("\\d{4}-\\d{4}-\\d{4}-\\d{4}");
         Matcher matcher = pattern.matcher(numberCart);
-        return matcher.find();
+        if (!matcher.find()){
+            throw new InvalidNumberOfCart();
+        }
     }
-    public boolean checkPasswordCart(String password){
+    public void checkPasswordCart(String password) throws InvalidPassword {
         Pattern pattern = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
         Matcher matcher = pattern.matcher(password);
-        return matcher.find();
+        if (!matcher.find()){
+            throw new InvalidPassword();
+        }
     }
-    public boolean checkCvv2(String cvv2){
+    public void checkCvv2(String cvv2) throws InvalidCcv2 {
         Pattern pattern = Pattern.compile("^\\d{3,4}$");
         Matcher matcher = pattern.matcher(cvv2);
-        return matcher.find();
+        if (!matcher.find()){
+            throw new InvalidCcv2();
+        }
     }
     public void editInformation(Purchaser purchaser,String newPassword,String newEmail,String newPhoneNumber) throws InvalidEmail, InvalidPhone, InvalidPassword {
         AccountController accountController = new AccountController();
@@ -194,8 +199,5 @@ public class PurchaserController {
         if (!found){
             throw new DiscountException();
         }
-    }
-    public void visitDiscountCode(Purchaser purchaser){
-        viewPurchaser.discountCode(purchaser);
     }
 }

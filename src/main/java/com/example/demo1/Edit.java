@@ -43,7 +43,7 @@ public class Edit implements Initializable {
     private TextField tfPhone;
 
     @FXML
-    private Label lbUsernameValue;
+    private TextField tfUsernameValue;
 
     @FXML
     private TextField tfEmail;
@@ -88,7 +88,7 @@ public class Edit implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lbUsernameValue.setText(AccountController.getAccount().getUserName());
+        tfUsernameValue.setText(AccountController.getAccount().getUserName());
         tfPassword.setText(AccountController.getAccount().getPassword());
         tfPhone.setText(AccountController.getAccount().getPhoneNumber());
         tfEmail.setText(AccountController.getAccount().getEmail());

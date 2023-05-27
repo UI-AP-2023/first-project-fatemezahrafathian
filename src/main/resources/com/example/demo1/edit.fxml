@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.Edit">
    <children>
@@ -85,10 +83,10 @@
          </effect>
       </Button>
       <Label layoutX="112.0" layoutY="146.0" prefHeight="31.0" prefWidth="270.0" />
-      <Label fx:id="lbUsernameValue" layoutX="112.0" layoutY="141.0" prefHeight="31.0" prefWidth="270.0">
+      <TextField fx:id="tfUsernameValue" editable="false" layoutX="109.0" layoutY="146.0" prefHeight="31.0" prefWidth="270.0">
          <effect>
-            <DropShadow color="#bfacac" height="31.1" offsetX="10.0" offsetY="10.0" radius="15.8275" width="34.21" />
+            <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325" />
          </effect>
-      </Label>
+      </TextField>
    </children>
 </AnchorPane>
