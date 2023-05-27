@@ -1,5 +1,7 @@
 package Model.User;
 
+import Model.Product.Product;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +18,7 @@ public class PurchaseInvoice {
     private String invoiceID;
     private LocalDate date;
     private double amountPaid;
-    private HashMap<String,Integer> listOfPurchasedGoods = new HashMap<>();
+    private HashMap<Product,Integer> listOfPurchasedGoods = new HashMap<>();
     public String getInvoiceID() {
         return invoiceID;
     }
@@ -35,38 +37,27 @@ public class PurchaseInvoice {
     public void setAmountPaid(double amountPaid) {
         this.amountPaid = amountPaid;
     }
-    public HashMap<String, Integer> getListOfPurchasedGoods() {
+    public HashMap<Product, Integer> getListOfPurchasedGoods() {
         return listOfPurchasedGoods;
     }
-    public void setListOfPurchasedGoods(HashMap<String, Integer> listOfPurchasedGoods) {
+    public void setListOfPurchasedGoods(HashMap<Product, Integer> listOfPurchasedGoods) {
         this.listOfPurchasedGoods = listOfPurchasedGoods;
     }
-//    public String toString(){
-//        StringBuilder invoice = new StringBuilder();
-//        invoice.append("invoiceId: "+this.invoiceID+"\n");
-//        invoice.append("date: "+this.date+"\n");
-//        ArrayList<Product> products = new ArrayList<>();
-//        boolean exist=false;
-//        for (Product product : this.listOfPurchasedGoods){
-//            for (Product product1 : products){
-//                if (product.equals(product1)) {
-//                    exist = true;
-//                    break;
-//                }
-//            }
-//            if (!exist){
-//                products.add(product);
-//            }
-//        }
-//        int numberOfProduct=0;
-//        for (Product product : products){
-//            for (Product product1 : this.listOfPurchasedGoods){
-//                if (product.equals(product1))
-//                    numberOfProduct++;
-//            }
-//            invoice.append("product Name: "+product.getName()+"number of product: "+numberOfProduct+"\n");
-//        }
-//        return invoice.toString();
-//    }
 
+    @Override
+    public String toString() {
+        return invoiceID;
+    }
+
+    public String toString0() {
+        ArrayList<String> products = new ArrayList<>();
+        for (Product product:listOfPurchasedGoods.keySet()){
+            products.add(product.getName()+"            "+product.getPrice()+"\n");
+        }
+        return "invoiceID='               " + invoiceID + "\n\n" +
+                ", date=               " + date +"\n\n" +
+                ", amountPaid=               " + amountPaid +"\n\n"+
+                "products:"+"\n\n"+products;
+
+    }
 }

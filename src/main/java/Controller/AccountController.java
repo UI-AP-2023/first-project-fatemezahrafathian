@@ -3,9 +3,14 @@ package Controller;
 import Model.Exception.*;
 import Model.Exception.InvalidEmail;
 import Model.Exception.InvalidPhone;
+import Model.Product.Bike;
+import Model.Product.BikeType;
+import Model.Product.Product;
+import Model.Product.ProductCategory;
 import Model.User.*;
 import com.example.demo1.HomeController;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.regex.*;
 public class AccountController {
@@ -15,6 +20,10 @@ public class AccountController {
         purchaser.getDiscountCodes().add(discountCode);
         DiscountCode discountCode1 = new DiscountCode(20,"12/12/1212",2);
         purchaser.getDiscountCodes().add(discountCode1);
+        PurchaseInvoice purchaseInvoice = new PurchaseInvoice(LocalDate.now());
+        Bike bike = new Bike(ProductCategory.VEHICLES,"asd",78.3,2,"a",BikeType.MOUNTAIN);
+        purchaseInvoice.getListOfPurchasedGoods().put(bike,1);
+        purchaser.getPurchaseHistory().add(purchaseInvoice);
         purchasers.add(purchaser);
     }
     private static ArrayList<Purchaser> purchasers = new ArrayList<>();

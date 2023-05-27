@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 
+import Model.User.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -68,6 +69,14 @@ public class HomeController {
     @FXML
     private TextField searchBox;
 
+    public TextField getSearchBox() {
+        return searchBox;
+    }
+
+    public void setSearchBox(TextField searchBox) {
+        this.searchBox = searchBox;
+    }
+
     @FXML
     void edible(MouseEvent event) {
 
@@ -86,7 +95,14 @@ public class HomeController {
     }
     @FXML
     void SearchButton(MouseEvent event) throws IOException {
-
+        Admin admin = Admin.getAdmin();
+        admin.addProducts();
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("Search");
+        stage.show();
     }
 
     @FXML

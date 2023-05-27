@@ -2,6 +2,8 @@ package Model.Product;
 import Model.User.Comment;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 public abstract class Product implements Comparable {
     public Product(ProductCategory productCategory, String name, double price, int inventoryStatus){
         this.name=name;
@@ -125,4 +127,13 @@ public abstract class Product implements Comparable {
         }
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(ProductID, product.ProductID);
+    }
+
 }

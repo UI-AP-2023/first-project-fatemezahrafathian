@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PurchaserController {
-    private Admin admin = Admin.getAdmin();
     /*public void purchaserController(Purchaser purchaser){
         ProductController productController = new ProductController();
         int choice= 1 ;
@@ -66,11 +65,12 @@ public class PurchaserController {
 //    public void addProductToCart(Product product,Purchaser purchaser){
 //        purchaser.getCart().add(product);
 //    }
-    public void visitHistory(Purchaser purchaser){
-        for (PurchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
-            System.out.println(purchaseInvoice.toString());
-        }
-    }
+//    public void visitHistory(Purchaser purchaser){
+//        for (PurchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
+//            System.out.println(purchaseInvoice.toString());
+//        }
+//    }
+
 //    public void visitDiscountCode(Purchaser purchaser){
 //        viewPurchaser.discountCode(purchaser);
 //    }
@@ -99,6 +99,7 @@ public class PurchaserController {
 //            }
 //        }
 //    }
+
 //    public void addScore(Purchaser purchaser,String id){
 //        boolean found=false;
 //        for (PurchaseInvoice purchaseInvoice: purchaser.getPurchaseHistory()){
@@ -126,20 +127,20 @@ public class PurchaserController {
         if(!(product.getInventoryStatus()>=1)){
             throw new ProductOutOfStock();
         }
-        if (purchaseInvoice.getListOfPurchasedGoods().containsKey(product.getProductID())){
-            Integer inventory=purchaseInvoice.getListOfPurchasedGoods().get(product.getProductID());
-            purchaseInvoice.getListOfPurchasedGoods().remove(product.getProductID());
-            purchaseInvoice.getListOfPurchasedGoods().put(product.getProductID(),inventory+1);
+        if (purchaseInvoice.getListOfPurchasedGoods().containsKey(product)){
+            Integer inventory=purchaseInvoice.getListOfPurchasedGoods().get(product);
+            purchaseInvoice.getListOfPurchasedGoods().remove(product);
+            purchaseInvoice.getListOfPurchasedGoods().put(product,inventory+1);
         }
         else {
-            purchaseInvoice.getListOfPurchasedGoods().put(product.getProductID(),1);
+            purchaseInvoice.getListOfPurchasedGoods().put(product,1);
         }
     }
-    for (String productId:purchaseInvoice.getListOfPurchasedGoods().keySet()){
+    for (Product product:purchaseInvoice.getListOfPurchasedGoods().keySet()){
         Admin admin1= Admin.getAdmin();
-        for (Product product:admin1.getProducts()){
-            if (product.getProductID().equals(productId)){
-                product.setInventoryStatus(product.getInventoryStatus()-purchaseInvoice.getListOfPurchasedGoods().get(productId));
+        for (Product product0:admin1.getProducts()){
+            if (product.equals(product0)){
+                product.setInventoryStatus(product.getInventoryStatus()-purchaseInvoice.getListOfPurchasedGoods().get(product));
             }
         }
 

@@ -50,12 +50,13 @@ public class Profile implements Initializable {
     private Button btExitAccount;
     @FXML
     void btExitAccount(MouseEvent event) throws IOException {
-//        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("pay.fxml")));
-//        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-//        Scene scene=new Scene(parent,800,450);
-//        stage.setScene(scene);
-//        stage.setTitle("Pay");
-//        stage.show();
+        HomeController.setLogin(false);
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("Home");
+        stage.show();
     }
     @FXML
     void btHistory(MouseEvent event) throws IOException {
