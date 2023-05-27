@@ -29,6 +29,22 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="btCart" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="575.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#btCart" opacity="0.3" prefHeight="72.0" prefWidth="81.0" textAlignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@cart.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+      </Button>
+
       <Rectangle fx:id="box" arcHeight="30.0" arcWidth="30.0" height="361.0" layoutX="43.0" layoutY="45.0" rotate="-10.0" smooth="false" stroke="#df8b8b" strokeType="INSIDE" width="285.0">
          <fill>
             <LinearGradient endX="1.0" endY="9.031005943072046E-10" proportional="false" startX="0.4242424237908739">
@@ -55,8 +71,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </Label>
-      <Button layoutX="590.0" layoutY="73.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="btEdit" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#btEdit" opacity="0.3" prefHeight="72.0" prefWidth="81.0" textAlignment="CENTER">
+      <Button fx:id="btEdit" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="451.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#btEdit" opacity="0.3" prefHeight="72.0" prefWidth="81.0" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -70,6 +85,66 @@
          <effect>
             <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
          </effect>
+      </Button>
+      <Button fx:id="btPay" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="451.0" layoutY="168.0" mnemonicParsing="false" onMouseClicked="#btPay" opacity="0.3" prefHeight="72.0" prefWidth="81.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pay.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btDiscounts" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="575.0" layoutY="168.0" mnemonicParsing="false" onMouseClicked="#btDiscounts" opacity="0.3" prefHeight="72.0" prefWidth="81.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@discount.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btHistory" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="451.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#btHistory" opacity="0.3" prefHeight="72.0" prefWidth="81.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@history.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btExitAccount" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="575.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#btExitAccount" opacity="0.3" prefHeight="72.0" prefWidth="81.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit account.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>

@@ -72,7 +72,7 @@ public class Edit implements Initializable {
         stage.show();
     }
     @FXML
-    void btEdit(MouseEvent event) throws IOException, InvalidEmail, InvalidPhone {
+    void btEdit(MouseEvent event) {
         PurchaserController purchaserController = new PurchaserController();
         try {
             purchaserController.editInformation((Purchaser) AccountController.getAccount(),tfPassword.getText(),tfEmail.getText(),tfPhone.getText());
