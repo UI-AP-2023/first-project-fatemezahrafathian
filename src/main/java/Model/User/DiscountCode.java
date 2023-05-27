@@ -54,11 +54,13 @@ public class DiscountCode {
 
     @Override
     public String toString() {
-        return "DiscountCode{" +
-                "discountPercent=" + discountPercent +
-                ", discountCredit=" + discountCredit +
-                ", capacity=" + capacity +
-                ", discountCode='" + discountCode + '\'' +
-                '}';
+        return discountCode ;
     }
+    public String toString0() {
+        return "discountPercent=           " + discountPercent +"\n\n"+
+                ", discountCredit=           " + discountCredit +"\n\n"+
+                ", capacity=           " + capacity +"\n\n"+
+                ", discountCode=           " + discountCode +"\n\n";
+    }
+
 }

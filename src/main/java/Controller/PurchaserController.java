@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PurchaserController {
-    private ViewPurchaser viewPurchaser = new ViewPurchaser();
     private Admin admin = Admin.getAdmin();
     /*public void purchaserController(Purchaser purchaser){
         ProductController productController = new ProductController();
@@ -63,40 +62,7 @@ public class PurchaserController {
             else if (choice!=0)viewPurchaser.error();
         }
     }*/
-    public void buy(Purchaser purchaser) throws InsufficientCredit, ProductOutOfStock {
-        PurchaseInvoice purchaseInvoice=new PurchaseInvoice(LocalDate.now());
-        if(purchaser.getAccountCredentials()>= purchaser.getCart().getPrice()){
 
-        }
-        else {
-            throw new InsufficientCredit();
-        }
-        for (Product product:purchaser.getCart().getCart()){
-            if(!(product.getInventoryStatus()>=1)){
-                throw new ProductOutOfStock();
-            }
-            if (purchaseInvoice.getListOfPurchasedGoods().containsKey(product.getProductID())){
-                Integer inventory=purchaseInvoice.getListOfPurchasedGoods().get(product.getProductID());
-                purchaseInvoice.getListOfPurchasedGoods().remove(product.getProductID());
-                purchaseInvoice.getListOfPurchasedGoods().put(product.getProductID(),inventory+1);
-            }
-            else {
-                purchaseInvoice.getListOfPurchasedGoods().put(product.getProductID(),1);
-            }
-        }
-        for (String productId:purchaseInvoice.getListOfPurchasedGoods().keySet()){
-            Admin admin1= Admin.getAdmin();
-            for (Product product:admin1.getProducts()){
-                if (product.getProductID().equals(productId)){
-                    product.setInventoryStatus(product.getInventoryStatus()-purchaseInvoice.getListOfPurchasedGoods().get(productId));
-                }
-            }
-
-        }
-        purchaseInvoice.setAmountPaid(purchaser.getCart().getPrice());
-        purchaser.getPurchaseHistory().add(purchaseInvoice);
-        purchaser.setAccountCredentials(purchaser.getAccountCredentials()-purchaser.getCart().getPrice());
-    }
 //    public void addProductToCart(Product product,Purchaser purchaser){
 //        purchaser.getCart().add(product);
 //    }
@@ -105,9 +71,9 @@ public class PurchaserController {
             System.out.println(purchaseInvoice.toString());
         }
     }
-    public void visitDiscountCode(Purchaser purchaser){
-        viewPurchaser.discountCode(purchaser);
-    }
+//    public void visitDiscountCode(Purchaser purchaser){
+//        viewPurchaser.discountCode(purchaser);
+//    }
 //    public void addComment(String productId,Purchaser purchaser){
 //        boolean theCommenterBoughtProduct=false;
 //        for (Product product : admin.getProducts()){
@@ -148,6 +114,40 @@ public class PurchaserController {
 //        if (!found)
 //            viewPurchaser.error();
 //    }
+    public void buy(Purchaser purchaser) throws InsufficientCredit, ProductOutOfStock {
+    PurchaseInvoice purchaseInvoice=new PurchaseInvoice(LocalDate.now());
+    if(purchaser.getAccountCredentials()>= purchaser.getCart().getPrice()){
+
+    }
+    else {
+        throw new InsufficientCredit();
+    }
+    for (Product product:purchaser.getCart().getCart()){
+        if(!(product.getInventoryStatus()>=1)){
+            throw new ProductOutOfStock();
+        }
+        if (purchaseInvoice.getListOfPurchasedGoods().containsKey(product.getProductID())){
+            Integer inventory=purchaseInvoice.getListOfPurchasedGoods().get(product.getProductID());
+            purchaseInvoice.getListOfPurchasedGoods().remove(product.getProductID());
+            purchaseInvoice.getListOfPurchasedGoods().put(product.getProductID(),inventory+1);
+        }
+        else {
+            purchaseInvoice.getListOfPurchasedGoods().put(product.getProductID(),1);
+        }
+    }
+    for (String productId:purchaseInvoice.getListOfPurchasedGoods().keySet()){
+        Admin admin1= Admin.getAdmin();
+        for (Product product:admin1.getProducts()){
+            if (product.getProductID().equals(productId)){
+                product.setInventoryStatus(product.getInventoryStatus()-purchaseInvoice.getListOfPurchasedGoods().get(productId));
+            }
+        }
+
+    }
+    purchaseInvoice.setAmountPaid(purchaser.getCart().getPrice());
+    purchaser.getPurchaseHistory().add(purchaseInvoice);
+    purchaser.setAccountCredentials(purchaser.getAccountCredentials()-purchaser.getCart().getPrice());
+}
     public void topOfUserAccountCredit(Purchaser purchaser,String numberCart,String password,String cvv2,double amount) throws InvalidNumberOfCart, InvalidPassword, InvalidCcv2 {
         checkNumberOfCart(numberCart);
         checkPasswordCart(password);

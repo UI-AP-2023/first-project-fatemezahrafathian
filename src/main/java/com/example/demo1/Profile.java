@@ -59,21 +59,21 @@ public class Profile implements Initializable {
     }
     @FXML
     void btHistory(MouseEvent event) throws IOException {
-//        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("pay.fxml")));
-//        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-//        Scene scene=new Scene(parent,800,450);
-//        stage.setScene(scene);
-//        stage.setTitle("Pay");
-//        stage.show();
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("history.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("History");
+        stage.show();
     }
     @FXML
     void btDiscounts(MouseEvent event) throws IOException {
-//        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("pay.fxml")));
-//        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-//        Scene scene=new Scene(parent,800,450);
-//        stage.setScene(scene);
-//        stage.setTitle("Pay");
-//        stage.show();
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("discounts.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("Discounts");
+        stage.show();
     }
     @FXML
     void btPay(MouseEvent event) throws IOException {

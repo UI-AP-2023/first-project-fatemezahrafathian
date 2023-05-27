@@ -3,10 +3,7 @@ package Controller;
 import Model.Exception.*;
 import Model.Exception.InvalidEmail;
 import Model.Exception.InvalidPhone;
-import Model.User.Account;
-import Model.User.Admin;
-import Model.User.Purchaser;
-import Model.User.Request;
+import Model.User.*;
 import com.example.demo1.HomeController;
 
 import java.util.ArrayList;
@@ -14,6 +11,10 @@ import java.util.regex.*;
 public class AccountController {
     public AccountController(){
         Purchaser purchaser = new Purchaser("fathian","asd@gmail.com","09132547896","Fathian83");
+        DiscountCode discountCode = new DiscountCode(20,"12/12/1212",2);
+        purchaser.getDiscountCodes().add(discountCode);
+        DiscountCode discountCode1 = new DiscountCode(20,"12/12/1212",2);
+        purchaser.getDiscountCodes().add(discountCode1);
         purchasers.add(purchaser);
     }
     private static ArrayList<Purchaser> purchasers = new ArrayList<>();
