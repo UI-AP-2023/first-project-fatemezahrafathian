@@ -270,6 +270,17 @@ public class ProductController {
         }
         return newProducts;
     }
+    public ArrayList<Product> filterCountry(ArrayList<Product> products,String companyName){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (product instanceof Stationery){
+                if (((Stationery) product).getProducingCountry().equals(companyName)){
+                    newProducts.add(product);
+                }
+            }
+        }
+        return newProducts;
+    }
     public ArrayList<Product> filterDimension(ArrayList<Product> products,String dimension){
         ArrayList<Product> newProducts = new ArrayList<>();
         for (Product product : products){
@@ -325,6 +336,24 @@ public class ProductController {
         ArrayList<Product> newProducts = new ArrayList<>();
         for (Product product : products){
             if (product instanceof SSD){
+                newProducts.add(product);
+            }
+        }
+        return newProducts;
+    }
+    public ArrayList<Product> filterCar(ArrayList<Product> products){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (product instanceof Car){
+                newProducts.add(product);
+            }
+        }
+        return newProducts;
+    }
+    public ArrayList<Product> filterBike(ArrayList<Product> products){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (product instanceof Bike){
                 newProducts.add(product);
             }
         }

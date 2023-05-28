@@ -16,7 +16,7 @@
             <Image url="@download.png" />
          </image>
       </ImageView>
-      <Button fx:id="btSSD" alignment="BOTTOM_CENTER" cacheHint="QUALITY" contentDisplay="CENTER" layoutX="140.0" layoutY="56.0" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#btSSD" opacity="0.26" prefHeight="158.0" prefWidth="176.0" textAlignment="CENTER">
+      <Button fx:id="btSSD" alignment="BOTTOM_CENTER" cacheHint="QUALITY" contentDisplay="CENTER" layoutX="140.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#btSSD" opacity="0.26" prefHeight="158.0" prefWidth="176.0" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -115,12 +115,12 @@
             <Font name="Arial Bold" size="22.0" />
          </font>
       </Button>
-      <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="709.0" layoutY="106.0" opacity="0.64" pickOnBounds="true">
+      <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="709.0" layoutY="106.0" mouseTransparent="true" opacity="0.64" pickOnBounds="true">
          <image>
             <Image url="@inventory.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="709.0" layoutY="174.0" opacity="0.64" pickOnBounds="true">
+      <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="709.0" layoutY="174.0" mouseTransparent="true" opacity="0.64" pickOnBounds="true">
          <image>
             <Image url="@weight.png" />
          </image>
@@ -140,7 +140,7 @@
             <Font name="Arial Bold" size="22.0" />
          </font>
       </Button>
-      <TextField fx:id="tfInventory" layoutX="550.0" layoutY="111.0" prefHeight="31.0" prefWidth="140.0" promptText="min-max" />
+      <TextField fx:id="tfInventory" layoutX="550.0" layoutY="111.0" prefHeight="31.0" prefWidth="140.0" promptText="inventory" />
       <TextField fx:id="tfPrice" layoutX="550.0" layoutY="41.0" prefHeight="31.0" prefWidth="140.0" promptText="min-max" />
       <Button fx:id="btExit" layoutX="744.0" layoutY="404.0" mnemonicParsing="false" onMouseClicked="#btExit" prefHeight="31.0" prefWidth="42.0">
          <cursor>

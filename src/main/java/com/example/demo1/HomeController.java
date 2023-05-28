@@ -93,21 +93,39 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void btEdible(MouseEvent event) {
+    void btEdible(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
         productController.filterCategory(products, ProductCategory.EDIBLE);
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("filterEdible.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("Filter");
+        stage.show();
 
     }
     @FXML
-    void btCar(MouseEvent event) {
+    void btCar(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
         productController.filterCategory(products, ProductCategory.VEHICLES);
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("filterVehicle.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("Filter");
+        stage.show();
 
     }
     @FXML
-    void btStationary(MouseEvent event) {
+    void btStationary(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
         productController.filterCategory(products, ProductCategory.STATIONERY);
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("filterStationary.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("Filter");
+        stage.show();
     }
     @FXML
     void btDigitalGoods(MouseEvent event) throws IOException {
