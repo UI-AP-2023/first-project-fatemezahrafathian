@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import Model.User.Admin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

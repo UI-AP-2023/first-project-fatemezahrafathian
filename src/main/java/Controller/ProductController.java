@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Exception.SearchException;
 import Model.Product.*;
 import Model.User.Admin;
 import Model.User.Comment;

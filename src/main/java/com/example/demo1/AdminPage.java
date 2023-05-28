@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 import Controller.AdminController;
+import Model.User.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,7 +20,13 @@ public class AdminPage {
     private Button ok;
     @FXML
     private Button exit;
-
+    @FXML
+    private Button addProduct;
+    @FXML
+    void addProduct(MouseEvent event) {
+        Admin admin = Admin.getAdmin();
+        admin.addProducts();
+    }
     @FXML
     private TextField command;
 

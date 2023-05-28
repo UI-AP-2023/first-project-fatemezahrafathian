@@ -1,9 +1,12 @@
 package com.example.demo1;
 
 
+import Controller.ProductController;
+import Model.Product.Product;
 import Model.User.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,12 +17,23 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 
+public class HomeController implements Initializable {
+    private static ArrayList<Product> products = new ArrayList<>();
 
+    public static ArrayList<Product> getProducts() {
+        return products;
+    }
 
-public class HomeController {
+    public static void setProducts(ArrayList<Product> products) {
+        HomeController.products = products;
+    }
+
     private static boolean login=false;
 
     public static boolean isLogin() {
@@ -78,25 +92,31 @@ public class HomeController {
     }
 
     @FXML
-    void edible(MouseEvent event) {
+    void btEdible(MouseEvent event) {
 
     }
     @FXML
-    void car(MouseEvent event) {
+    void btCar(MouseEvent event) {
 
     }
     @FXML
-    void stationary(MouseEvent event) {
+    void btStationary(MouseEvent event) {
 
     }
     @FXML
-    void digitalGoods(MouseEvent event) {
+    void btDigitalGoods(MouseEvent event) throws IOException {
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
+        Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene=new Scene(parent,800,450);
+        stage.setScene(scene);
+        stage.setTitle("Search");
+        stage.show();
 
     }
     @FXML
-    void SearchButton(MouseEvent event) throws IOException {
-        Admin admin = Admin.getAdmin();
-        admin.addProducts();
+    void searchButton(MouseEvent event) throws IOException {
+        ProductController productController = new ProductController();
+        products.addAll(productController.search(searchBox.getText()));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -125,4 +145,8 @@ public class HomeController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        products=new ArrayList<>();
+    }
 }

@@ -62,9 +62,7 @@ public class PurchaserController {
         }
     }*/
 
-//    public void addProductToCart(Product product,Purchaser purchaser){
-//        purchaser.getCart().add(product);
-//    }
+
 //    public void visitHistory(Purchaser purchaser){
 //        for (PurchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
 //            System.out.println(purchaseInvoice.toString());
@@ -74,47 +72,50 @@ public class PurchaserController {
 //    public void visitDiscountCode(Purchaser purchaser){
 //        viewPurchaser.discountCode(purchaser);
 //    }
-//    public void addComment(String productId,Purchaser purchaser){
-//        boolean theCommenterBoughtProduct=false;
-//        for (Product product : admin.getProducts()){
-//            if (product.getProductID().equals(productId)){
-//                for (PurchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
-//                    for (Product product1 :purchaseInvoice.getListOfPurchasedGoods()){
-//                        if (product.equals(product1)) {
-//                            theCommenterBoughtProduct = true;
-//                            break;
-//                        }
-//                    }
-//                }
-//                Comment comment;
-//                if (theCommenterBoughtProduct){
-//                    comment = new Comment(purchaser,product, viewPurchaser.getComment(), true);
-//                }
-//                else {
-//                    comment = new Comment(purchaser,product, viewPurchaser.getComment(), false);
-//                }
-//                Request request = new Request("comment",comment);
-//                admin.getRequests().add(request);
-//                viewPurchaser.sendRequest();
-//            }
-//        }
-//    }
 
-//    public void addScore(Purchaser purchaser,String id){
-//        boolean found=false;
-//        for (PurchaseInvoice purchaseInvoice: purchaser.getPurchaseHistory()){
-//            for (Product product: purchaseInvoice.getListOfPurchasedGoods()){
-//                if (product.getProductID().equals(id)){
-//                    found=true;
-//                    Score score = new Score(purchaser,product,viewPurchaser.getPoint());
-//                    score.getProduct().setAverageScoreOfBuyers((score.getScore()+score.getProduct().getNumberOfPurchaserThatAddScore()*score.getProduct().getAverageScoreOfBuyers())/(score.getProduct().getNumberOfPurchaserThatAddScore()+1));
-//                    score.getProduct().setAverageScoreOfBuyers((score.getProduct().getNumberOfPurchaserThatAddScore()+1));
-//                }
-//            }
-//        }
-//        if (!found)
-//            viewPurchaser.error();
-//    }
+    public void addProductToCart(Product product,Purchaser purchaser){
+        purchaser.getCart().getCart().add(product);
+    }
+    public void addScore(Purchaser purchaser,Product product0,double score0) throws AddScoreException {
+        boolean found=false;
+        for (PurchaseInvoice purchaseInvoice: purchaser.getPurchaseHistory()){
+            for (Product product: purchaseInvoice.getListOfPurchasedGoods().keySet()){
+                if (product.equals(product0)){
+                    found=true;
+                    Score score = new Score(purchaser,product,(int) score0);
+                    score.getProduct().setAverageScoreOfBuyers((score.getScore()+score.getProduct().getNumberOfPurchaserThatAddScore()*score.getProduct().getAverageScoreOfBuyers())/(score.getProduct().getNumberOfPurchaserThatAddScore()+1));
+                    score.getProduct().setNumberOfPurchaserThatAddScore((score.getProduct().getNumberOfPurchaserThatAddScore()+1));
+                }
+            }
+        }
+        if (!found)
+            throw new AddScoreException();
+    }
+    public void addComment(Product selectedProduct,Purchaser purchaser,String comment0){
+    boolean theCommenterBoughtProduct=false;
+    Admin admin = Admin.getAdmin();
+    for (Product product : admin.getProducts()){
+        if (product.equals(selectedProduct)){
+            for (PurchaseInvoice purchaseInvoice:purchaser.getPurchaseHistory()){
+                for (Product product1 :purchaseInvoice.getListOfPurchasedGoods().keySet()){
+                    if (product.equals(product1)) {
+                        theCommenterBoughtProduct = true;
+                        break;
+                    }
+                }
+            }
+            Comment comment;
+            if (theCommenterBoughtProduct){
+                comment = new Comment(purchaser,product,comment0 , true);
+            }
+            else {
+                comment = new Comment(purchaser,product,comment0, false);
+            }
+            Request request = new Request("comment",comment);
+            admin.getRequests().add(request);
+        }
+    }
+}
     public void buy(Purchaser purchaser) throws InsufficientCredit, ProductOutOfStock {
     PurchaseInvoice purchaseInvoice=new PurchaseInvoice(LocalDate.now());
     if(purchaser.getAccountCredentials()>= purchaser.getCart().getPrice()){
