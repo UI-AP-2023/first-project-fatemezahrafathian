@@ -22,8 +22,10 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
@@ -144,6 +146,7 @@ public class Search implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Arrays.sort(HomeController.getProducts().toArray());
         listProducts.getItems().addAll(HomeController.getProducts());
 
     }

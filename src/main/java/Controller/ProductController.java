@@ -359,4 +359,31 @@ public class ProductController {
         }
         return newProducts;
     }
+    public ArrayList<Product> filterPen(ArrayList<Product> products){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (product instanceof Pen){
+                newProducts.add(product);
+            }
+        }
+        return newProducts;
+    }
+    public ArrayList<Product> filterPencil(ArrayList<Product> products){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (product instanceof Pencil){
+                newProducts.add(product);
+            }
+        }
+        return newProducts;
+    }
+    public ArrayList<Product> filterNoteBook(ArrayList<Product> products){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (product instanceof NoteBook){
+                newProducts.add(product);
+            }
+        }
+        return newProducts;
+    }
 }

@@ -96,11 +96,11 @@ public class HomeController implements Initializable {
     void btEdible(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
         productController.filterCategory(products, ProductCategory.EDIBLE);
-        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("filterEdible.fxml")));
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
         stage.setScene(scene);
-        stage.setTitle("Filter");
+        stage.setTitle("Product");
         stage.show();
 
     }

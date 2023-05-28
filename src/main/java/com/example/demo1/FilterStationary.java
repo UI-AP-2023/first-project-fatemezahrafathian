@@ -52,7 +52,7 @@ public class FilterStationary {
     @FXML
     void btPencil(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        productController.filterSSD(HomeController.getProducts());
+        HomeController.setProducts(productController.filterPencil(HomeController.getProducts()));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -64,7 +64,7 @@ public class FilterStationary {
     @FXML
     void btNoteBook(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        productController.filterFlash(HomeController.getProducts());
+        HomeController.setProducts(productController.filterNoteBook(HomeController.getProducts()));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -76,7 +76,7 @@ public class FilterStationary {
     @FXML
     void btPen(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        productController.filterPersonalComputer(HomeController.getProducts());
+        HomeController.setProducts(productController.filterPen(HomeController.getProducts()));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -88,7 +88,7 @@ public class FilterStationary {
     @FXML
     void btCountryName(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        productController.filterCountry(HomeController.getProducts(),tfCountryName.getText());
+        HomeController.setProducts(productController.filterCountry(HomeController.getProducts(),tfCountryName.getText()));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -99,7 +99,7 @@ public class FilterStationary {
     @FXML
     void btInventory(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        productController.filterInventoryStatus(HomeController.getProducts(),Integer.parseInt(tfInventory.getText()));
+        HomeController.setProducts(productController.filterInventoryStatus(HomeController.getProducts(),Integer.parseInt(tfInventory.getText())));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -112,7 +112,7 @@ public class FilterStationary {
     void btPrice(MouseEvent event) throws IOException {
         String[] price=tfPrice.getText().split("-");
         ProductController productController = new ProductController();
-        productController.filterPrice(HomeController.getProducts(),Double.parseDouble(price[0]),Double.parseDouble(price[1]));
+        HomeController.setProducts(productController.filterPrice(HomeController.getProducts(),Double.parseDouble(price[0]),Double.parseDouble(price[1])));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
