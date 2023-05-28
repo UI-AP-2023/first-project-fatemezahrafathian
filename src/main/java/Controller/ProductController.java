@@ -13,22 +13,22 @@ import java.util.ArrayList;
 public class ProductController {
     private ViewProducts viewProducts = new ViewProducts();
     private Admin admin = Admin.getAdmin();
-    public void productsController(){
-        int choice=1;
-        while (choice!=0){
-            viewProducts.choice1();
-            choice=viewProducts.enterChoice();
-            switch (choice) {
-                case 1 -> viewProducts.visitPage(filter(admin.getProducts()));
-                case 2 -> viewProducts.visitPage(search(viewProducts.getName()));
-                case 3 -> visitProducts();
-                default -> {
-                    if(choice!=0)
-                        viewProducts.error();
-                }
-            }
-        }
-    }
+//    public void productsController(){
+//        int choice=1;
+//        while (choice!=0){
+//            viewProducts.choice1();
+//            choice=viewProducts.enterChoice();
+//            switch (choice) {
+//                case 1 -> viewProducts.visitPage(filter(admin.getProducts()));
+//                case 2 -> viewProducts.visitPage(search(viewProducts.getName()));
+//                case 3 -> visitProducts();
+//                default -> {
+//                    if(choice!=0)
+//                        viewProducts.error();
+//                }
+//            }
+//        }
+//    }
     public void visitProducts(){
         int numberOfShowProduct=0;
         Admin admin=Admin.getAdmin();
@@ -239,6 +239,15 @@ public class ProductController {
         }
         return newProducts;
     }
+    public ArrayList<Product> filterWeight(ArrayList<Product> products,double minWeight,double maxWeight){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (minWeight <= ((DigitalGoods)product).getWaite() && ((DigitalGoods)product).getWaite()<=maxWeight){
+                newProducts.add(product);
+            }
+        }
+        return newProducts;
+    }
     public ArrayList<Product> filterColor(ArrayList<Product> products,String color){
         ArrayList<Product> newProducts = new ArrayList<>();
         for (Product product : products){
@@ -290,6 +299,33 @@ public class ProductController {
                 if (((NoteBook) product).getPaperType().equals(paperType)){
                     newProducts.add(product);
                 }
+            }
+        }
+        return newProducts;
+    }
+    public ArrayList<Product> filterPersonalComputer(ArrayList<Product> products){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (product instanceof PersonalComputer){
+                newProducts.add(product);
+            }
+        }
+        return newProducts;
+    }
+    public ArrayList<Product> filterFlash(ArrayList<Product> products){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (product instanceof FlashMemory){
+                newProducts.add(product);
+            }
+        }
+        return newProducts;
+    }
+    public ArrayList<Product> filterSSD(ArrayList<Product> products){
+        ArrayList<Product> newProducts = new ArrayList<>();
+        for (Product product : products){
+            if (product instanceof SSD){
+                newProducts.add(product);
             }
         }
         return newProducts;

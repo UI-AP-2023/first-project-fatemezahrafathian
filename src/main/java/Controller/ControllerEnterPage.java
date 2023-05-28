@@ -26,7 +26,7 @@ public class ControllerEnterPage {
             }
             else if(choice == 3){
                ProductController productController = new ProductController();
-                productController.productsController();
+               // productController.productsController();
             }
             else if (choice!=0){
                 viewEnterPage.error();

@@ -3,6 +3,7 @@ package com.example.demo1;
 
 import Controller.ProductController;
 import Model.Product.Product;
+import Model.Product.ProductCategory;
 import Model.User.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -93,23 +94,30 @@ public class HomeController implements Initializable {
 
     @FXML
     void btEdible(MouseEvent event) {
+        ProductController productController = new ProductController();
+        productController.filterCategory(products, ProductCategory.EDIBLE);
 
     }
     @FXML
     void btCar(MouseEvent event) {
+        ProductController productController = new ProductController();
+        productController.filterCategory(products, ProductCategory.VEHICLES);
 
     }
     @FXML
     void btStationary(MouseEvent event) {
-
+        ProductController productController = new ProductController();
+        productController.filterCategory(products, ProductCategory.STATIONERY);
     }
     @FXML
     void btDigitalGoods(MouseEvent event) throws IOException {
-        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
+        ProductController productController = new ProductController();
+        productController.filterCategory(products, ProductCategory.DIGITAL_GOODS);
+        Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("filterDigitalGoods.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
         stage.setScene(scene);
-        stage.setTitle("Search");
+        stage.setTitle("Filter");
         stage.show();
 
     }
