@@ -20,12 +20,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Cart implements Initializable {
-    private double price=0;
     @FXML
     private ListView<Product> listProduct;
 
@@ -78,7 +76,7 @@ public class Cart implements Initializable {
         PurchaserController purchaserController = new PurchaserController();
         try {
             purchaserController.useDiscountCode((Purchaser)(AccountController.getAccount()),tfDiscount.getText());
-            lbPrice.setText(String.valueOf(price));
+            lbPrice.setText(String.valueOf(((Purchaser)(AccountController.getAccount())).getCart().getPrice()));
         } catch (DiscountException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(e.getMessage());
@@ -88,11 +86,7 @@ public class Cart implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        for (Product product: ((Purchaser)(AccountController.getAccount())).getCart().getCart()){
-            price+=product.getPrice();
-        }
-        lbPrice.setText(String.valueOf(price));
+        lbPrice.setText(String.valueOf(((Purchaser)(AccountController.getAccount())).getCart().getPrice()));
         listProduct.getItems().addAll(((Purchaser)(AccountController.getAccount())).getCart().getCart());
     }
 }

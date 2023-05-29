@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 import Controller.AccountController;
+import Model.SystemController;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +51,7 @@ public class Profile implements Initializable {
     private Button btExitAccount;
     @FXML
     void btExitAccount(MouseEvent event) throws IOException {
-        HomeController.setLogin(false);
+        SystemController.setLogin(false);
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);

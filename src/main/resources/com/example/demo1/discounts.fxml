@@ -11,7 +11,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.Discounts">
    <children>
       <ImageView fitHeight="449.0" fitWidth="807.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
@@ -31,11 +30,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane layoutX="27.0" layoutY="21.0" prefHeight="410.0" prefWidth="360.0">
-         <content>
-            <ListView fx:id="listDiscounts" onMouseClicked="#listDiscounts" prefHeight="417.0" prefWidth="372.0" />
-         </content>
-      </ScrollPane>
       <Rectangle fx:id="box" arcHeight="30.0" arcWidth="30.0" height="361.0" layoutX="441.0" layoutY="45.0" smooth="false" stroke="#df8b8b" strokeType="INSIDE" width="285.0">
          <effect>
             <DropShadow height="23.39" offsetX="10.0" offsetY="10.0" radius="10.0275" width="18.72">
@@ -62,5 +56,6 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </Label>
+      <ListView fx:id="listDiscounts" layoutX="28.0" layoutY="17.0" onMouseClicked="#listDiscounts" prefHeight="417.0" prefWidth="372.0" />
    </children>
 </AnchorPane>

@@ -78,6 +78,26 @@ public abstract class Product implements Comparable {
                 "score: " + getAverageScoreOfBuyers() + "\n" +
                 "inventory status: " + getInventoryStatus() + "\n";
     }
+    public String toString0(){
+        if (this instanceof Bike)
+            return ((Bike)this).toString0();
+        else if (this instanceof Car)
+            return((Car)this).toString0();
+        else if (this instanceof Edible)
+            return((Edible)this).toString0();
+        else if (this instanceof FlashMemory)
+            return((FlashMemory)this).toString0();
+        else if (this instanceof NoteBook)
+            return((NoteBook)this).toString0();
+        else if (this instanceof Pen)
+            return((Pen)this).toString0();
+        else if (this instanceof Pencil)
+            return((Pencil)this).toString0();
+        else if (this instanceof PersonalComputer)
+            return((PersonalComputer)this).toString0();
+        else
+            return((SSD)this).toString0();
+    }
 
     @Override
     public int compareTo(Object o) {

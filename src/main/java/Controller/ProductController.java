@@ -29,29 +29,29 @@ public class ProductController {
 //            }
 //        }
 //    }
-    public void visitProducts(){
-        int numberOfShowProduct=0;
-        Admin admin=Admin.getAdmin();
-        numberOfShowProduct=showPage(numberOfShowProduct);
-        int choice0=1;
-        while (choice0!=0){
-            choice0=viewProducts.enterChoice();
-            if(choice0==1 && numberOfShowProduct<admin.getProducts().size()){
-                numberOfShowProduct=showPage(numberOfShowProduct);
-            }
-            else if(choice0==2 && numberOfShowProduct>5){
-                numberOfShowProduct-=10;
-                numberOfShowProduct=showPage(numberOfShowProduct);
-            }
-            else if(choice0==3){
-                select(viewProducts.getName());
-            }
-            else if(choice0!=0){
-                viewProducts.error();
-            }
-        }
-
-    }
+//    public void visitProducts(){
+//        int numberOfShowProduct=0;
+//        Admin admin=Admin.getAdmin();
+//        numberOfShowProduct=showPage(numberOfShowProduct);
+//        int choice0=1;
+//        while (choice0!=0){
+//            choice0=viewProducts.enterChoice();
+//            if(choice0==1 && numberOfShowProduct<admin.getProducts().size()){
+//                numberOfShowProduct=showPage(numberOfShowProduct);
+//            }
+//            else if(choice0==2 && numberOfShowProduct>5){
+//                numberOfShowProduct-=10;
+//                numberOfShowProduct=showPage(numberOfShowProduct);
+//            }
+//            else if(choice0==3){
+//                select(viewProducts.getName());
+//            }
+//            else if(choice0!=0){
+//                viewProducts.error();
+//            }
+//        }
+//
+//    }
     public void select(String productId){
         boolean exist=false;
         for (Product product : admin.getProducts()){
@@ -178,40 +178,40 @@ public class ProductController {
         }
         return products;
     }
-    public ArrayList<Product> filter(ArrayList<Product> products){
-        int choice00=1;
-        while (choice00!=0){
-            viewProducts.filterPage();
-            choice00=viewProducts.enterChoice();
-            switch (choice00){
-                case 1 -> {
-                    return filterCategory(products,viewProducts.getProductCategory());
-                }
-                case 2 -> {
-                    return filterInventoryStatus(products,viewProducts.getInventoryStatus());
-                }
-                case 3 -> {
-                    return filterPrice(products, viewProducts.getPrice(), viewProducts.getPrice());
-                }
-                case 4 -> {
-                    return filterColor(products,viewProducts.getName());
-                }
-                case 5 -> {
-                    return filterCompanyName(products,viewProducts.getName());
-                }
-                case 6 -> {
-                    return filterDimension(products,viewProducts.getName());
-                }
-                case 7 -> {
-                    return filterVersion(products,viewProducts.getName());
-                }
-                case 8 -> {
-                    return filterPaperType(products,viewProducts.getName());
-                }
-            }
-        }
-        return null;
-    }
+//    public ArrayList<Product> filter(ArrayList<Product> products){
+//        int choice00=1;
+//        while (choice00!=0){
+//            viewProducts.filterPage();
+//            choice00=viewProducts.enterChoice();
+//            switch (choice00){
+//                case 1 -> {
+//                    return filterCategory(products,viewProducts.getProductCategory());
+//                }
+//                case 2 -> {
+//                    return filterInventoryStatus(products,viewProducts.getInventoryStatus());
+//                }
+//                case 3 -> {
+//                    return filterPrice(products, viewProducts.getPrice(), viewProducts.getPrice());
+//                }
+//                case 4 -> {
+//                    return filterColor(products,viewProducts.getName());
+//                }
+//                case 5 -> {
+//                    return filterCompanyName(products,viewProducts.getName());
+//                }
+//                case 6 -> {
+//                    return filterDimension(products,viewProducts.getName());
+//                }
+//                case 7 -> {
+//                    return filterVersion(products,viewProducts.getName());
+//                }
+//                case 8 -> {
+//                    return filterPaperType(products,viewProducts.getName());
+//                }
+//            }
+//        }
+//        return null;
+//    }
     public ArrayList<Product> filterCategory(ArrayList<Product> products,ProductCategory productCategory){
         ArrayList<Product> newProducts = new ArrayList<>();
         for (Product product : products){

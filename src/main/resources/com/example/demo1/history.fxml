@@ -18,11 +18,6 @@
             <Image url="@download.png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="23.0" layoutY="20.0" prefHeight="410.0" prefWidth="360.0">
-         <content>
-            <ListView fx:id="listInvoice" onMouseClicked="#listInvoice" prefHeight="417.0" prefWidth="372.0" />
-         </content>
-      </ScrollPane>
       <Rectangle fx:id="box" arcHeight="30.0" arcWidth="30.0" height="361.0" layoutX="452.0" layoutY="44.0" smooth="false" stroke="#df8b8b" strokeType="INSIDE" width="285.0">
          <effect>
             <DropShadow height="23.39" offsetX="10.0" offsetY="10.0" radius="10.0275" width="18.72">
@@ -61,5 +56,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <ListView fx:id="listInvoice" layoutX="28.0" layoutY="16.0" onMouseClicked="#listInvoice" prefHeight="417.0" prefWidth="372.0" />
    </children>
 </AnchorPane>

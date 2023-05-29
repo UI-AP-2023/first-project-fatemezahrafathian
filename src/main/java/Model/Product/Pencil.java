@@ -27,13 +27,23 @@ public class Pencil extends Stationery implements DiscountFeature {
 
     @Override
     public String toString() {
-        return "Pencil{" +
-                "pencilType=" + pencilType +
-                '}';
+        return "name: " + getName() + "    " +
+                "price: " + getPrice();
+    }
+    public String toString0() {
+        return "name: " + getName() + "\n" +
+                "productId: " + getProductID() + "\n" +
+                "category: " + getProductCategory() + "\n" +
+                "price: " + getPrice() + "\n" +
+                "score: " + getAverageScoreOfBuyers() + "\n" +
+                "inventory status: " + getInventoryStatus() + "\n"+
+                "producingCountry='" + getProducingCountry() + '\n' +
+                "pencilType=" + pencilType;
     }
 
     @Override
     public void addDiscount(double discountPercent) {
+        percent=discountPercent;
         setPrice(getPrice()-getPrice()*percent/100);
     }
 

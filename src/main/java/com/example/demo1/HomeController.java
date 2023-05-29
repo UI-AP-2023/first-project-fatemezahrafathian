@@ -4,6 +4,7 @@ package com.example.demo1;
 import Controller.ProductController;
 import Model.Product.Product;
 import Model.Product.ProductCategory;
+import Model.SystemController;
 import Model.User.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,26 +26,6 @@ import java.util.ResourceBundle;
 
 
 public class HomeController implements Initializable {
-    private static ArrayList<Product> products = new ArrayList<>();
-
-    public static ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public static void setProducts(ArrayList<Product> products) {
-        HomeController.products = products;
-    }
-
-    private static boolean login=false;
-
-    public static boolean isLogin() {
-        return login;
-    }
-
-    public static void setLogin(boolean login) {
-        HomeController.login = login;
-    }
-
     @FXML
     private Button searchButton;
 
@@ -95,7 +76,7 @@ public class HomeController implements Initializable {
     @FXML
     void btEdible(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        productController.filterCategory(products, ProductCategory.EDIBLE);
+        SystemController.setProducts(productController.filterCategory(Admin.getAdmin().getProducts(), ProductCategory.EDIBLE));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -107,7 +88,7 @@ public class HomeController implements Initializable {
     @FXML
     void btCar(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        productController.filterCategory(products, ProductCategory.VEHICLES);
+        SystemController.setProducts(productController.filterCategory(Admin.getAdmin().getProducts(), ProductCategory.VEHICLES));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("filterVehicle.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -119,7 +100,7 @@ public class HomeController implements Initializable {
     @FXML
     void btStationary(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        productController.filterCategory(products, ProductCategory.STATIONERY);
+        SystemController.setProducts(productController.filterCategory(Admin.getAdmin().getProducts(), ProductCategory.STATIONERY));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("filterStationary.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -130,7 +111,7 @@ public class HomeController implements Initializable {
     @FXML
     void btDigitalGoods(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        productController.filterCategory(products, ProductCategory.DIGITAL_GOODS);
+        SystemController.setProducts(productController.filterCategory(Admin.getAdmin().getProducts(), ProductCategory.DIGITAL_GOODS));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("filterDigitalGoods.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -142,7 +123,7 @@ public class HomeController implements Initializable {
     @FXML
     void searchButton(MouseEvent event) throws IOException {
         ProductController productController = new ProductController();
-        products.addAll(productController.search(searchBox.getText()));
+        SystemController.getProducts().addAll(productController.search(searchBox.getText()));
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene=new Scene(parent,800,450);
@@ -153,7 +134,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void btPerson(MouseEvent event) throws IOException {
-        if(login){
+        if(SystemController.isLogin()){
             Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("profile.fxml")));
             Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
             Scene scene=new Scene(parent,800,450);
@@ -173,6 +154,5 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        products=new ArrayList<>();
     }
 }

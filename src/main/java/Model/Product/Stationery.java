@@ -16,7 +16,7 @@ public abstract class Stationery extends Product {
     @Override
     public String toString() {
         return "Stationery{" +
-                "producingCountry='" + producingCountry + '\'' +
+                "producingCountry='" + producingCountry + '\n' +
                 '}';
     }
 }

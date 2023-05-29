@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import Model.SystemController;
 import Model.User.Comment;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -38,7 +40,14 @@ public class ShowComment implements Initializable {
 
     @FXML
     void listComment(MouseEvent event) {
-        lbComment.setText(listComment.getSelectionModel().getSelectedItem().toString());
+        try {
+            lbComment.setText(listComment.getSelectionModel().getSelectedItem().toString0());
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("please select item");
+            alert.show();
+        }
+
     }
     @FXML
     void btExit(MouseEvent event) throws IOException {
@@ -52,6 +61,6 @@ public class ShowComment implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listComment.getItems().addAll(Search.product.getComments());
+        listComment.getItems().addAll(SystemController.getProduct().getComments());
     }
 }

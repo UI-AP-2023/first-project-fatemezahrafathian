@@ -75,6 +75,7 @@ public class PurchaserController {
 
     public void addProductToCart(Product product,Purchaser purchaser){
         purchaser.getCart().getCart().add(product);
+        purchaser.getCart().setPrice(purchaser.getCart().getPrice()+product.getPrice());
     }
     public void addScore(Purchaser purchaser,Product product0,double score0) throws AddScoreException {
         boolean found=false;
@@ -194,6 +195,7 @@ public class PurchaserController {
             if (disCountCode0.equals(discountCode.getDiscountCode())) {
                 if (discountCode.getCapacity()>0 && discountCode.getDiscountCredit().isAfter(LocalDate.now())){
                     purchaser.getCart().setPrice(purchaser.getCart().getPrice()-(purchaser.getCart().getPrice()*discountCode.getDiscountPercent()/100));
+                    discountCode.setCapacity(discountCode.getCapacity()-1);
                     found=true;
                 }
             }

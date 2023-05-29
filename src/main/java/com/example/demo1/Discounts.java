@@ -50,7 +50,7 @@ public class Discounts implements Initializable {
     }
     @FXML
     void listDiscounts(MouseEvent event) {
-        lbDiscount.setText(((DiscountCode)listDiscounts.getSelectionModel().getSelectedItem()).toString0());
+        lbDiscount.setText((listDiscounts.getSelectionModel().getSelectedItem()).toString0());
     }
 
     @Override

@@ -79,7 +79,7 @@
             <Image url="@personalCamputer.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfWeight" layoutX="550.0" layoutY="183.0" prefHeight="31.0" prefWidth="140.0" />
+      <TextField fx:id="tfWeight" layoutX="550.0" layoutY="183.0" prefHeight="31.0" prefWidth="140.0" promptText="min-max" />
       <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="709.0" layoutY="36.0" opacity="0.64" pickOnBounds="true">
          <image>
             <Image url="@price.png" />

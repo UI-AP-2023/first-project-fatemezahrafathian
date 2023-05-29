@@ -35,14 +35,26 @@ public class SSD extends InformationStorageEquipment {
 
     @Override
     public String toString() {
-        return "SSD{" +
-                "readingSpeed=" + readingSpeed +
-                ", writingSpeed=" + writingSpeed +
-                '}';
+        return "name: " + getName() + "       "+
+                "price: " + getPrice();
+    }
+    public String toString0() {
+        return "name: " + getName() + "\n" +
+                "productId: " + getProductID() + "\n" +
+                "category: " + getProductCategory() + "\n" +
+                "price: " + getPrice() + "\n" +
+                "score: " + getAverageScoreOfBuyers() + "\n" +
+                "capacity=" + getCapacity() +"\n" +
+                "waite=" + getWaite() +"\n" +
+                ", dimensions='" + getDimensions() + "\n" +
+                "inventory status: " + getInventoryStatus() + "\n"+
+                "readingSpeed=" + readingSpeed +"\n" +
+                ", writingSpeed=" + writingSpeed;
     }
 
     @Override
     public void addDiscount(double discountPercent) {
+        percent=discountPercent;
         setPrice(getPrice()-getPrice()*percent/100);
     }
 

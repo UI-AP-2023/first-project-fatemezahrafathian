@@ -22,9 +22,18 @@ public class Car extends Vehicle {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "engineVolume=" + engineVolume +
-                ", automatic=" + automatic +
-                '}';
+        return "name: " + getName() + "    " +
+                "price: " + getPrice();
+    }
+    public String toString0() {
+        return "name: " + getName() + "\n" +
+                "productId: " + getProductID() + "\n" +
+                "category: " + getProductCategory() + "\n" +
+                "price: " + getPrice() + "\n" +
+                "score: " + getAverageScoreOfBuyers() + "\n" +
+                "inventory status: " + getInventoryStatus() + "\n"+
+                "companyName='" + getCompanyName() + '\n' +
+                "engineVolume=" + engineVolume+ '\n'+
+                ", automatic=" + automatic;
     }
 }

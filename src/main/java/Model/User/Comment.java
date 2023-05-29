@@ -22,6 +22,9 @@ public class Comment {
         this.product = product;
     }
     public String toString(){
+        return commentingUser.getUserName();
+    }
+    public String toString0(){
         if (theCommenterBoughtTheProduct)
             return "The Commenter Bought The Product    "+commentingUser.getUserName()+"     "+commentText;
         else return "The commenter did not buy the product"+"     "+commentText;

@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -35,7 +36,13 @@ public class History implements Initializable {
 
     @FXML
     void listInvoice(MouseEvent event) {
-        lbInvoice.setText((listInvoice.getSelectionModel().getSelectedItem()).toString0());
+        try {
+            lbInvoice.setText((listInvoice.getSelectionModel().getSelectedItem()).toString0());
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("please select item");
+            alert.show();
+        }
     }
     @FXML
     void btExit(MouseEvent event) throws IOException {

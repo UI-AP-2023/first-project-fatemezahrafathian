@@ -62,7 +62,7 @@ public class ViewAdmin {
                 assignDiscountCode: enter assignDiscountCode to assign a Discount Code and discountPercent      discountCredit       capacity\s
                 addDiscountProduct: productId     percentProduct\s
                 deleteDiscountProduct: productId\s
-                exit: enter exit to exit Product\s""";
+                exit: enter exit to exit AdminAccount\s""";
         System.out.println(helpList);
     }
     public void error(){

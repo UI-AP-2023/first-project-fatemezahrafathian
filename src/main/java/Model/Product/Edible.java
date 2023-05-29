@@ -23,9 +23,18 @@ public class Edible extends Product {
 
     @Override
     public String toString() {
+        return  "name: " + getName() + "     " +
+                "price: " + getPrice();
+    }
+    public String toString0() {
         return "Edible{" +
-                "productionDate='" + productionDate + '\'' +
-                ", expirationDate='" + expirationDate + '\'' +
-                '}';
+                "name: " + getName() + "\n" +
+                "productId: " + getProductID() + "\n" +
+                "category: " + getProductCategory() + "\n" +
+                "price: " + getPrice() + "\n" +
+                "score: " + getAverageScoreOfBuyers() + "\n" +
+                "inventory status: " + getInventoryStatus() + "\n"+
+                "productionDate='" + productionDate + '\n' +
+                ", expirationDate='" + expirationDate;
     }
 }

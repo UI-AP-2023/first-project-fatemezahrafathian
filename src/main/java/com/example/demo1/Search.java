@@ -1,13 +1,11 @@
 package com.example.demo1;
 
 import Controller.AccountController;
-import Controller.ProductController;
 import Controller.PurchaserController;
 import Model.Exception.AddScoreException;
 import Model.Product.Product;
-import Model.User.Admin;
+import Model.SystemController;
 import Model.User.Purchaser;
-import Model.User.Score;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,16 +20,13 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.function.UnaryOperator;
 
 public class Search implements Initializable {
-    public static Product product;
     @FXML
     private Label lbProduct;
 
@@ -59,11 +54,49 @@ public class Search implements Initializable {
     @FXML
     private Slider Score;
     @FXML
+    private Button btNext;
+    @FXML
+    private Button btBack;
+    @FXML
+    void btNext(MouseEvent event){
+        listProducts.getItems().clear();
+        if(SystemController.getNumberOfProduct()+5<SystemController.getProducts().size()){
+            listProducts.getItems().addAll(SystemController.getProducts().subList(SystemController.getNumberOfProduct(),SystemController.getNumberOfProduct()+5));
+        }
+        else {
+            listProducts.getItems().addAll(SystemController.getProducts().subList(SystemController.getNumberOfProduct(),SystemController.getProducts().size()));
+        }
+    }
+    @FXML
+    void btBack(MouseEvent event){
+        listProducts.getItems().clear();
+        if(SystemController.getNumberOfProduct()-10>=0){
+            SystemController.setNumberOfProduct(SystemController.getNumberOfProduct()-10);
+            if (SystemController.getNumberOfProduct()+5<SystemController.getProducts().size()){
+                listProducts.getItems().addAll(SystemController.getProducts().subList(SystemController.getNumberOfProduct(),SystemController.getNumberOfProduct()+5));
+                SystemController.setNumberOfProduct(SystemController.getNumberOfProduct()+5);
+            }else {
+                listProducts.getItems().addAll(SystemController.getProducts().subList(SystemController.getNumberOfProduct(),SystemController.getProducts().size()));
+                SystemController.setNumberOfProduct(SystemController.getNumberOfProduct()+SystemController.getProducts().size());
+            }
+        }
+        else {
+            SystemController.setNumberOfProduct(0);;
+            if (SystemController.getNumberOfProduct()+5<SystemController.getProducts().size()){
+                listProducts.getItems().addAll(SystemController.getProducts().subList(SystemController.getNumberOfProduct(),SystemController.getNumberOfProduct()+5));
+                SystemController.setNumberOfProduct(SystemController.getNumberOfProduct()+5);
+            }else {
+                listProducts.getItems().addAll(SystemController.getProducts().subList(SystemController.getNumberOfProduct(),SystemController.getProducts().size()));
+                SystemController.setNumberOfProduct(SystemController.getNumberOfProduct()+SystemController.getProducts().size());
+            }
+        }
+    }
+    @FXML
     void btAddProductToCart(MouseEvent event){
-        product=listProducts.getSelectionModel().getSelectedItem();
-        if(HomeController.isLogin()){
+        SystemController.setProduct(listProducts.getSelectionModel().getSelectedItem());
+        if(SystemController.isLogin()){
             PurchaserController purchaserController = new PurchaserController();
-            purchaserController.addProductToCart(product,(Purchaser) AccountController.getAccount());
+            purchaserController.addProductToCart(SystemController.getProduct(),(Purchaser) AccountController.getAccount());
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -73,11 +106,11 @@ public class Search implements Initializable {
     }
     @FXML
     void btAddScore(MouseEvent event) {
-        product=listProducts.getSelectionModel().getSelectedItem();
-        if(HomeController.isLogin()){
+        SystemController.setProduct(listProducts.getSelectionModel().getSelectedItem());
+        if(SystemController.isLogin()){
             PurchaserController purchaserController = new PurchaserController();
             try {
-                purchaserController.addScore((Purchaser) AccountController.getAccount(),product,Score.getValue());
+                purchaserController.addScore((Purchaser) AccountController.getAccount(),SystemController.getProduct(),Score.getValue());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("add score is successful");
                 alert.show();
@@ -95,7 +128,7 @@ public class Search implements Initializable {
     }
     @FXML
     void btComment(MouseEvent event) throws IOException {
-        product=listProducts.getSelectionModel().getSelectedItem();
+        SystemController.setProduct(listProducts.getSelectionModel().getSelectedItem());
         try {
             Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("showComment.fxml")));
             Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -112,12 +145,19 @@ public class Search implements Initializable {
     }
     @FXML
     void listProducts(MouseEvent event) {
-        lbProduct.setText(listProducts.getSelectionModel().getSelectedItem().toString());
+        try {
+            lbProduct.setText(listProducts.getSelectionModel().getSelectedItem().toString0());
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("please select item");
+            alert.show();
+        }
+
     }
 
     @FXML
     void btExit(javafx.scene.input.MouseEvent event) throws IOException {
-        HomeController.setProducts(new ArrayList<>());
+        SystemController.setProducts(new ArrayList<>());
         listProducts.getItems().clear();
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home.fxml")));
         Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -129,8 +169,8 @@ public class Search implements Initializable {
 
     @FXML
     void btAddComment(MouseEvent event) throws IOException {
-        if(HomeController.isLogin()){
-            product=listProducts.getSelectionModel().getSelectedItem();
+        if(SystemController.isLogin()){
+            SystemController.setProduct(listProducts.getSelectionModel().getSelectedItem());
             Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("addComment.fxml")));
             Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
             Scene scene=new Scene(parent,450,230);
@@ -146,8 +186,17 @@ public class Search implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Arrays.sort(HomeController.getProducts().toArray());
-        listProducts.getItems().addAll(HomeController.getProducts());
+        Arrays.sort(SystemController.getProducts().toArray());
+//        listProducts.getItems().addAll(SystemController.getProducts());
+        SystemController.setNumberOfProduct(0);
+        if (SystemController.getNumberOfProduct()+5<SystemController.getProducts().size()){
+            listProducts.getItems().addAll(SystemController.getProducts().subList(SystemController.getNumberOfProduct(),SystemController.getNumberOfProduct()+5));
+            SystemController.setNumberOfProduct(SystemController.getNumberOfProduct()+5);
+        }else {
+            listProducts.getItems().addAll(SystemController.getProducts().subList(SystemController.getNumberOfProduct(),SystemController.getProducts().size()));
+            SystemController.setNumberOfProduct(SystemController.getNumberOfProduct()+SystemController.getProducts().size());
+        }
+
 
     }
 }

@@ -21,9 +21,5 @@ public class CartClass {
     }
     public void setCart(ArrayList<Product> cart) {
         this.cart = cart;
-        price=0;
-        for (Product product:cart){
-            price+=product.getPrice();
-        }
     }
 }

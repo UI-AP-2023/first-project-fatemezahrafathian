@@ -24,16 +24,27 @@ public class FlashMemory extends InformationStorageEquipment {
     public void setVersion(String version) {
         this.version = version;
     }
-
     @Override
     public String toString() {
-        return "FlashMemory{" +
-                "version='" + version + '\'' +
-                '}';
+        return "name: " + getName() + "       "+
+                "price: " + getPrice();
+    }
+    public String toString0() {
+        return "name: " + getName() + "\n" +
+                "productId: " + getProductID() + "\n" +
+                "category: " + getProductCategory() + "\n" +
+                "price: " + getPrice() + "\n" +
+                "score: " + getAverageScoreOfBuyers() + "\n" +
+                "capacity=" + getCapacity() +"\n" +
+                "waite=" + getWaite() +"\n" +
+                ", dimensions='" + getDimensions() + "\n" +
+                "inventory status: " + getInventoryStatus() + "\n"+
+                "version='" + version;
     }
 
     @Override
     public void addDiscount(double discountPercent) {
+        percent=discountPercent;
         setPrice(getPrice()-getPrice()*percent/100);
     }
 

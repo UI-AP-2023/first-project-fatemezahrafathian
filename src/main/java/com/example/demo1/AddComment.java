@@ -1,8 +1,8 @@
 package com.example.demo1;
 
 import Controller.AccountController;
-import Controller.ProductController;
 import Controller.PurchaserController;
+import Model.SystemController;
 import Model.User.Purchaser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +42,7 @@ public class AddComment {
     @FXML
     void btSend(MouseEvent event) throws IOException {
         PurchaserController purchaserController = new PurchaserController();
-        purchaserController.addComment(Search.product,(Purchaser) AccountController.getAccount(),tfComment.getText());
+        purchaserController.addComment(SystemController.getProduct(),(Purchaser) AccountController.getAccount(),tfComment.getText());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("request has send to admin");
         alert.show();

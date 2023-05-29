@@ -23,9 +23,18 @@ public class NoteBook extends Stationery {
 
     @Override
     public String toString() {
-        return "NoteBook{" +
-                "numberOfSheets=" + numberOfSheets +
-                ", paperType='" + paperType + '\'' +
-                '}';
+        return "name: " + getName() + "    " +
+                "price: " + getPrice();
+    }
+    public String toString0() {
+        return "name: " + getName() + "\n" +
+                "productId: " + getProductID() + "\n" +
+                "category: " + getProductCategory() + "\n" +
+                "price: " + getPrice() + "\n" +
+                "score: " + getAverageScoreOfBuyers() + "\n" +
+                "inventory status: " + getInventoryStatus() + "\n"+
+                "producingCountry='" + getProducingCountry() + '\n' +
+                "numberOfSheets=" + numberOfSheets +'\n' +
+                ", paperType='" + paperType;
     }
 }

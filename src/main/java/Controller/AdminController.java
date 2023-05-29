@@ -199,5 +199,67 @@ public class AdminController {
             }
         }
     }
+    public void addProducts(){
+        Admin admin1=Admin.getAdmin();
+        Bike bike = new Bike(ProductCategory.VEHICLES,"bike",78.2,2,"a",BikeType.URBAN);
+        Car car = new Car(ProductCategory.VEHICLES,"car",789.3,1,"fhh",78.3,true);
+        Edible edible = new Edible(ProductCategory.EDIBLE,"edible",45.3,1,"kjh","jjjj");
+        FlashMemory flashMemory = new FlashMemory(ProductCategory.DIGITAL_GOODS,"flash",78.6,5,8,"kjh",8,"2");
+        NoteBook noteBook = new NoteBook(ProductCategory.STATIONERY,"noteBook",12.3,2,"a",50,"h");
+        Pen pen = new Pen(ProductCategory.STATIONERY,"pen",41.3,3,"a","red");
+        Pencil pencil = new Pencil(ProductCategory.STATIONERY,"pencil",1.2,4,"a",PencilType.B);
+        PersonalComputer personalComputer = new PersonalComputer(ProductCategory.DIGITAL_GOODS,"computer",14.3,2,5,"s","d",5);
+        SSD ssd = new SSD(ProductCategory.DIGITAL_GOODS,"ssd",41,1,1,"h",5,12.3,1.3);
+
+        Bike bike1 = new Bike(ProductCategory.VEHICLES,"bike1",100,2,"a",BikeType.URBAN);
+        Car car1 = new Car(ProductCategory.VEHICLES,"car1",200,1,"fhh",78.3,true);
+        Edible edible1 = new Edible(ProductCategory.EDIBLE,"edible1",50,1,"kjh","jjjj");
+        FlashMemory flashMemory1 = new FlashMemory(ProductCategory.DIGITAL_GOODS,"flash1",60,5,8,"kjh",8,"2");
+        NoteBook noteBook1 = new NoteBook(ProductCategory.STATIONERY,"noteBook1",70,2,"a",50,"h");
+        Pen pen1 = new Pen(ProductCategory.STATIONERY,"pen1",90,3,"a","red");
+        Pencil pencil1 = new Pencil(ProductCategory.STATIONERY,"pencil1",41,4,"a",PencilType.B);
+        PersonalComputer personalComputer1 = new PersonalComputer(ProductCategory.DIGITAL_GOODS,"computer",45,2,5,"s","d",5);
+        SSD ssd1 = new SSD(ProductCategory.DIGITAL_GOODS,"ssd1",100,1,1,"h",5,12.3,1.3);
+
+        Bike bike2 = new Bike(ProductCategory.VEHICLES,"bike",78.2,2,"a",BikeType.URBAN);
+        Car car2 = new Car(ProductCategory.VEHICLES,"car",789.3,1,"fhh",78.3,true);
+        Edible edible2 = new Edible(ProductCategory.EDIBLE,"edible",45.3,1,"kjh","jjjj");
+        FlashMemory flashMemory2 = new FlashMemory(ProductCategory.DIGITAL_GOODS,"flash",78.6,5,8,"kjh",8,"2");
+        NoteBook noteBook2 = new NoteBook(ProductCategory.STATIONERY,"noteBook",12.3,2,"a",50,"h");
+        Pen pen2 = new Pen(ProductCategory.STATIONERY,"pen",41.3,3,"a","red");
+        Pencil pencil2 = new Pencil(ProductCategory.STATIONERY,"pencil",1.2,4,"a",PencilType.B);
+        PersonalComputer personalComputer2 = new PersonalComputer(ProductCategory.DIGITAL_GOODS,"computer",14.3,2,5,"s","d",5);
+        SSD ssd2 = new SSD(ProductCategory.DIGITAL_GOODS,"ssd",41,1,1,"h",5,12.3,1.3);
+
+        admin1.getProducts().add(edible);
+        admin1.getProducts().add(car);
+        admin1.getProducts().add(bike);
+        admin1.getProducts().add(flashMemory);
+        admin1.getProducts().add(noteBook);
+        admin1.getProducts().add(pen);
+        admin1.getProducts().add(pencil);
+        admin1.getProducts().add(personalComputer);
+        admin1.getProducts().add(ssd);
+
+        admin1.getProducts().add(edible1);
+        admin1.getProducts().add(car1);
+        admin1.getProducts().add(bike1);
+        admin1.getProducts().add(flashMemory1);
+        admin1.getProducts().add(noteBook1);
+        admin1.getProducts().add(pen1);
+        admin1.getProducts().add(pencil1);
+        admin1.getProducts().add(personalComputer1);
+        admin1.getProducts().add(ssd1);
+
+        admin1.getProducts().add(edible2);
+        admin1.getProducts().add(car2);
+        admin1.getProducts().add(bike2);
+        admin1.getProducts().add(flashMemory2);
+        admin1.getProducts().add(noteBook2);
+        admin1.getProducts().add(pen2);
+        admin1.getProducts().add(pencil2);
+        admin1.getProducts().add(personalComputer2);
+        admin1.getProducts().add(ssd2);
+    }
 
 }
