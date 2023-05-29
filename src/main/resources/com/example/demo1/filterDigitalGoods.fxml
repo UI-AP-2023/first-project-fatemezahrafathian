@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.FilterDigitalGoods">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@download.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btSSD" alignment="BOTTOM_CENTER" cacheHint="QUALITY" contentDisplay="CENTER" layoutX="140.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#btSSD" opacity="0.26" prefHeight="158.0" prefWidth="176.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Bloom>
+               <input>
+                  <DropShadow offsetX="10.0" offsetY="10.0" radius="33.322500000000005" width="114.29" />
+               </input>
+            </Bloom>
+         </effect>
+         <font>
+            <Font name="Arial Bold" size="39.0" />
+         </font>
+      </Button>
+      <Button fx:id="btFlash" alignment="BOTTOM_CENTER" cacheHint="QUALITY" contentDisplay="CENTER" layoutX="332.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#btFlash" opacity="0.26" prefHeight="158.0" prefWidth="176.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Bloom>
+               <input>
+                  <DropShadow offsetX="10.0" offsetY="10.0" radius="33.322500000000005" width="114.29" />
+               </input>
+            </Bloom>
+         </effect>
+         <font>
+            <Font name="Arial Bold" size="39.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="141.0" fitWidth="164.0" layoutX="338.0" layoutY="178.0" mouseTransparent="true" opacity="0.64" pickOnBounds="true">
+         <image>
+            <Image url="@flash.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="164.0" layoutX="146.0" layoutY="65.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@ssd.png" />
+         </image>
+         <effect>
+            <Reflection />
+         </effect>
+      </ImageView>
+      <Button fx:id="btPersonalComputer" alignment="BOTTOM_CENTER" cacheHint="QUALITY" contentDisplay="CENTER" layoutX="28.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#btPersonalComputer" opacity="0.26" prefHeight="158.0" prefWidth="176.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Bloom>
+               <input>
+                  <DropShadow offsetX="10.0" offsetY="10.0" radius="33.322500000000005" width="114.29" />
+               </input>
+            </Bloom>
+         </effect>
+         <font>
+            <Font name="Arial Bold" size="39.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="141.0" fitWidth="164.0" layoutX="34.0" layoutY="236.0" mouseTransparent="true" opacity="0.64" pickOnBounds="true">
+         <image>
+            <Image url="@personalCamputer.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfWeight" layoutX="550.0" layoutY="183.0" prefHeight="31.0" prefWidth="140.0" promptText="min-max" />
+      <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="709.0" layoutY="36.0" opacity="0.64" pickOnBounds="true">
+         <image>
+            <Image url="@price.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btInventory" alignment="BOTTOM_CENTER" blendMode="MULTIPLY" cacheHint="QUALITY" contentDisplay="CENTER" layoutX="702.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#btInventory" opacity="0.26" prefHeight="52.0" prefWidth="59.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Bloom>
+               <input>
+                  <DropShadow offsetX="10.0" offsetY="10.0" radius="33.322500000000005" width="114.29" />
+               </input>
+            </Bloom>
+         </effect>
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="btWeight" alignment="BOTTOM_CENTER" blendMode="MULTIPLY" cacheHint="QUALITY" contentDisplay="CENTER" layoutX="702.0" layoutY="168.0" mnemonicParsing="false" onMouseClicked="#btWeight" opacity="0.26" prefHeight="52.0" prefWidth="59.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Bloom>
+               <input>
+                  <DropShadow offsetX="10.0" offsetY="10.0" radius="33.322500000000005" width="114.29" />
+               </input>
+            </Bloom>
+         </effect>
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="709.0" layoutY="106.0" mouseTransparent="true" opacity="0.64" pickOnBounds="true">
+         <image>
+            <Image url="@inventory.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="709.0" layoutY="174.0" mouseTransparent="true" opacity="0.64" pickOnBounds="true">
+         <image>
+            <Image url="@weight.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btPrice" alignment="BOTTOM_CENTER" blendMode="MULTIPLY" cacheHint="QUALITY" contentDisplay="CENTER" layoutX="702.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#btPrice" opacity="0.26" prefHeight="52.0" prefWidth="59.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Bloom>
+               <input>
+                  <DropShadow offsetX="10.0" offsetY="10.0" radius="33.322500000000005" width="114.29" />
+               </input>
+            </Bloom>
+         </effect>
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tfInventory" layoutX="550.0" layoutY="111.0" prefHeight="31.0" prefWidth="140.0" promptText="inventory" />
+      <TextField fx:id="tfPrice" layoutX="550.0" layoutY="41.0" prefHeight="31.0" prefWidth="140.0" promptText="min-max" />
+      <Button fx:id="btExit" layoutX="744.0" layoutY="404.0" mnemonicParsing="false" onMouseClicked="#btExit" prefHeight="31.0" prefWidth="42.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <graphic>
+            <ImageView fx:id="exitImage" fitHeight="47.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit-icon-vector-22391092.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

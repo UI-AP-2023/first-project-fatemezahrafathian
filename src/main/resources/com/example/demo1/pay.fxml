@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.Pay">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@download.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfAmount" layoutX="355.0" layoutY="34.0" prefHeight="31.0" prefWidth="180.0" promptText="000.0">
+         <effect>
+            <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325" />
+         </effect>
+      </TextField>
+      <Label fx:id="lbAmount" layoutX="256.0" layoutY="27.0" prefHeight="45.0" prefWidth="76.0" text="amount">
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" />
+         </effect>
+      </Label>
+      <Button fx:id="btPay" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="264.0" layoutY="378.0" mnemonicParsing="false" onMouseClicked="#btPay" opacity="0.3" prefHeight="25.0" prefWidth="289.0" text="pay" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+      </Button>
+      <TextField fx:id="tfNumberOfCard" layoutX="345.0" layoutY="128.0" prefHeight="31.0" prefWidth="310.0" promptText="1234-1234-1234-1234">
+         <effect>
+            <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325" />
+         </effect>
+      </TextField>
+      <TextField fx:id="tfPassword" layoutX="344.0" layoutY="196.0" prefHeight="31.0" prefWidth="203.0" promptText="**************">
+         <effect>
+            <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325" />
+         </effect>
+      </TextField>
+      <TextField fx:id="tfCvv2" layoutX="345.0" layoutY="273.0" prefHeight="31.0" prefWidth="127.0" promptText="****">
+         <effect>
+            <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325" />
+         </effect>
+      </TextField>
+      <Label fx:id="lbNumberCard" layoutX="197.0" layoutY="121.0" prefHeight="45.0" prefWidth="102.0" text="number card">
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" />
+         </effect>
+      </Label>
+      <Label fx:id="lbPassword2" layoutX="210.0" layoutY="189.0" prefHeight="45.0" prefWidth="76.0" text="password">
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" />
+         </effect>
+      </Label>
+      <Label fx:id="lbCvv2" layoutX="239.0" layoutY="266.0" prefHeight="45.0" prefWidth="35.0" text="ccv2">
+         <effect>
+            <DropShadow offsetX="10.0" offsetY="10.0" />
+         </effect>
+      </Label>
+      <Button fx:id="btExit" layoutX="737.0" layoutY="403.0" mnemonicParsing="false" onMouseClicked="#btExit" prefHeight="31.0" prefWidth="42.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <graphic>
+            <ImageView fx:id="exitImage" fitHeight="47.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit-icon-vector-22391092.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

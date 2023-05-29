@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="227.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.AddComment">
+   <children>
+      <Button fx:id="btBack" alignment="CENTER" contentDisplay="CENTER" layoutX="238.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#btBack" opacity="0.3" prefHeight="46.0" prefWidth="101.0" text="back" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+      </Button>
+      <Button fx:id="btSend" alignment="CENTER" contentDisplay="CENTER" layoutX="339.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#btSend" opacity="0.3" prefHeight="46.0" prefWidth="109.0" text="send" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+      </Button>
+      <TextArea fx:id="tfComment" layoutX="-2.0" prefHeight="178.0" prefWidth="450.0" />
+   </children>
+</AnchorPane>

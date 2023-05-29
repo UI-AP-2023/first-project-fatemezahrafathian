@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.Cart">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@download.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btExit" layoutX="744.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#btExit" prefHeight="31.0" prefWidth="42.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <graphic>
+            <ImageView fx:id="exitImage" fitHeight="47.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit-icon-vector-22391092.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btBuy" alignment="CENTER" contentDisplay="CENTER" layoutX="451.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#btBuy" opacity="0.84" prefHeight="46.0" prefWidth="261.0" text="buy" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+      </Button>
+      <Button fx:id="btDiscount" alignment="CENTER" contentDisplay="CENTER" layoutX="622.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#btDiscount" opacity="0.84" prefHeight="46.0" prefWidth="90.0" text="ok" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+      </Button>
+      <TextField fx:id="tfDiscount" layoutX="451.0" layoutY="225.0" prefHeight="46.0" prefWidth="158.0" promptText="discountCode">
+         <effect>
+            <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325" />
+         </effect>
+      </TextField>
+      <Label layoutX="451.0" layoutY="74.0" prefHeight="30.0" prefWidth="76.0" text="price" textFill="#9a3636">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbPrice" layoutX="536.0" layoutY="73.0" prefHeight="36.0" prefWidth="185.0" />
+      <ListView fx:id="listProduct" layoutX="20.0" layoutY="17.0" prefHeight="417.0" prefWidth="372.0" />
+   </children>
+</AnchorPane>

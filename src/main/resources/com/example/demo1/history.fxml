@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.History">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@download.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="box" arcHeight="30.0" arcWidth="30.0" height="361.0" layoutX="452.0" layoutY="44.0" smooth="false" stroke="#df8b8b" strokeType="INSIDE" width="285.0">
+         <effect>
+            <DropShadow height="23.39" offsetX="10.0" offsetY="10.0" radius="10.0275" width="18.72">
+               <color>
+                  <Color blue="0.4885770082473755" green="0.4885770082473755" red="0.5473684072494507" />
+               </color>
+            </DropShadow>
+         </effect>
+         <fill>
+            <LinearGradient endX="1.0" endY="9.031005943072046E-10" proportional="false" startX="0.4242424237908739">
+               <stops>
+                  <Stop color="#bfa1a1" />
+                  <Stop color="#bfa1a1" offset="0.4331797235023041" />
+                  <Stop color="#f2dbd500" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label fx:id="lbInvoice" alignment="TOP_LEFT" layoutX="457.0" layoutY="52.0" prefHeight="345.0" prefWidth="276.0">
+         <opaqueInsets>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </Label>
+      <Button fx:id="btExit" layoutX="737.0" layoutY="397.0" mnemonicParsing="false" onMouseClicked="#btExit" prefHeight="31.0" prefWidth="42.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <graphic>
+            <ImageView fx:id="exitImage" fitHeight="47.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit-icon-vector-22391092.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ListView fx:id="listInvoice" layoutX="28.0" layoutY="16.0" onMouseClicked="#listInvoice" prefHeight="417.0" prefWidth="372.0" />
+   </children>
+</AnchorPane>

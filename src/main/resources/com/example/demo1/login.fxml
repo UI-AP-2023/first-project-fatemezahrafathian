@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.demo1.LoginController">
+   <ImageView fx:id="backGrandLogin" fitHeight="450.0" fitWidth="800.0" pickOnBounds="true">
+      <Image url="@download.png"/>
+   </ImageView>
+   <TextField fx:id="tfUsername" layoutX="280.0" layoutY="139.0" prefHeight="31.0" prefWidth="270.0">
+      <effect>
+         <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325"/>
+      </effect>
+   </TextField>
+   <Label fx:id="lbUsername" layoutX="190.0" layoutY="132.0" prefHeight="45.0" prefWidth="76.0" text="username">
+      <effect>
+         <DropShadow offsetX="10.0" offsetY="10.0"/>
+      </effect>
+   </Label>
+   <TextField fx:id="tfPassword" layoutX="280.0" layoutY="194.0" prefHeight="31.0" prefWidth="270.0">
+      <effect>
+         <DropShadow color="#866c6c" height="30.33" offsetX="10.0" offsetY="10.0" radius="12.3325"/>
+      </effect>
+   </TextField>
+   <Label fx:id="lbPassword" layoutX="190.0" layoutY="187.0" prefHeight="45.0" prefWidth="76.0" text="password">
+      <effect>
+         <DropShadow offsetX="10.0" offsetY="10.0"/>
+      </effect>
+   </Label>
+   <Button fx:id="btLogin" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="485.0" layoutY="247.0"
+           mnemonicParsing="false" onMouseClicked="#btLogin" opacity="0.3" prefHeight="31.0" prefWidth="65.0"
+           text="login" textAlignment="CENTER">
+      <cursor>
+         <Cursor fx:constant="DEFAULT"/>
+      </cursor>
+      <effect>
+         <DropShadow offsetX="10.0" offsetY="10.0"/>
+      </effect>
+   </Button>
+   <Button fx:id="btExit" layoutX="738.0" layoutY="397.0" mnemonicParsing="false" onMouseClicked="#btExit"
+           prefHeight="31.0" prefWidth="42.0">
+      <cursor>
+         <Cursor fx:constant="DEFAULT"/>
+      </cursor>
+      <graphic>
+         <ImageView fx:id="exitImage" fitHeight="47.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@exit-icon-vector-22391092.jpg"/>
+         </ImageView>
+      </graphic>
+      <cursor>
+         <Cursor fx:constant="DEFAULT"/>
+      </cursor>
+   </Button>
+   <Label fx:id="lbLogin" layoutX="356.0" layoutY="55.0" prefHeight="65.0" prefWidth="119.0" text="login">
+      <effect>
+         <DropShadow offsetX="10.0" offsetY="10.0"/>
+      </effect>
+      <font>
+         <Font size="44.0"/>
+      </font>
+   </Label>
+   <Button fx:id="btSignup" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="331.0" layoutY="317.0"
+           mnemonicParsing="false" onMouseClicked="#btSignup" opacity="0.3" prefHeight="31.0" prefWidth="169.0"
+           text="signup" textAlignment="CENTER" textFill="#d05b5b">
+      <cursor>
+         <Cursor fx:constant="DEFAULT"/>
+      </cursor>
+      <effect>
+         <InnerShadow/>
+      </effect>
+   </Button>
+</AnchorPane>

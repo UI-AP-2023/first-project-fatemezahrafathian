@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.Search">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="800.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@download.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="box" arcHeight="30.0" arcWidth="30.0" height="361.0" layoutX="448.0" layoutY="46.0" smooth="false" stroke="#df8b8b" strokeType="INSIDE" width="285.0">
+         <effect>
+            <DropShadow height="23.39" offsetX="10.0" offsetY="10.0" radius="10.0275" width="18.72">
+               <color>
+                  <Color blue="0.4885770082473755" green="0.4885770082473755" red="0.5473684072494507" />
+               </color>
+            </DropShadow>
+         </effect>
+         <fill>
+            <LinearGradient endX="1.0" endY="9.031005943072046E-10" proportional="false" startX="0.4242424237908739">
+               <stops>
+                  <Stop color="#bfa1a1" />
+                  <Stop color="#bfa1a1" offset="0.4331797235023041" />
+                  <Stop color="#f2dbd500" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label fx:id="lbProduct" alignment="TOP_LEFT" layoutX="453.0" layoutY="54.0" prefHeight="345.0" prefWidth="276.0">
+         <opaqueInsets>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </Label>
+      <Button fx:id="btExit" layoutX="733.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#btExit" prefHeight="31.0" prefWidth="42.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <graphic>
+            <ImageView fx:id="exitImage" fitHeight="47.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit-icon-vector-22391092.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btComment" alignment="CENTER" contentDisplay="CENTER" layoutX="453.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#btComment" opacity="0.3" prefHeight="46.0" prefWidth="56.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@comment.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btAddComment" alignment="CENTER" contentDisplay="CENTER" layoutX="525.0" layoutY="338.0" mnemonicParsing="false" onMouseClicked="#btAddComment" opacity="0.3" prefHeight="46.0" prefWidth="66.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@edit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btAddScore" alignment="CENTER" contentDisplay="CENTER" layoutX="601.0" layoutY="338.0" mnemonicParsing="false" onMouseClicked="#btAddScore" opacity="0.3" prefHeight="46.0" prefWidth="66.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@score.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btAddProductToCart" alignment="CENTER" contentDisplay="CENTER" layoutX="667.0" layoutY="338.0" mnemonicParsing="false" onMouseClicked="#btAddProductToCart" opacity="0.3" prefHeight="46.0" prefWidth="66.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@addToCart.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Slider fx:id="Score" blockIncrement="0.0" layoutX="521.0" layoutY="293.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <ImageView fitHeight="46.0" fitWidth="23.0" layoutX="3.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="23.0" layoutX="397.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@next.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btNext" alignment="CENTER" contentDisplay="CENTER" layoutX="389.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#btNext" opacity="0.3" prefHeight="56.0" prefWidth="38.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+      </Button>
+      <Button fx:id="btBack" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#btBack" opacity="0.3" prefHeight="56.0" prefWidth="31.0" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#b24b4b" height="27.22" offsetX="10.0" offsetY="10.0" radius="14.665" width="33.44" />
+         </effect>
+      </Button>
+      <ListView fx:id="listProducts" layoutX="26.0" layoutY="16.0" onMouseClicked="#listProducts" prefHeight="417.0" prefWidth="372.0" />
+   </children>
+</AnchorPane>
